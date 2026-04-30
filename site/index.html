@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יהודה לוי ז״ל — אתר הנצחה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8cc80;
+  --gold-dim: #8a6e30;
+  --bg: #0a0a0a;
+  --bg2: #111111;
+  --bg3: #1a1a1a;
+  --text: #f0ead8;
+  --text2: #a89e88;
+  --text3: #6b6257;
+  --red: #8b1a1a;
+  --red-light: #c0392b;
+  --border: rgba(201,168,76,0.2);
+  --border-strong: rgba(201,168,76,0.5);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:50px; }
+body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; font-weight:300; line-height:1.8; overflow-x:hidden; }
+
+/* ── HERO ── */
+.hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; text-align:center; padding:3rem 2rem; overflow:hidden; }
+.hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(139,26,26,0.15) 0%, transparent 70%), radial-gradient(ellipse 80% 40% at 50% 100%, rgba(201,168,76,0.06) 0%, transparent 60%); pointer-events:none; }
+.candle-row { display:flex; gap:2rem; margin-bottom:2rem; }
+.candle { display:flex; flex-direction:column; align-items:center; }
+.flame { width:10px; height:20px; background:radial-gradient(ellipse at 50% 80%, #fff8 0%, #ffcc00 40%, #ff6600 80%, transparent 100%); border-radius:50% 50% 20% 20%; animation:flicker 2.5s ease-in-out infinite alternate; filter:blur(0.5px); }
+.candle-body { width:12px; height:50px; background:linear-gradient(to bottom,#f5f0e8,#d4cbbf); border-radius:2px; }
+@keyframes flicker {
+  0%   { transform:scale(1,1) skew(0deg); opacity:.9; }
+  25%  { transform:scale(.9,1.1) skew(-2deg); opacity:1; }
+  50%  { transform:scale(1.1,.9) skew(1deg); opacity:.85; }
+  75%  { transform:scale(.95,1.05) skew(2deg); opacity:1; }
+  100% { transform:scale(1,1) skew(-1deg); opacity:.92; }
+}
+.hero-star { color:var(--gold); font-size:1.5rem; margin-bottom:1rem; letter-spacing:.5rem; }
+.hero-name { font-family:'Frank Ruhl Libre',serif; font-size:clamp(3rem,8vw,6rem); font-weight:900; line-height:1; letter-spacing:-.02em; }
+.hero-name span { display:block; font-size:.5em; font-weight:300; color:var(--gold); letter-spacing:.15em; margin-bottom:.3em; font-family:'Heebo',sans-serif; }
+.hero-dates { font-family:'Frank Ruhl Libre',serif; font-size:clamp(1rem,2.5vw,1.3rem); color:var(--text2); margin-top:1rem; letter-spacing:.1em; }
+.hero-divider { width:120px; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); margin:1.5rem auto; }
+.hero-quote { font-family:'Frank Ruhl Libre',serif; font-size:clamp(1rem,2vw,1.2rem); color:var(--text2); max-width:500px; font-style:italic; font-weight:300; }
+.hero-photo { width:clamp(140px,20vw,200px); height:clamp(140px,20vw,200px); border-radius:50%; object-fit:cover; border:2px solid var(--gold-dim); box-shadow:0 0 0 8px rgba(201,168,76,.06), 0 30px 60px rgba(0,0,0,.5); margin-bottom:2rem; }
+.scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:var(--text3); font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:.5rem; }
+.scroll-hint::after { content:''; width:1px; height:30px; background:linear-gradient(to bottom,var(--gold-dim),transparent); animation:scrollLine 2s ease-in-out infinite; }
+@keyframes scrollLine { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ── NAV ── */
+nav { position:sticky; top:0; z-index:100; background:rgba(10,10,10,.95); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+.nav-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; padding:0; }
+.nav-inner a { color:var(--text2); text-decoration:none; font-size:.82rem; letter-spacing:.06em; padding:.9rem 1rem; transition:color .2s,border-color .2s; border-bottom:2px solid transparent; white-space:nowrap; }
+.nav-inner a:hover { color:var(--gold); border-bottom-color:var(--gold); }
+.nav-name { font-family:'Frank Ruhl Libre',serif; font-size:1rem !important; color:var(--gold) !important; font-weight:700; }
+
+/* ── SECTIONS ── */
+section { max-width:900px; margin:0 auto; padding:5rem 2rem; }
+.section-label { font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin-bottom:.8rem; }
+.section-title { font-family:'Frank Ruhl Libre',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:700; margin-bottom:2rem; line-height:1.2; }
+.section-divider { width:60px; height:2px; background:var(--gold); margin-bottom:3rem; }
+.prose { font-size:1.05rem; color:var(--text2); line-height:2; max-width:700px; }
+.prose p { margin-bottom:1.5rem; }
+.wide-section { background:var(--bg2); max-width:100%; padding:5rem 0; }
+.wide-inner { max-width:900px; margin:0 auto; padding:0 2rem; }
+
+/* ── TIMELINE ── */
+.timeline { position:relative; margin:2rem 0; }
+.timeline::before { content:''; position:absolute; right:0; top:0; bottom:0; width:1px; background:linear-gradient(to bottom,transparent,var(--border-strong),transparent); }
+.timeline-item { display:grid; grid-template-columns:1fr 80px; gap:1.5rem; padding:1.5rem 2rem 1.5rem 0; border-bottom:1px solid var(--border); position:relative; transition:background .2s; }
+.timeline-item:hover { background:rgba(201,168,76,.03); border-radius:4px; }
+.timeline-item::after { content:''; position:absolute; right:-4px; top:50%; transform:translateY(-50%); width:9px; height:9px; border-radius:50%; background:var(--gold); box-shadow:0 0 12px rgba(201,168,76,.4); }
+.timeline-event { font-size:1rem; color:var(--text); font-weight:400; }
+.timeline-year { font-family:'Frank Ruhl Libre',serif; font-size:1.1rem; font-weight:700; color:var(--gold); text-align:left; padding-top:.1rem; }
+
+/* ── BATTLE ── */
+.battle-card { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:2.5rem; margin-bottom:1.5rem; position:relative; overflow:hidden; }
+.battle-card::before { content:''; position:absolute; top:0; right:0; width:4px; height:100%; background:linear-gradient(to bottom,var(--red),var(--gold)); }
+.battle-card h3 { font-family:'Frank Ruhl Libre',serif; font-size:1.3rem; color:var(--gold); margin-bottom:1rem; }
+.battle-card p { color:var(--text2); font-size:.95rem; line-height:1.9; margin-bottom:.75rem; }
+.battle-card p:last-child { margin-bottom:0; }
+
+/* ── HESPEDIM ── */
+.hesped-filters { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
+.filter-btn { padding:.4rem 1rem; border:1px solid var(--border); border-radius:20px; background:transparent; color:var(--text3); font-size:.8rem; cursor:pointer; transition:all .2s; font-family:'Heebo',sans-serif; letter-spacing:.05em; }
+.filter-btn:hover,.filter-btn.active { background:var(--gold); color:var(--bg); border-color:var(--gold); }
+.hespedim-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:.75rem; }
+.hesped-card { background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:1.2rem 1.5rem; cursor:pointer; transition:all .25s; position:relative; overflow:hidden; }
+.hesped-card::before { content:''; position:absolute; bottom:0; right:0; left:0; height:2px; background:var(--gold); transform:scaleX(0); transition:transform .25s; transform-origin:right; }
+.hesped-card:hover { border-color:var(--border-strong); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.3); }
+.hesped-card:hover::before { transform:scaleX(1); }
+.hesped-name { font-size:.95rem; color:var(--text); font-weight:500; margin-bottom:.25rem; }
+.hesped-role { font-size:.76rem; color:var(--gold-dim); letter-spacing:.05em; }
+.hesped-card[data-group="family"] .hesped-role { color:#b8876a; }
+.hesped-card[data-group="command"] .hesped-role { color:#6a8ab8; }
+.hesped-card.hidden { display:none; }
+.group-label { font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--text3); margin:2rem 0 .75rem; padding-bottom:.5rem; border-bottom:1px solid var(--border); grid-column:1/-1; }
+
+/* ── AZKAROT ── */
+.azkarot-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.5rem; margin-top:2rem; }
+.azkarot-year { background:var(--bg3); border:1px solid var(--border); border-radius:8px; overflow:hidden; transition:border-color .25s; }
+.azkarot-year:hover { border-color:var(--border-strong); }
+.azkarot-header { padding:1.2rem 1.5rem; background:linear-gradient(to left,rgba(201,168,76,.08),transparent); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+.azkarot-num { font-family:'Frank Ruhl Libre',serif; font-size:2rem; font-weight:900; color:var(--gold); line-height:1; }
+.azkarot-label { font-size:.8rem; color:var(--text3); letter-spacing:.08em; }
+.azkarot-body { padding:1.2rem 1.5rem; font-size:.88rem; color:var(--text2); line-height:1.7; }
+
+/* ── PHOTOS ── */
+.photos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:.75rem; margin-top:2rem; }
+.photo-thumb { aspect-ratio:1; background:var(--bg3); border:1px solid var(--border); border-radius:4px; overflow:hidden; cursor:pointer; transition:all .25s; display:flex; flex-direction:column; }
+.photo-thumb:hover { border-color:var(--gold-dim); transform:scale(1.03); box-shadow:0 8px 24px rgba(0,0,0,.4); }
+.photo-thumb img { width:100%; flex:1; object-fit:cover; }
+.photo-caption { font-size:.7rem; color:var(--text3); padding:.35rem .5rem; text-align:center; background:rgba(0,0,0,.4); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* ── NEWSPAPER ── */
+.newspaper-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:1rem; margin-top:2rem; }
+.newspaper-item { background:var(--bg3); border:1px solid var(--border); border-radius:6px; overflow:hidden; transition:all .25s; cursor:pointer; aspect-ratio:3/4; position:relative; display:flex; align-items:center; justify-content:center; }
+.newspaper-item:hover { border-color:var(--gold-dim); transform:scale(1.02); box-shadow:0 12px 30px rgba(0,0,0,.4); }
+.newspaper-item img { width:100%; height:100%; object-fit:cover; filter:sepia(.2); }
+.newspaper-item .overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.7),transparent); display:flex; align-items:flex-end; padding:.75rem; opacity:0; transition:opacity .25s; }
+.newspaper-item:hover .overlay { opacity:1; }
+.newspaper-item .overlay span { font-size:.75rem; color:var(--gold-light); letter-spacing:.05em; }
+
+/* ── QUOTE ── */
+.quote-block { border-right:3px solid var(--gold); padding:1.5rem 2rem; margin:2rem 0; background:rgba(201,168,76,.04); border-radius:0 8px 8px 0; }
+.quote-block p { font-family:'Frank Ruhl Libre',serif; font-size:1.15rem; font-style:italic; line-height:1.9; }
+
+/* ── FOOTER ── */
+footer { border-top:1px solid var(--border); padding:3rem 2rem; text-align:center; color:var(--text3); font-size:.82rem; letter-spacing:.08em; line-height:2; }
+footer .gold { color:var(--gold); }
+.footer-divider { width:120px; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); margin:0 auto; }
+
+/* ── HESPED MODAL ── */
+.modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.94); z-index:1000; align-items:center; justify-content:center; padding:2rem; backdrop-filter:blur(12px); }
+.modal-bg.open { display:flex; }
+.modal { background:var(--bg2); border:1px solid var(--border-strong); border-radius:12px; max-width:680px; width:100%; max-height:88vh; overflow-y:auto; padding:3rem 2.5rem 2.5rem; position:relative; direction:rtl; }
+.modal-close { position:absolute; top:1rem; left:1rem; width:34px; height:34px; border-radius:50%; background:var(--bg3); border:1px solid var(--border); color:var(--text2); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1rem; transition:all .2s; line-height:1; }
+.modal-close:hover { background:var(--red); color:white; border-color:var(--red); }
+.modal-tag { display:inline-block; font-size:.72rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.25); border-radius:20px; padding:.25rem .75rem; margin-bottom:1rem; }
+.modal-title { font-family:'Frank Ruhl Libre',serif; font-size:2rem; font-weight:700; margin-bottom:.25rem; }
+.modal-role { font-size:.88rem; color:var(--text2); margin-bottom:2rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border); }
+.modal-text { font-size:1rem; color:var(--text2); line-height:2.1; white-space:pre-wrap; font-family:'Frank Ruhl Libre',serif; font-weight:300; }
+
+/* ── IMAGE MODAL ── */
+.img-modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.96); z-index:1001; flex-direction:column; align-items:center; justify-content:center; padding:1rem; cursor:zoom-out; }
+.img-modal-bg.open { display:flex; }
+.img-modal-bg img { max-width:92vw; max-height:85vh; object-fit:contain; border-radius:4px; }
+#imgCaption { color:var(--text2); font-size:.9rem; margin-top:1rem; letter-spacing:.05em; }
+
+@media (max-width:640px) {
+  .nav-inner { justify-content:flex-start; overflow-x:auto; flex-wrap:nowrap; }
+  .hespedim-grid { grid-template-columns:1fr 1fr; }
+  .timeline-item { grid-template-columns:1fr 60px; }
+  .modal { padding:2rem 1.5rem 1.5rem; }
+  .modal-title { font-size:1.5rem; }
+  .photos-grid { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="candle-row">
+    <div class="candle"><div class="flame"></div><div class="candle-body"></div></div>
+    <div class="candle"><div class="flame" style="animation-delay:.7s"></div><div class="candle-body"></div></div>
+    <div class="candle"><div class="flame" style="animation-delay:1.2s"></div><div class="candle-body"></div></div>
+  </div>
+  <img src="imgs/1.JPG" alt="יהודה לוי" class="hero-photo">
+  <p class="hero-star">✦ ✦ ✦</p>
+  <h1 class="hero-name">
+    <span>לזכרו של</span>
+    יהודה לוי
+    <span style="font-size:.3em; margin-top:.5em; margin-bottom:0; letter-spacing:.2em;">ז״ל</span>
+  </h1>
+  <div class="hero-dates">א׳ בספטמבר 1976 — כ״ג בתשרי תשנ״ז (26.9.1996)</div>
+  <div class="hero-divider"></div>
+  <p class="hero-quote">חייל בגדוד גבעתי, נפל בצומת ״יהודה״ — גוש קטיף<br>בן תשע עשרה שנה, לנצח בלבנו</p>
+  <div class="scroll-hint">גלול</div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">יהודה לוי ז״ל</a>
+    <a href="#lifestory">סיפור חיים</a>
+    <a href="#battle">מורשת קרב</a>
+    <a href="#hespedim">הספדים</a>
+    <a href="#azkarot">אזכרות</a>
+    <a href="#photos">תמונות</a>
+    <a href="#newspaper">כתבות</a>
+  </div>
+</nav>
+
+<!-- LIFE STORY -->
+<section id="lifestory">
+  <p class="section-label">biography</p>
+  <h2 class="section-title">סיפור חיים</h2>
+  <div class="section-divider"></div>
+  <div class="prose">
+    <p>יהודה נולד ב-1 לספטמבר 1976, בבית החולים רמב"ם בחיפה. הוא גדל והתחנך בעיר קריית אתא, בשכונת יוסף טל. בשנת 1978 עברה המשפחה לשכונת בן גוריון, עד לשנת 1994.</p>
+    <p>בשנת 1994 התגורר יהודה עם משפחתו באופן זמני במרכז קריית אתא, ומאז מאי 1995 עברה המשפחה לביתה בגבעת רם — שאת הבית הזה הספיק יהודה להכיר שנה אחת בלבד.</p>
+  </div>
+  <div class="timeline" style="margin-top:3rem">
+    <div class="timeline-item">
+      <div><div class="timeline-event">גן כיסופים — טרום חובה בגן הרדוף</div></div>
+      <div class="timeline-year">1981</div>
+    </div>
+    <div class="timeline-item">
+      <div><div class="timeline-event">טרום חובה בגן הרדוף</div></div>
+      <div class="timeline-year">1982</div>
+    </div>
+    <div class="timeline-item">
+      <div><div class="timeline-event">גן חובה בגן הרדוף</div></div>
+      <div class="timeline-year">1983</div>
+    </div>
+    <div class="timeline-item">
+      <div><div class="timeline-event">בי"ס יסודי פינסקר — בית הספר שהוקמה לזכרו הנציחה את שמו ומספרת גבורתו לעד. מידי שנה נערך בו טקס אזכרה ליהודה</div></div>
+      <div class="timeline-year">1984–1990</div>
+    </div>
+    <div class="timeline-item">
+      <div><div class="timeline-event">חטיבה א׳ — בי"ס רוגוזין</div></div>
+      <div class="timeline-year">1990–1993</div>
+    </div>
+    <div class="timeline-item">
+      <div><div class="timeline-event">תיכון רוגוזין</div></div>
+      <div class="timeline-year">1993–1995</div>
+    </div>
+    <div class="timeline-item">
+      <div><div class="timeline-event" style="color:var(--gold)">יהודה מתגייס לצה"ל — גדוד גבעתי</div></div>
+      <div class="timeline-year" style="color:var(--text2)">30.07.1995</div>
+    </div>
+    <div class="timeline-item" style="border-color:var(--red-light)">
+      <div><div class="timeline-event" style="color:var(--red-light)">נפילתו בצומת ״יהודה״ — גוש קטיף</div></div>
+      <div class="timeline-year" style="color:var(--red-light)">26.09.1996</div>
+    </div>
+  </div>
+  <div class="quote-block" style="margin-top:3rem">
+    <p>יהודה אהב מאוד כדורגל, היה אוהד משובע של מכבי חיפה. בילדותו אהב מאוד את הים, ובכלל כל מה שקשור במים. בגילאים צעירים היו ליהודה אוספים שונים — מכוניות מירוץ ומחקים.</p>
+  </div>
+</section>
+
+<!-- BATTLE -->
+<div class="wide-section" id="battle">
+  <div class="wide-inner">
+    <p class="section-label">legacy</p>
+    <h2 class="section-title">מורשת קרב</h2>
+    <div class="section-divider"></div>
+    <p class="prose" style="margin-bottom:2rem">פלוגת אוגוסט 95 — שקד. מאורעות ״ברזל לוהט״, 26.9.96. צומת ״יהודה״ — גוש קטיף.</p>
+    <div class="battle-card">
+      <h3>רקע</h3>
+      <p>במוצאי יום כיפור 23/9 נפתחה ע"י ממשלת ישראל מנהרת החשמונאים בירושלים ללא הודעה מוקדמת ובחשאי. פתיחת המנהרה הייתה הניצוץ שהביא להתפוצצות של אבק שריפה שהלך ונערם יחד עם המתח שגאה בעקבות חילופי השלטון בישראל ואי רצונה של ממשלת נתניהו לממש את הסכם חברון.</p>
+      <p>ההנהגה הפלסטינית כל הזמן מחממת את האווירה ע"י שידורי תעמולה ופעילים בשטח שמחממים את התושבים במטרה להוציאם לרחובות.</p>
+    </div>
+    <div class="battle-card">
+      <h3>מהלך האירועים — 26 בספטמבר 1996</h3>
+      <p>המ"מים מתפזרים עם שחר למשימותיהם לאחר לילה ללא שינה. בערך ב-7:45 נשמעים ע"י חייל מחלקה 2 — יהודה לוי ז"ל — שנמצא בעמדה 135 בצומת הגוש, דיווחים קרי רוח על התקהלות סביבו, זריקת אבנים ובקבוקים על האורחן ועליו.</p>
+      <p>בשלב זה קרב הירי הופך לתוך רותחת של אש. יהודה נמצא על מגדל 135 שמושך אליו אש. הירי מתבצע מבין הבתים ומבין האזרחים, ויהודה מזהה ומדווח על מקורות הירי בקרי רוח.</p>
+      <p>מתוך התופת פוגע בו כדור אחד בלב. הוא נופל אחורה ומתמוטט מיד. מ"מ 2 שומע את הצעקות, רץ לאורחן, נכנס פנימה. הרופא בתום בדיקתו מודיע שיהודה איבד את חייו.</p>
+    </div>
+    <div class="battle-card">
+      <h3>גבורה ונוכחות רוח</h3>
+      <p>יהודה, עד לרגעיו האחרונים, עמד בעמדתו, הרים ראש, חיפש את מקור האש כדי להחזיר — לוחם אמיתי. חלמיש הסמ"פ, למרות שנפצע קשה, מגיע בחיוך רחב לחובשים בנקודת הפינוי — אומר לכולם שלא קרה כלום ומשרה אווירה נינוחה סביבו.</p>
+    </div>
+  </div>
+</div>
+
+<!-- HESPEDIM -->
+<section id="hespedim">
+  <p class="section-label">eulogies</p>
+  <h2 class="section-title">הספדים</h2>
+  <div class="section-divider"></div>
+  <p class="prose" style="margin-bottom:2rem">דברי פרידה, אהבה וזיכרון שנכתבו בידי יקיריו ולוחמי פלוגתו של יהודה. לחצו על כל כרטיס לקריאת ההספד המלא.</p>
+  <div class="hesped-filters">
+    <button class="filter-btn active" onclick="filterHespedim('all', this)">הכל</button>
+    <button class="filter-btn" onclick="filterHespedim('family', this)">משפחה</button>
+    <button class="filter-btn" onclick="filterHespedim('friends', this)">חברים</button>
+    <button class="filter-btn" onclick="filterHespedim('command', this)">מפקדים</button>
+    <button class="filter-btn" onclick="filterHespedim('soldiers', this)">לוחמים</button>
+  </div>
+  <div class="hespedim-grid" id="hespedimGrid">
+    <div class="group-label" data-label="family">משפחה</div>
+    <div class="hesped-card" data-key="ezra" data-group="family" onclick="openHesped('ezra')">
+      <div class="hesped-name">עזרא לוי</div>
+      <div class="hesped-role">אבא</div>
+    </div>
+    <div class="hesped-card" data-key="yafa" data-group="family" onclick="openHesped('yafa')">
+      <div class="hesped-name">יפה לוי</div>
+      <div class="hesped-role">אמא</div>
+    </div>
+    <div class="hesped-card" data-key="meital" data-group="family" onclick="openHesped('meital')">
+      <div class="hesped-name">מיטל לוי</div>
+      <div class="hesped-role">אחות</div>
+    </div>
+    <div class="hesped-card" data-key="hila" data-group="family" onclick="openHesped('hila')">
+      <div class="hesped-name">הילה לוי</div>
+      <div class="hesped-role">אחות</div>
+    </div>
+    <div class="hesped-card" data-key="yulanda" data-group="family" onclick="openHesped('yulanda')">
+      <div class="hesped-name">יולנדה</div>
+      <div class="hesped-role">דודה</div>
+    </div>
+    <div class="hesped-card" data-key="sara" data-group="family" onclick="openHesped('sara')">
+      <div class="hesped-name">שרה</div>
+      <div class="hesped-role">דודה</div>
+    </div>
+    <div class="hesped-card" data-key="shoshi" data-group="family" onclick="openHesped('shoshi')">
+      <div class="hesped-name">שושי</div>
+      <div class="hesped-role">דודה</div>
+    </div>
+    <div class="hesped-card" data-key="liraz" data-group="family" onclick="openHesped('liraz')">
+      <div class="hesped-name">לירז סלח</div>
+      <div class="hesped-role">בת דודה</div>
+    </div>
+    <div class="group-label" data-label="friends">חברים</div>
+    <div class="hesped-card" data-key="naama" data-group="friends" onclick="openHesped('naama')">
+      <div class="hesped-name">נעמה עצמוני</div>
+      <div class="hesped-role">חברה</div>
+    </div>
+    <div class="hesped-card" data-key="omer" data-group="friends" onclick="openHesped('omer')">
+      <div class="hesped-name">עומר זילברמן</div>
+      <div class="hesped-role">חבר</div>
+    </div>
+    <div class="hesped-card" data-key="dolev" data-group="friends" onclick="openHesped('dolev')">
+      <div class="hesped-name">דולב לוי</div>
+      <div class="hesped-role">חבר</div>
+    </div>
+    <div class="hesped-card" data-key="avi" data-group="friends" onclick="openHesped('avi')">
+      <div class="hesped-name">אבי דבח</div>
+      <div class="hesped-role">חבר</div>
+    </div>
+    <div class="group-label" data-label="command">מפקדים</div>
+    <div class="hesped-card" data-key="boni" data-group="command" onclick="openHesped('boni')">
+      <div class="hesped-name">בוני מזר</div>
+      <div class="hesped-role">מ"פ — סרן</div>
+    </div>
+    <div class="hesped-card" data-key="gili" data-group="command" onclick="openHesped('gili')">
+      <div class="hesped-name">גיל חזני</div>
+      <div class="hesped-role">מ"מ</div>
+    </div>
+    <div class="group-label" data-label="soldiers">לוחמי הפלוגה</div>
+    <div class="hesped-card" data-key="avim" data-group="soldiers" onclick="openHesped('avim')">
+      <div class="hesped-name">אבי מוסקל</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="oleg" data-group="soldiers" onclick="openHesped('oleg')">
+      <div class="hesped-name">אולג קרסניצקי</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="oren" data-group="soldiers" onclick="openHesped('oren')">
+      <div class="hesped-name">אורן ציון</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="alex" data-group="soldiers" onclick="openHesped('alex')">
+      <div class="hesped-name">אלכס גורביץ׳</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="gavish" data-group="soldiers" onclick="openHesped('gavish')">
+      <div class="hesped-name">אמיר גביש</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="tovi" data-group="soldiers" onclick="openHesped('tovi')">
+      <div class="hesped-name">גיא טובי</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="shlifka" data-group="soldiers" onclick="openHesped('shlifka')">
+      <div class="hesped-name">חיים שליפקה</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="tiran" data-group="soldiers" onclick="openHesped('tiran')">
+      <div class="hesped-name">טירן חי</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="moyal" data-group="soldiers" onclick="openHesped('moyal')">
+      <div class="hesped-name">יעקב מויאל</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="toledo" data-group="soldiers" onclick="openHesped('toledo')">
+      <div class="hesped-name">מנחם טולדו</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="amit" data-group="soldiers" onclick="openHesped('amit')">
+      <div class="hesped-name">עמית לאופר</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="ohana" data-group="soldiers" onclick="openHesped('ohana')">
+      <div class="hesped-name">ערן אוחנה</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="lugasi" data-group="soldiers" onclick="openHesped('lugasi')">
+      <div class="hesped-name">ערן לוגסי</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="susan" data-group="soldiers" onclick="openHesped('susan')">
+      <div class="hesped-name">סוסן ציון</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="ronen" data-group="soldiers" onclick="openHesped('ronen')">
+      <div class="hesped-name">רונן כהן</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="sagi" data-group="soldiers" onclick="openHesped('sagi')">
+      <div class="hesped-name">שגיא גולדנברג</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+    <div class="hesped-card" data-key="tomer" data-group="soldiers" onclick="openHesped('tomer')">
+      <div class="hesped-name">תומר לריח</div>
+      <div class="hesped-role">לוחם</div>
+    </div>
+  </div>
+</section>
+
+<!-- AZKAROT -->
+<div class="wide-section" id="azkarot">
+  <div class="wide-inner">
+    <p class="section-label">memorial ceremonies</p>
+    <h2 class="section-title">אזכרות — 30 שנה</h2>
+    <div class="section-divider"></div>
+    <p class="prose">כל שנה, ב-26 בספטמבר, מתקיים טקס אזכרה לזכרו של יהודה.</p>
+    <div class="azkarot-grid">
+      <div class="azkarot-year">
+        <div class="azkarot-header"><div><div class="azkarot-num">א׳</div><div class="azkarot-label">שנה ראשונה</div></div><div style="color:var(--text3);font-size:.85rem">1997</div></div>
+        <div class="azkarot-body">אזכרה ראשונה. המשפחה, חברים ולוחמי הפלוגה — יחד לראשונה בלעדיו.</div>
+      </div>
+      <div class="azkarot-year">
+        <div class="azkarot-header"><div><div class="azkarot-num">ה׳</div><div class="azkarot-label">חמש שנים</div></div><div style="color:var(--text3);font-size:.85rem">2001</div></div>
+        <div class="azkarot-body">טקס מיוחד בבית הספר פינסקר — הנצחה מחודשת בקהילה.</div>
+      </div>
+      <div class="azkarot-year">
+        <div class="azkarot-header"><div><div class="azkarot-num">י׳</div><div class="azkarot-label">עשר שנים</div></div><div style="color:var(--text3);font-size:.85rem">2006</div></div>
+        <div class="azkarot-body">ריכוז לוחמים ומפקדים, הצגת מורשת הקרב לדור הצעיר.</div>
+      </div>
+      <div class="azkarot-year">
+        <div class="azkarot-header"><div><div class="azkarot-num">ט״ו</div><div class="azkarot-label">חמש עשרה</div></div><div style="color:var(--text3);font-size:.85rem">2011</div></div>
+        <div class="azkarot-body">טקס משפחתי עם חברים ותיקים וצעירים. שירה ותפילה.</div>
+      </div>
+      <div class="azkarot-year">
+        <div class="azkarot-header"><div><div class="azkarot-num">כ׳</div><div class="azkarot-label">עשרים שנה</div></div><div style="color:var(--text3);font-size:.85rem">2016</div></div>
+        <div class="azkarot-body">עשרים שנה. טקס מרגש עם כל מי שהכיר ואהב.</div>
+      </div>
+      <div class="azkarot-year">
+        <div class="azkarot-header"><div><div class="azkarot-num">כ״ה</div><div class="azkarot-label">עשרים וחמש</div></div><div style="color:var(--text3);font-size:.85rem">2021</div></div>
+        <div class="azkarot-body">ריכוז גדול, יחד בזיכרון. רבע מאה ועדיין בלב.</div>
+      </div>
+      <div class="azkarot-year" style="border-color:var(--border-strong)">
+        <div class="azkarot-header" style="background:linear-gradient(to left,rgba(201,168,76,.15),transparent)">
+          <div><div class="azkarot-num" style="color:var(--gold-light)">ל׳</div><div class="azkarot-label">שלושים שנה</div></div>
+          <div style="color:var(--gold-dim);font-size:.85rem;font-weight:500">2026</div>
+        </div>
+        <div class="azkarot-body">יובל — שלושים שנה לנפילתו. אזכרה מיוחדת ומרגשת — 26 בספטמבר 2026.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTOS -->
+<section id="photos">
+  <p class="section-label">gallery</p>
+  <h2 class="section-title">תמונות</h2>
+  <div class="section-divider"></div>
+  <div class="photos-grid">
+    <div class="photo-thumb" onclick="openImg('imgs/pics/Yeuda.JPG', 'יהודה')">
+      <img src="imgs/pics/TN_Yeuda.JPG" alt="יהודה" onerror="this.src='imgs/pics/Yeuda.JPG'">
+      <div class="photo-caption">יהודה</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/LitlleYeuda.JPG', 'יהודה הקטן')">
+      <img src="imgs/pics/TN_LitlleYeuda.JPG" alt="יהודה הקטן" onerror="this.src='imgs/pics/LitlleYeuda.JPG'">
+      <div class="photo-caption">יהודה הקטן</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/LitlleYeuda2.JPG', 'יהודה הקטן 2')">
+      <img src="imgs/pics/TN_LitlleYeuda2.JPG" alt="יהודה הקטן 2" onerror="this.src='imgs/pics/LitlleYeuda2.JPG'">
+      <div class="photo-caption">יהודה הקטן 2</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/verylitlleYeuda.JPG', 'יהודה תינוק')">
+      <img src="imgs/pics/TN_verylitlleYeuda.JPG" alt="יהודה תינוק" onerror="this.src='imgs/pics/verylitlleYeuda.JPG'">
+      <div class="photo-caption">יהודה תינוק</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaBarMitsva.JPG', 'בר מצווה')">
+      <img src="imgs/pics/TN_YeudaBarMitsva.JPG" alt="בר מצווה" onerror="this.src='imgs/pics/YeudaBarMitsva.JPG'">
+      <div class="photo-caption">בר מצווה</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaBarMitsva2.JPG', 'בר מצווה 2')">
+      <img src="imgs/pics/TN_YeudaBarMitsva2.JPG" alt="בר מצווה 2" onerror="this.src='imgs/pics/YeudaBarMitsva2.JPG'">
+      <div class="photo-caption">בר מצווה 2</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaCostume.JPG', 'בתחפושת')">
+      <img src="imgs/pics/TN_YeudaCostume.JPG" alt="בתחפושת" onerror="this.src='imgs/pics/YeudaCostume.JPG'">
+      <div class="photo-caption">בתחפושת</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndYafaAtYomHorim.JPG', 'יהודה ואמא ביום ההורים')">
+      <img src="imgs/pics/TN_YeudaAndYafaAtYomHorim.JPG" alt="יהודה ואמא ביום ההורים" onerror="this.src='imgs/pics/YeudaAndYafaAtYomHorim.JPG'">
+      <div class="photo-caption">יהודה ואמא ביום ההורים</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaInArmy.JPG', 'בצבא')">
+      <img src="imgs/pics/TN_YeudaInArmy.JPG" alt="בצבא" onerror="this.src='imgs/pics/YeudaInArmy.JPG'">
+      <div class="photo-caption">בצבא</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaWithGuns.JPG', 'עם נשק')">
+      <img src="imgs/pics/TN_YeudaWithGuns.JPG" alt="עם נשק" onerror="this.src='imgs/pics/YeudaWithGuns.JPG'">
+      <div class="photo-caption">עם נשק</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaWithGuns2.JPG', 'עם נשק 2')">
+      <img src="imgs/pics/TN_YeudaWithGuns2.JPG" alt="עם נשק 2" onerror="this.src='imgs/pics/YeudaWithGuns2.JPG'">
+      <div class="photo-caption">עם נשק 2</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaInOrhan.JPG', 'באורחן')">
+      <img src="imgs/pics/TN_YeudaInOrhan.JPG" alt="באורחן" onerror="this.src='imgs/pics/YeudaInOrhan.JPG'">
+      <div class="photo-caption">באורחן</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaOnBench.JPG', 'על הספסל')">
+      <img src="imgs/pics/TN_YeudaOnBench.JPG" alt="על הספסל" onerror="this.src='imgs/pics/YeudaOnBench.JPG'">
+      <div class="photo-caption">על הספסל</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaWithUniformComingHome.JPG', 'בא הביתה במדים')">
+      <img src="imgs/pics/TN_YeudaWithUniformComingHome.JPG" alt="בא הביתה במדים" onerror="this.src='imgs/pics/YeudaWithUniformComingHome.JPG'">
+      <div class="photo-caption">בא הביתה במדים</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaWithUniformComingHome2.JPG', 'בא הביתה במדים 2')">
+      <img src="imgs/pics/TN_YeudaWithUniformComingHome2.JPG" alt="בא הביתה במדים 2" onerror="this.src='imgs/pics/YeudaWithUniformComingHome2.JPG'">
+      <div class="photo-caption">בא הביתה במדים 2</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndAmir.JPG', 'יהודה ואמיר')">
+      <img src="imgs/pics/TN_YeudaAndAmir.JPG" alt="יהודה ואמיר" onerror="this.src='imgs/pics/YeudaAndAmir.JPG'">
+      <div class="photo-caption">יהודה ואמיר</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndGili.JPG', 'יהודה וגילי')">
+      <img src="imgs/pics/TN_YeudaAndGili.JPG" alt="יהודה וגילי" onerror="this.src='imgs/pics/YeudaAndGili.JPG'">
+      <div class="photo-caption">יהודה וגילי</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndTomer.JPG', 'יהודה ותומר')">
+      <img src="imgs/pics/TN_YeudaAndTomer.JPG" alt="יהודה ותומר" onerror="this.src='imgs/pics/YeudaAndTomer.JPG'">
+      <div class="photo-caption">יהודה ותומר</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndTomer2.JPG', 'יהודה ותומר 2')">
+      <img src="imgs/pics/TN_YeudaAndTomer2.JPG" alt="יהודה ותומר 2" onerror="this.src='imgs/pics/YeudaAndTomer2.JPG'">
+      <div class="photo-caption">יהודה ותומר 2</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndAndre.JPG', 'יהודה ואנדרה')">
+      <img src="imgs/pics/TN_YeudaAndAndre.JPG" alt="יהודה ואנדרה" onerror="this.src='imgs/pics/YeudaAndAndre.JPG'">
+      <div class="photo-caption">יהודה ואנדרה</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndFamilyInTrip.JPG', 'יהודה עם המשפחה בטיול')">
+      <img src="imgs/pics/TN_YeudaAndFamilyInTrip.JPG" alt="יהודה עם המשפחה בטיול" onerror="this.src='imgs/pics/YeudaAndFamilyInTrip.JPG'">
+      <div class="photo-caption">יהודה עם המשפחה בטיול</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/Mahlak2AndPkida.JPG', 'מחלקה 2 ופקידה')">
+      <img src="imgs/pics/TN_Mahlak2AndPkida.JPG" alt="מחלקה 2 ופקידה" onerror="this.src='imgs/pics/Mahlak2AndPkida.JPG'">
+      <div class="photo-caption">מחלקה 2 ופקידה</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/Mahlaka2.JPG', 'מחלקה 2')">
+      <img src="imgs/pics/TN_Mahlaka2.JPG" alt="מחלקה 2" onerror="this.src='imgs/pics/Mahlaka2.JPG'">
+      <div class="photo-caption">מחלקה 2</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/FlagWithSignatures.JPG', 'דגל עם חתימות')">
+      <img src="imgs/pics/TN_FlagWithSignatures.JPG" alt="דגל עם חתימות" onerror="this.src='imgs/pics/FlagWithSignatures.JPG'">
+      <div class="photo-caption">דגל עם חתימות</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/HartuvPainting.JPG', 'ציור הרטוב')">
+      <img src="imgs/pics/TN_HartuvPainting.JPG" alt="ציור הרטוב" onerror="this.src='imgs/pics/HartuvPainting.JPG'">
+      <div class="photo-caption">ציור הרטוב</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/family.JPG', 'משפחה')">
+      <img src="imgs/pics/TN_family.JPG" alt="משפחה" onerror="this.src='imgs/pics/family.JPG'">
+      <div class="photo-caption">משפחה</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/flag.JPG', 'דגל')">
+      <img src="imgs/pics/TN_flag.JPG" alt="דגל" onerror="this.src='imgs/pics/flag.JPG'">
+      <div class="photo-caption">דגל</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/Medals.JPG', 'עיטורים')">
+      <img src="imgs/pics/TN_Medals.JPG" alt="עיטורים" onerror="this.src='imgs/pics/Medals.JPG'">
+      <div class="photo-caption">עיטורים</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/Sisma.JPG', 'סיסמא')">
+      <img src="imgs/pics/TN_Sisma.JPG" alt="סיסמא" onerror="this.src='imgs/pics/Sisma.JPG'">
+      <div class="photo-caption">סיסמא</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/Tiberias.JPG', 'טבריה')">
+      <img src="imgs/pics/TN_Tiberias.JPG" alt="טבריה" onerror="this.src='imgs/pics/Tiberias.JPG'">
+      <div class="photo-caption">טבריה</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/TsometYeuda.JPG', 'צומת יהודה')">
+      <img src="imgs/pics/TN_TsometYeuda.JPG" alt="צומת יהודה" onerror="this.src='imgs/pics/TsometYeuda.JPG'">
+      <div class="photo-caption">צומת יהודה</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/IMG_1507.JPG', 'תמונה')">
+      <img src="imgs/pics/TN_IMG_1507.JPG" alt="תמונה" onerror="this.src='imgs/pics/IMG_1507.JPG'">
+      <div class="photo-caption">תמונה</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/IMG_1508.JPG', 'תמונה')">
+      <img src="imgs/pics/TN_IMG_1508.JPG" alt="תמונה" onerror="this.src='imgs/pics/IMG_1508.JPG'">
+      <div class="photo-caption">תמונה</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/IMG_1509.JPG', 'תמונה')">
+      <img src="imgs/pics/TN_IMG_1509.JPG" alt="תמונה" onerror="this.src='imgs/pics/IMG_1509.JPG'">
+      <div class="photo-caption">תמונה</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/stone1.JPG', 'מצבה 1')">
+      <img src="imgs/pics/TN_stone1.JPG" alt="מצבה 1" onerror="this.src='imgs/pics/stone1.JPG'">
+      <div class="photo-caption">מצבה 1</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/stone2.JPG', 'מצבה 2')">
+      <img src="imgs/pics/TN_stone2.JPG" alt="מצבה 2" onerror="this.src='imgs/pics/stone2.JPG'">
+      <div class="photo-caption">מצבה 2</div>
+    </div>
+    <div class="photo-thumb" onclick="openImg('imgs/pics/stone3.JPG', 'מצבה 3')">
+      <img src="imgs/pics/TN_stone3.JPG" alt="מצבה 3" onerror="this.src='imgs/pics/stone3.JPG'">
+      <div class="photo-caption">מצבה 3</div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSPAPER -->
+<div class="wide-section" id="newspaper">
+  <div class="wide-inner">
+    <p class="section-label">press</p>
+    <h2 class="section-title">כתבות עיתון</h2>
+    <div class="section-divider"></div>
+    <div class="newspaper-grid">
+    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-01.JPG', 'כתבה 1')">
+      <img src="imgs/newspaper/TN_Image-01.JPG" alt="כתבה 1" onerror="this.src='imgs/newspaper/Image-01.JPG'">
+      <div class="overlay"><span>כתבה 1 — לחץ להגדלה</span></div>
+    </div>
+    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-02.JPG', 'כתבה 2')">
+      <img src="imgs/newspaper/TN_Image-02.JPG" alt="כתבה 2" onerror="this.src='imgs/newspaper/Image-02.JPG'">
+      <div class="overlay"><span>כתבה 2 — לחץ להגדלה</span></div>
+    </div>
+    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-03.JPG', 'כתבה 3')">
+      <img src="imgs/newspaper/Image-03.JPG" alt="כתבה 3" onerror="this.src='imgs/newspaper/Image-03.JPG'">
+      <div class="overlay"><span>כתבה 3 — לחץ להגדלה</span></div>
+    </div>
+    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-04.JPG', 'כתבה 4')">
+      <img src="imgs/newspaper/TN_Image-04.JPG" alt="כתבה 4" onerror="this.src='imgs/newspaper/Image-04.JPG'">
+      <div class="overlay"><span>כתבה 4 — לחץ להגדלה</span></div>
+    </div>
+    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-05.JPG', 'כתבה 5')">
+      <img src="imgs/newspaper/TN_Image-05.JPG" alt="כתבה 5" onerror="this.src='imgs/newspaper/Image-05.JPG'">
+      <div class="overlay"><span>כתבה 5 — לחץ להגדלה</span></div>
+    </div>
+    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-06.JPG', 'כתבה 6')">
+      <img src="imgs/newspaper/TN_Image-06.JPG" alt="כתבה 6" onerror="this.src='imgs/newspaper/Image-06.JPG'">
+      <div class="overlay"><span>כתבה 6 — לחץ להגדלה</span></div>
+    </div>
+    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-07.JPG', 'כתבה 7')">
+      <img src="imgs/newspaper/TN_Image-07.JPG" alt="כתבה 7" onerror="this.src='imgs/newspaper/Image-07.JPG'">
+      <div class="overlay"><span>כתבה 7 — לחץ להגדלה</span></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-divider" style="margin-bottom:2rem"></div>
+  <p class="gold" style="font-family:'Frank Ruhl Libre',serif; font-size:1.3rem; margin-bottom:.5rem">יהודה לוי ז״ל</p>
+  <p>א׳ בספטמבר 1976 — כ״ג בתשרי תשנ״ז</p>
+  <p style="margin-top:.3rem">נפל בצומת ״יהודה״, גוש קטיף • חייל בגדוד גבעתי</p>
+  <div class="footer-divider" style="margin:2rem auto 1.5rem"></div>
+  <p>זכרו יהיה ברוך לעולם ועד</p>
+  <p style="margin-top:1rem; font-size:.72rem">אתר הנצחה — עוצב מחדש לכבוד שלושים שנה לנפילתו · 2026</p>
+</footer>
+
+<!-- HESPED MODAL -->
+<div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-tag">הספד</div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-role" id="modalRole"></div>
+    <div class="modal-text" id="modalText"></div>
+  </div>
+</div>
+
+<!-- IMAGE MODAL -->
+<div class="img-modal-bg" id="imgModal" onclick="closeImgModal()">
+  <img id="modalImg" src="" alt="">
+  <div id="imgCaption"></div>
+</div>
+
+<script src="js/hespedim.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
