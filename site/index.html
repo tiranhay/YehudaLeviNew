@@ -148,10 +148,19 @@ footer .gold { color:var(--gold); }
 .modal-text p:last-child { margin-bottom:0; }
 
 /* ── IMAGE MODAL ── */
-.img-modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.96); z-index:1001; flex-direction:column; align-items:center; justify-content:center; padding:1rem; cursor:zoom-out; }
+.img-modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.96); z-index:1001; flex-direction:column; align-items:center; justify-content:center; padding:1rem; }
 .img-modal-bg.open { display:flex; }
-.img-modal-bg img { max-width:92vw; max-height:85vh; object-fit:contain; border-radius:4px; }
-#imgCaption { color:var(--text2); font-size:.9rem; margin-top:1rem; letter-spacing:.05em; }
+.img-modal-bg img { max-width:88vw; max-height:80vh; object-fit:contain; border-radius:4px; transition:opacity .2s; }
+.img-modal-bg img.loading { opacity:0; }
+#imgCaption { color:var(--text2); font-size:.9rem; margin-top:.75rem; letter-spacing:.05em; text-align:center; }
+#imgCounter { color:var(--text3); font-size:.75rem; margin-top:.25rem; letter-spacing:.1em; }
+.img-modal-close { position:absolute; top:1rem; right:1rem; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.1rem; transition:background .2s; z-index:10; }
+.img-modal-close:hover { background:rgba(255,255,255,.25); }
+.img-nav-btn { position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.6rem; transition:background .2s; z-index:10; }
+.img-nav-btn:hover { background:rgba(201,168,76,.4); border-color:var(--gold); }
+.img-nav-btn:disabled { opacity:.2; cursor:default; }
+#imgNavPrev { left:1rem; }
+#imgNavNext { right:1rem; }
 
 @media (max-width:640px) {
   .nav-inner { justify-content:flex-start; overflow-x:auto; flex-wrap:nowrap; }
@@ -536,151 +545,151 @@ footer .gold { color:var(--gold); }
   <div class="section-divider"></div>
   <div class="gallery-carousel" id="galleryTrack">
     <div class="gallery-inner" id="galleryInner">
-      <div class="gallery-item" onclick="openImg('imgs/pics/Yeuda.JPG', 'יהודה')">
+      <div class="gallery-item" data-full="imgs/pics/Yeuda.JPG" onclick="openImg('imgs/pics/Yeuda.JPG', 'יהודה')">
         <img src="imgs/pics/TN_Yeuda.JPG" alt="יהודה" loading="lazy" onerror="this.src='imgs/pics/Yeuda.JPG'">
         <div class="gallery-caption">יהודה</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/LitlleYeuda.JPG', 'יהודה הקטן')">
+      <div class="gallery-item" data-full="imgs/pics/LitlleYeuda.JPG" onclick="openImg('imgs/pics/LitlleYeuda.JPG', 'יהודה הקטן')">
         <img src="imgs/pics/TN_LitlleYeuda.JPG" alt="יהודה הקטן" loading="lazy" onerror="this.src='imgs/pics/LitlleYeuda.JPG'">
         <div class="gallery-caption">יהודה הקטן</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/LitlleYeuda2.JPG', 'יהודה הקטן 2')">
+      <div class="gallery-item" data-full="imgs/pics/LitlleYeuda2.JPG" onclick="openImg('imgs/pics/LitlleYeuda2.JPG', 'יהודה הקטן 2')">
         <img src="imgs/pics/TN_LitlleYeuda2.JPG" alt="יהודה הקטן 2" loading="lazy" onerror="this.src='imgs/pics/LitlleYeuda2.JPG'">
         <div class="gallery-caption">יהודה הקטן 2</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/verylitlleYeuda.JPG', 'יהודה תינוק')">
+      <div class="gallery-item" data-full="imgs/pics/verylitlleYeuda.JPG" onclick="openImg('imgs/pics/verylitlleYeuda.JPG', 'יהודה תינוק')">
         <img src="imgs/pics/TN_verylitlleYeuda.JPG" alt="יהודה תינוק" loading="lazy" onerror="this.src='imgs/pics/verylitlleYeuda.JPG'">
         <div class="gallery-caption">יהודה תינוק</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaBarMitsva.JPG', 'בר מצווה')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaBarMitsva.JPG" onclick="openImg('imgs/pics/YeudaBarMitsva.JPG', 'בר מצווה')">
         <img src="imgs/pics/TN_YeudaBarMitsva.JPG" alt="בר מצווה" loading="lazy" onerror="this.src='imgs/pics/YeudaBarMitsva.JPG'">
         <div class="gallery-caption">בר מצווה</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaBarMitsva2.JPG', 'בר מצווה 2')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaBarMitsva2.JPG" onclick="openImg('imgs/pics/YeudaBarMitsva2.JPG', 'בר מצווה 2')">
         <img src="imgs/pics/TN_YeudaBarMitsva2.JPG" alt="בר מצווה 2" loading="lazy" onerror="this.src='imgs/pics/YeudaBarMitsva2.JPG'">
         <div class="gallery-caption">בר מצווה 2</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaCostume.JPG', 'בתחפושת')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaCostume.JPG" onclick="openImg('imgs/pics/YeudaCostume.JPG', 'בתחפושת')">
         <img src="imgs/pics/TN_YeudaCostume.JPG" alt="בתחפושת" loading="lazy" onerror="this.src='imgs/pics/YeudaCostume.JPG'">
         <div class="gallery-caption">בתחפושת</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndYafaAtYomHorim.JPG', 'יהודה ואמא ביום ההורים')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaAndYafaAtYomHorim.JPG" onclick="openImg('imgs/pics/YeudaAndYafaAtYomHorim.JPG', 'יהודה ואמא ביום ההורים')">
         <img src="imgs/pics/TN_YeudaAndYafaAtYomHorim.JPG" alt="יהודה ואמא ביום ההורים" loading="lazy" onerror="this.src='imgs/pics/YeudaAndYafaAtYomHorim.JPG'">
         <div class="gallery-caption">יהודה ואמא ביום ההורים</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaInArmy.JPG', 'בצבא')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaInArmy.JPG" onclick="openImg('imgs/pics/YeudaInArmy.JPG', 'בצבא')">
         <img src="imgs/pics/TN_YeudaInArmy.JPG" alt="בצבא" loading="lazy" onerror="this.src='imgs/pics/YeudaInArmy.JPG'">
         <div class="gallery-caption">בצבא</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaWithGuns.JPG', 'עם נשק')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaWithGuns.JPG" onclick="openImg('imgs/pics/YeudaWithGuns.JPG', 'עם נשק')">
         <img src="imgs/pics/TN_YeudaWithGuns.JPG" alt="עם נשק" loading="lazy" onerror="this.src='imgs/pics/YeudaWithGuns.JPG'">
         <div class="gallery-caption">עם נשק</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaWithGuns2.JPG', 'עם נשק 2')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaWithGuns2.JPG" onclick="openImg('imgs/pics/YeudaWithGuns2.JPG', 'עם נשק 2')">
         <img src="imgs/pics/TN_YeudaWithGuns2.JPG" alt="עם נשק 2" loading="lazy" onerror="this.src='imgs/pics/YeudaWithGuns2.JPG'">
         <div class="gallery-caption">עם נשק 2</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaInOrhan.JPG', 'באורחן')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaInOrhan.JPG" onclick="openImg('imgs/pics/YeudaInOrhan.JPG', 'באורחן')">
         <img src="imgs/pics/TN_YeudaInOrhan.JPG" alt="באורחן" loading="lazy" onerror="this.src='imgs/pics/YeudaInOrhan.JPG'">
         <div class="gallery-caption">באורחן</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaOnBench.JPG', 'על הספסל')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaOnBench.JPG" onclick="openImg('imgs/pics/YeudaOnBench.JPG', 'על הספסל')">
         <img src="imgs/pics/TN_YeudaOnBench.JPG" alt="על הספסל" loading="lazy" onerror="this.src='imgs/pics/YeudaOnBench.JPG'">
         <div class="gallery-caption">על הספסל</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaWithUniformComingHome.JPG', 'בא הביתה במדים')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaWithUniformComingHome.JPG" onclick="openImg('imgs/pics/YeudaWithUniformComingHome.JPG', 'בא הביתה במדים')">
         <img src="imgs/pics/TN_YeudaWithUniformComingHome.JPG" alt="בא הביתה במדים" loading="lazy" onerror="this.src='imgs/pics/YeudaWithUniformComingHome.JPG'">
         <div class="gallery-caption">בא הביתה במדים</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaWithUniformComingHome2.JPG', 'בא הביתה במדים 2')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaWithUniformComingHome2.JPG" onclick="openImg('imgs/pics/YeudaWithUniformComingHome2.JPG', 'בא הביתה במדים 2')">
         <img src="imgs/pics/TN_YeudaWithUniformComingHome2.JPG" alt="בא הביתה במדים 2" loading="lazy" onerror="this.src='imgs/pics/YeudaWithUniformComingHome2.JPG'">
         <div class="gallery-caption">בא הביתה במדים 2</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndAmir.JPG', 'יהודה ואמיר')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaAndAmir.JPG" onclick="openImg('imgs/pics/YeudaAndAmir.JPG', 'יהודה ואמיר')">
         <img src="imgs/pics/TN_YeudaAndAmir.JPG" alt="יהודה ואמיר" loading="lazy" onerror="this.src='imgs/pics/YeudaAndAmir.JPG'">
         <div class="gallery-caption">יהודה ואמיר</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndGili.JPG', 'יהודה וגילי')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaAndGili.JPG" onclick="openImg('imgs/pics/YeudaAndGili.JPG', 'יהודה וגילי')">
         <img src="imgs/pics/TN_YeudaAndGili.JPG" alt="יהודה וגילי" loading="lazy" onerror="this.src='imgs/pics/YeudaAndGili.JPG'">
         <div class="gallery-caption">יהודה וגילי</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndTomer.JPG', 'יהודה ותומר')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaAndTomer.JPG" onclick="openImg('imgs/pics/YeudaAndTomer.JPG', 'יהודה ותומר')">
         <img src="imgs/pics/TN_YeudaAndTomer.JPG" alt="יהודה ותומר" loading="lazy" onerror="this.src='imgs/pics/YeudaAndTomer.JPG'">
         <div class="gallery-caption">יהודה ותומר</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndTomer2.JPG', 'יהודה ותומר 2')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaAndTomer2.JPG" onclick="openImg('imgs/pics/YeudaAndTomer2.JPG', 'יהודה ותומר 2')">
         <img src="imgs/pics/TN_YeudaAndTomer2.JPG" alt="יהודה ותומר 2" loading="lazy" onerror="this.src='imgs/pics/YeudaAndTomer2.JPG'">
         <div class="gallery-caption">יהודה ותומר 2</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndAndre.JPG', 'יהודה ואנדרה')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaAndAndre.JPG" onclick="openImg('imgs/pics/YeudaAndAndre.JPG', 'יהודה ואנדרה')">
         <img src="imgs/pics/TN_YeudaAndAndre.JPG" alt="יהודה ואנדרה" loading="lazy" onerror="this.src='imgs/pics/YeudaAndAndre.JPG'">
         <div class="gallery-caption">יהודה ואנדרה</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndFamilyInTrip.JPG', 'יהודה עם המשפחה בטיול')">
+      <div class="gallery-item" data-full="imgs/pics/YeudaAndFamilyInTrip.JPG" onclick="openImg('imgs/pics/YeudaAndFamilyInTrip.JPG', 'יהודה עם המשפחה בטיול')">
         <img src="imgs/pics/TN_YeudaAndFamilyInTrip.JPG" alt="יהודה עם המשפחה בטיול" loading="lazy" onerror="this.src='imgs/pics/YeudaAndFamilyInTrip.JPG'">
         <div class="gallery-caption">יהודה עם המשפחה בטיול</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/Mahlak2AndPkida.JPG', 'מחלקה 2 ופקידה')">
+      <div class="gallery-item" data-full="imgs/pics/Mahlak2AndPkida.JPG" onclick="openImg('imgs/pics/Mahlak2AndPkida.JPG', 'מחלקה 2 ופקידה')">
         <img src="imgs/pics/TN_Mahlak2AndPkida.JPG" alt="מחלקה 2 ופקידה" loading="lazy" onerror="this.src='imgs/pics/Mahlak2AndPkida.JPG'">
         <div class="gallery-caption">מחלקה 2 ופקידה</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/Mahlaka2.JPG', 'מחלקה 2')">
+      <div class="gallery-item" data-full="imgs/pics/Mahlaka2.JPG" onclick="openImg('imgs/pics/Mahlaka2.JPG', 'מחלקה 2')">
         <img src="imgs/pics/TN_Mahlaka2.JPG" alt="מחלקה 2" loading="lazy" onerror="this.src='imgs/pics/Mahlaka2.JPG'">
         <div class="gallery-caption">מחלקה 2</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/FlagWithSignatures.JPG', 'דגל עם חתימות')">
+      <div class="gallery-item" data-full="imgs/pics/FlagWithSignatures.JPG" onclick="openImg('imgs/pics/FlagWithSignatures.JPG', 'דגל עם חתימות')">
         <img src="imgs/pics/TN_FlagWithSignatures.JPG" alt="דגל עם חתימות" loading="lazy" onerror="this.src='imgs/pics/FlagWithSignatures.JPG'">
         <div class="gallery-caption">דגל עם חתימות</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/HartuvPainting.JPG', 'ציור הרטוב')">
+      <div class="gallery-item" data-full="imgs/pics/HartuvPainting.JPG" onclick="openImg('imgs/pics/HartuvPainting.JPG', 'ציור הרטוב')">
         <img src="imgs/pics/TN_HartuvPainting.JPG" alt="ציור הרטוב" loading="lazy" onerror="this.src='imgs/pics/HartuvPainting.JPG'">
         <div class="gallery-caption">ציור הרטוב</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/family.JPG', 'משפחה')">
+      <div class="gallery-item" data-full="imgs/pics/family.JPG" onclick="openImg('imgs/pics/family.JPG', 'משפחה')">
         <img src="imgs/pics/TN_family.JPG" alt="משפחה" loading="lazy" onerror="this.src='imgs/pics/family.JPG'">
         <div class="gallery-caption">משפחה</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/flag.JPG', 'דגל')">
+      <div class="gallery-item" data-full="imgs/pics/flag.JPG" onclick="openImg('imgs/pics/flag.JPG', 'דגל')">
         <img src="imgs/pics/TN_flag.JPG" alt="דגל" loading="lazy" onerror="this.src='imgs/pics/flag.JPG'">
         <div class="gallery-caption">דגל</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/Medals.JPG', 'עיטורים')">
+      <div class="gallery-item" data-full="imgs/pics/Medals.JPG" onclick="openImg('imgs/pics/Medals.JPG', 'עיטורים')">
         <img src="imgs/pics/TN_Medals.JPG" alt="עיטורים" loading="lazy" onerror="this.src='imgs/pics/Medals.JPG'">
         <div class="gallery-caption">עיטורים</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/Sisma.JPG', 'סיסמא')">
+      <div class="gallery-item" data-full="imgs/pics/Sisma.JPG" onclick="openImg('imgs/pics/Sisma.JPG', 'סיסמא')">
         <img src="imgs/pics/TN_Sisma.JPG" alt="סיסמא" loading="lazy" onerror="this.src='imgs/pics/Sisma.JPG'">
         <div class="gallery-caption">סיסמא</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/Tiberias.JPG', 'טבריה')">
+      <div class="gallery-item" data-full="imgs/pics/Tiberias.JPG" onclick="openImg('imgs/pics/Tiberias.JPG', 'טבריה')">
         <img src="imgs/pics/TN_Tiberias.JPG" alt="טבריה" loading="lazy" onerror="this.src='imgs/pics/Tiberias.JPG'">
         <div class="gallery-caption">טבריה</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/TsometYeuda.JPG', 'צומת יהודה')">
+      <div class="gallery-item" data-full="imgs/pics/TsometYeuda.JPG" onclick="openImg('imgs/pics/TsometYeuda.JPG', 'צומת יהודה')">
         <img src="imgs/pics/TN_TsometYeuda.JPG" alt="צומת יהודה" loading="lazy" onerror="this.src='imgs/pics/TsometYeuda.JPG'">
         <div class="gallery-caption">צומת יהודה</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/IMG_1507.JPG', 'תמונה')">
+      <div class="gallery-item" data-full="imgs/pics/IMG_1507.JPG" onclick="openImg('imgs/pics/IMG_1507.JPG', 'תמונה')">
         <img src="imgs/pics/TN_IMG_1507.JPG" alt="תמונה" loading="lazy" onerror="this.src='imgs/pics/IMG_1507.JPG'">
         <div class="gallery-caption">תמונה</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/IMG_1508.JPG', 'תמונה')">
+      <div class="gallery-item" data-full="imgs/pics/IMG_1508.JPG" onclick="openImg('imgs/pics/IMG_1508.JPG', 'תמונה')">
         <img src="imgs/pics/TN_IMG_1508.JPG" alt="תמונה" loading="lazy" onerror="this.src='imgs/pics/IMG_1508.JPG'">
         <div class="gallery-caption">תמונה</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/IMG_1509.JPG', 'תמונה')">
+      <div class="gallery-item" data-full="imgs/pics/IMG_1509.JPG" onclick="openImg('imgs/pics/IMG_1509.JPG', 'תמונה')">
         <img src="imgs/pics/TN_IMG_1509.JPG" alt="תמונה" loading="lazy" onerror="this.src='imgs/pics/IMG_1509.JPG'">
         <div class="gallery-caption">תמונה</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/stone1.JPG', 'מצבה 1')">
+      <div class="gallery-item" data-full="imgs/pics/stone1.JPG" onclick="openImg('imgs/pics/stone1.JPG', 'מצבה 1')">
         <img src="imgs/pics/TN_stone1.JPG" alt="מצבה 1" loading="lazy" onerror="this.src='imgs/pics/stone1.JPG'">
         <div class="gallery-caption">מצבה 1</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/stone2.JPG', 'מצבה 2')">
+      <div class="gallery-item" data-full="imgs/pics/stone2.JPG" onclick="openImg('imgs/pics/stone2.JPG', 'מצבה 2')">
         <img src="imgs/pics/TN_stone2.JPG" alt="מצבה 2" loading="lazy" onerror="this.src='imgs/pics/stone2.JPG'">
         <div class="gallery-caption">מצבה 2</div>
       </div>
-      <div class="gallery-item" onclick="openImg('imgs/pics/stone3.JPG', 'מצבה 3')">
+      <div class="gallery-item" data-full="imgs/pics/stone3.JPG" onclick="openImg('imgs/pics/stone3.JPG', 'מצבה 3')">
         <img src="imgs/pics/TN_stone3.JPG" alt="מצבה 3" loading="lazy" onerror="this.src='imgs/pics/stone3.JPG'">
         <div class="gallery-caption">מצבה 3</div>
       </div>
@@ -699,35 +708,42 @@ footer .gold { color:var(--gold); }
     <p class="section-label">press</p>
     <h2 class="section-title">כתבות עיתון</h2>
     <div class="section-divider"></div>
-    <div class="newspaper-grid">
-    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-01.JPG', 'כתבה 1')">
-      <img src="imgs/newspaper/TN_Image-01.JPG" alt="כתבה 1" onerror="this.src='imgs/newspaper/Image-01.JPG'">
-      <div class="overlay"><span>כתבה 1 — לחץ להגדלה</span></div>
+    <div class="gallery-carousel" id="newspaperTrack">
+      <div class="gallery-inner" id="newspaperInner">
+      <div class="gallery-item" data-full="imgs/newspaper/Image-01.JPG" onclick="openImg('imgs/newspaper/Image-01.JPG','כתבה 1','newspaper')">
+        <img src="imgs/newspaper/TN_Image-01.JPG" alt="כתבה 1" onerror="this.src='imgs/newspaper/Image-01.JPG'">
+        <div class="gallery-caption">כתבה 1</div>
+      </div>
+      <div class="gallery-item" data-full="imgs/newspaper/Image-02.JPG" onclick="openImg('imgs/newspaper/Image-02.JPG','כתבה 2','newspaper')">
+        <img src="imgs/newspaper/TN_Image-02.JPG" alt="כתבה 2" onerror="this.src='imgs/newspaper/Image-02.JPG'">
+        <div class="gallery-caption">כתבה 2</div>
+      </div>
+      <div class="gallery-item" data-full="imgs/newspaper/Image-03.JPG" onclick="openImg('imgs/newspaper/Image-03.JPG','כתבה 3','newspaper')">
+        <img src="imgs/newspaper/Image-03.JPG" alt="כתבה 3">
+        <div class="gallery-caption">כתבה 3</div>
+      </div>
+      <div class="gallery-item" data-full="imgs/newspaper/Image-04.JPG" onclick="openImg('imgs/newspaper/Image-04.JPG','כתבה 4','newspaper')">
+        <img src="imgs/newspaper/TN_Image-04.JPG" alt="כתבה 4" onerror="this.src='imgs/newspaper/Image-04.JPG'">
+        <div class="gallery-caption">כתבה 4</div>
+      </div>
+      <div class="gallery-item" data-full="imgs/newspaper/Image-05.JPG" onclick="openImg('imgs/newspaper/Image-05.JPG','כתבה 5','newspaper')">
+        <img src="imgs/newspaper/TN_Image-05.JPG" alt="כתבה 5" onerror="this.src='imgs/newspaper/Image-05.JPG'">
+        <div class="gallery-caption">כתבה 5</div>
+      </div>
+      <div class="gallery-item" data-full="imgs/newspaper/Image-06.JPG" onclick="openImg('imgs/newspaper/Image-06.JPG','כתבה 6','newspaper')">
+        <img src="imgs/newspaper/TN_Image-06.JPG" alt="כתבה 6" onerror="this.src='imgs/newspaper/Image-06.JPG'">
+        <div class="gallery-caption">כתבה 6</div>
+      </div>
+      <div class="gallery-item" data-full="imgs/newspaper/Image-07.JPG" onclick="openImg('imgs/newspaper/Image-07.JPG','כתבה 7','newspaper')">
+        <img src="imgs/newspaper/TN_Image-07.JPG" alt="כתבה 7" onerror="this.src='imgs/newspaper/Image-07.JPG'">
+        <div class="gallery-caption">כתבה 7</div>
+      </div>
+      </div>
     </div>
-    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-02.JPG', 'כתבה 2')">
-      <img src="imgs/newspaper/TN_Image-02.JPG" alt="כתבה 2" onerror="this.src='imgs/newspaper/Image-02.JPG'">
-      <div class="overlay"><span>כתבה 2 — לחץ להגדלה</span></div>
-    </div>
-    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-03.JPG', 'כתבה 3')">
-      <img src="imgs/newspaper/Image-03.JPG" alt="כתבה 3" onerror="this.src='imgs/newspaper/Image-03.JPG'">
-      <div class="overlay"><span>כתבה 3 — לחץ להגדלה</span></div>
-    </div>
-    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-04.JPG', 'כתבה 4')">
-      <img src="imgs/newspaper/TN_Image-04.JPG" alt="כתבה 4" onerror="this.src='imgs/newspaper/Image-04.JPG'">
-      <div class="overlay"><span>כתבה 4 — לחץ להגדלה</span></div>
-    </div>
-    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-05.JPG', 'כתבה 5')">
-      <img src="imgs/newspaper/TN_Image-05.JPG" alt="כתבה 5" onerror="this.src='imgs/newspaper/Image-05.JPG'">
-      <div class="overlay"><span>כתבה 5 — לחץ להגדלה</span></div>
-    </div>
-    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-06.JPG', 'כתבה 6')">
-      <img src="imgs/newspaper/TN_Image-06.JPG" alt="כתבה 6" onerror="this.src='imgs/newspaper/Image-06.JPG'">
-      <div class="overlay"><span>כתבה 6 — לחץ להגדלה</span></div>
-    </div>
-    <div class="newspaper-item" onclick="openImg('imgs/newspaper/Image-07.JPG', 'כתבה 7')">
-      <img src="imgs/newspaper/TN_Image-07.JPG" alt="כתבה 7" onerror="this.src='imgs/newspaper/Image-07.JPG'">
-      <div class="overlay"><span>כתבה 7 — לחץ להגדלה</span></div>
-    </div>
+    <div class="gallery-nav">
+      <button class="gallery-btn" onclick="newspaperScroll(-1)">&#8250;</button>
+      <div class="gallery-dots" id="newspaperDots"></div>
+      <button class="gallery-btn" onclick="newspaperScroll(1)">&#8249;</button>
     </div>
   </div>
 </div>
@@ -755,9 +771,13 @@ footer .gold { color:var(--gold); }
 </div>
 
 <!-- IMAGE MODAL -->
-<div class="img-modal-bg" id="imgModal" onclick="closeImgModal()">
+<div class="img-modal-bg" id="imgModal" onclick="imgModalBgClick(event)">
+  <button class="img-modal-close" onclick="closeImgModal()">✕</button>
+  <button class="img-nav-btn" id="imgNavPrev" onclick="imgNav(-1); event.stopPropagation()">&#8250;</button>
   <img id="modalImg" src="" alt="">
+  <button class="img-nav-btn" id="imgNavNext" onclick="imgNav(1); event.stopPropagation()">&#8249;</button>
   <div id="imgCaption"></div>
+  <div id="imgCounter"></div>
 </div>
 
 <script src="js/hespedim.js"></script>
