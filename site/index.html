@@ -143,7 +143,9 @@ footer .gold { color:var(--gold); }
 .modal-tag { display:inline-block; font-size:.72rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.25); border-radius:20px; padding:.25rem .75rem; margin-bottom:1rem; }
 .modal-title { font-family:'Frank Ruhl Libre',serif; font-size:2rem; font-weight:700; margin-bottom:.25rem; }
 .modal-role { font-size:.88rem; color:var(--text2); margin-bottom:2rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border); }
-.modal-text { font-size:1rem; color:var(--text2); line-height:2.1; white-space:pre-wrap; font-family:'Frank Ruhl Libre',serif; font-weight:300; }
+.modal-text { font-size:1rem; color:var(--text2); line-height:2.1; font-family:'Frank Ruhl Libre',serif; font-weight:300; }
+.modal-text p { margin-bottom:1.2rem; }
+.modal-text p:last-child { margin-bottom:0; }
 
 /* ── IMAGE MODAL ── */
 .img-modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.96); z-index:1001; flex-direction:column; align-items:center; justify-content:center; padding:1rem; cursor:zoom-out; }
@@ -159,6 +161,22 @@ footer .gold { color:var(--gold); }
   .modal-title { font-size:1.5rem; }
   .photos-grid { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); }
 }
+
+/* ── GALLERY CAROUSEL ── */
+.gallery-carousel { position:relative; overflow:hidden; margin-top:2rem; border-radius:8px; }
+.gallery-inner { display:flex; gap:10px; transition:transform .4s cubic-bezier(.4,0,.2,1); cursor:grab; user-select:none; }
+.gallery-inner.dragging { transition:none; cursor:grabbing; }
+.gallery-item { flex:0 0 140px; display:flex; flex-direction:column; border-radius:6px; overflow:hidden; background:var(--bg3); border:1px solid var(--border); cursor:pointer; transition:border-color .2s, transform .2s; }
+.gallery-item:hover { border-color:var(--gold-dim); transform:translateY(-2px); }
+.gallery-item img { width:140px; height:140px; object-fit:cover; display:block; }
+.gallery-caption { font-size:.68rem; color:var(--text3); padding:.3rem .4rem; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; background:rgba(0,0,0,.3); }
+.gallery-nav { display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:1rem; }
+.gallery-btn { width:36px; height:36px; border-radius:50%; border:1px solid var(--border); background:var(--bg2); color:var(--gold); font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; line-height:1; }
+.gallery-btn:hover { border-color:var(--gold); background:rgba(201,168,76,.1); }
+.gallery-dots { display:flex; gap:6px; }
+.gallery-dot { width:6px; height:6px; border-radius:50%; background:var(--border-strong); cursor:pointer; transition:background .2s, transform .2s; }
+.gallery-dot.active { background:var(--gold); transform:scale(1.4); }
+
 </style>
 </head>
 <body>
@@ -251,20 +269,74 @@ footer .gold { color:var(--gold); }
     <h2 class="section-title">מורשת קרב</h2>
     <div class="section-divider"></div>
     <p class="prose" style="margin-bottom:2rem">פלוגת אוגוסט 95 — שקד. מאורעות ״ברזל לוהט״, 26.9.96. צומת ״יהודה״ — גוש קטיף.</p>
-    <div class="battle-card">
-      <h3>רקע</h3>
-      <p>במוצאי יום כיפור 23/9 נפתחה ע"י ממשלת ישראל מנהרת החשמונאים בירושלים ללא הודעה מוקדמת ובחשאי. פתיחת המנהרה הייתה הניצוץ שהביא להתפוצצות של אבק שריפה שהלך ונערם יחד עם המתח שגאה בעקבות חילופי השלטון בישראל ואי רצונה של ממשלת נתניהו לממש את הסכם חברון.</p>
-      <p>ההנהגה הפלסטינית כל הזמן מחממת את האווירה ע"י שידורי תעמולה ופעילים בשטח שמחממים את התושבים במטרה להוציאם לרחובות.</p>
+        <div class="battle-card">
+      <h3>פלוגת אוגוסט 95 שקד — מאורעות ברזל לוהט 26/9/96<br>צומת ״יהודה״, צומת הגוש, גוש קטיף</h3>
+      <p>מורשת קרב זו שונה ממורשות הקרב של חטיבת גבעתי מ-48 ״מלחמת העצמאות״ בכך שהיא התרחשה בתקופתינו ועל חיילים בשירות סדיר.</p>
+      <p>היא כוללת בתוכה סיפור מופלא של פלוגה, על אחוות לוחמים, הקרבה למען המדינה, הגנה על אזרחי המדינה ומשמעת ברוח המפקד.</p>
     </div>
     <div class="battle-card">
-      <h3>מהלך האירועים — 26 בספטמבר 1996</h3>
-      <p>המ"מים מתפזרים עם שחר למשימותיהם לאחר לילה ללא שינה. בערך ב-7:45 נשמעים ע"י חייל מחלקה 2 — יהודה לוי ז"ל — שנמצא בעמדה 135 בצומת הגוש, דיווחים קרי רוח על התקהלות סביבו, זריקת אבנים ובקבוקים על האורחן ועליו.</p>
-      <p>בשלב זה קרב הירי הופך לתוך רותחת של אש. יהודה נמצא על מגדל 135 שמושך אליו אש. הירי מתבצע מבין הבתים ומבין האזרחים, ויהודה מזהה ומדווח על מקורות הירי בקרי רוח.</p>
-      <p>מתוך התופת פוגע בו כדור אחד בלב. הוא נופל אחורה ומתמוטט מיד. מ"מ 2 שומע את הצעקות, רץ לאורחן, נכנס פנימה. הרופא בתום בדיקתו מודיע שיהודה איבד את חייו.</p>
+      <h3>הרקע</h3>
+      <p>במוצאי יום כיפור 23/9 נפתחה ע"י ממשלת ישראל מנהרת החשמונאים בירושלים ללא הודעה מוקדמת ובחשאי.</p>
+      <p>פתיחת המנהרה הייתה הניצוץ שהביא להתפוצצות של אבק שריפה שהלך ונערם יחד עם המתח שגאה בעקבות חילופי השלטון בישראל ואי רצונה של ממשלת נתניהו לממש את הסכם חברון שנחתם בהסכמי אוסלו.</p>
+      <p>במדינה שרר מתח שנבע מאזהרות הפלסטינים מהתפוצצות שעלולה לקרות.</p>
+      <p>ההנהגה הפלסטינית כל הזמן מחממת את האוירה ע"י שידורי תעמולה באמצעי התקשורת הפלסטיניים וכן ע"י פעילים בשטח שמחממים את התושבים במטרה להוציאם לרחובות.</p>
+      <p>ביום רביעי 25/9 מתרחש קרב יריות בין כוחותינו לבין שוטרים פלסטינים ברמאללה.</p>
+      <p>הפלסטינים כנראה תכננו את הקרבות ונערכו בהתאם ע"י הצבת צלפים והן ע"י תיגבור עמדות בשוטרים ובמקלעים.</p>
+      <p>בלילה שבין 25/9 ל-26/9 המ"פ סרן בוני מזר מקבל פקודת התראה והגברת כוננות בעקבות כל מה שתואר להלן.</p>
+      <p>מפק הפלוגה סרן בוני מזר מכנס בשעת לילה מאוחרת את הקצינים מ"מ 1 אופיר, מ"מ 2 גילי חזני, מ"מ 3 איהב חלבי והסמ"פ יגאל חלמיש, ע"מ לחלק פקודות כוננות בכוונה לתגבר את כוחות הכוננות ולחלק משימות לכוחות הכוננות.</p>
     </div>
     <div class="battle-card">
-      <h3>גבורה ונוכחות רוח</h3>
-      <p>יהודה, עד לרגעיו האחרונים, עמד בעמדתו, הרים ראש, חיפש את מקור האש כדי להחזיר — לוחם אמיתי. חלמיש הסמ"פ, למרות שנפצע קשה, מגיע בחיוך רחב לחובשים בנקודת הפינוי — אומר לכולם שלא קרה כלום ומשרה אווירה נינוחה סביבו.</p>
+      <h3>משימות</h3>
+      <p>משימת מח' 1: לתפוס את צומת טנצ'ר יום חדש ומוצב 49.</p>
+      <p>משימת מח' 2: תיגבור כפר דרום ותפיסת צומת הגוש, מאחזים 51 ו-135.</p>
+      <p>משימת מח' 3: תפיסת מוצב אלון, תיגבור מוצב 51 בצומת הגוש.</p>
+    </div>
+    <div class="battle-card">
+      <h3>מהלך האירועים</h3>
+      <p>המ"מים מתפזרים עם שחר למשימותיהם לאחר לילה ללא שינה.</p>
+      <p>בערך ב-7:00 נשמעים בקשר דיווחים על התקהלות אלפי אנשים בכפר דרום ועל יריות של פלסטינים על הישוב ועל כוחותינו ועל כך שיש פצועים מקרב חיילי מג"ב.</p>
+      <p>מ"מ 2 מקבל בקשר פקודה מהמ"פ לקפוץ יחד עם צוות הכוננות שלו למוצב כפר דרום ע"מ לתגבר ולאבטח את המוצב.</p>
+      <p>בשעה 7:30 מקפיץ המ"פ את כל הפלוגה ע"פ פקודת הכוננות כל כח למשימותיו.</p>
+      <p>בערך ב-7:45 נשמעים ע"י חייל מחלקה 2 יהודה לוי ז"ל שנמצא ב-135 בצומת הגוש דיווחים קרי רוח על התקהלות סביבו וזריקת אבנים ובקת"בים על האורחן ועליו.</p>
+      <p>בשלב זה נסגר צומת הגוש לתנועת אזרחים לחלוטין, המ"פ מגיע לשם עם החפ"ק ומדווח שהכל תחת שליטה.</p>
+      <p>מ"מ 2 מיד לאחר ששמע את הדיווחים של יהודה מארגן כח מפלוגה אחרת לאבטח את מוצב כפר דרום ונוסע עם הכח שלו לצומת הגוש. לפחות 15,000 מתפרעים מקיפים את האורחן באיזור הצומת עצמה וזורקים אבנים ובקת"בים על האורחן ועל כוחות הפלוגה שנערכו ביישור קו עם הג'יפים ע"מ למנוע מהמתפרעים מעבר לאיזור ציר אלרנס שמאפשר את הכניסה לגוש.</p>
+      <p>אט אט זורקי האבנים מתקרבים יותר ויותר עד לטווח יריקה אך הכח מפלוגת אוג' 95 מגיב בהתאם לפקודות הפתיחה באש באמצעי לפיזור הפגנות (אלפ"ה) בלבד ומבצעים ירי אך ורק כשנשקפת סכנת חיים קרי בקת"ביסטים ובעלי נשק חם, ולכן המפגינים אוזרים אומץ ומתקרבים כשלפתע נפתחת אש מבין על המפגינים על הכח.</p>
+      <p>בשלב זה מתוגברת הפלוגה בצומת ע"י כח הנדסה מפלוגת הליווים. לאחר זמן מה כח מג"ב עוזב למשימות אחרות ובצומת נשארים כח ההנדסה והכח מפלוגת אוג' 95.</p>
+      <p>פקודת האש של המפקדים הייתה: פלסטיני שמזהים אותו ודאית עם בקת"ב או נשק ניתן לבצע עליו ירי מכוון בלבד ואילו על המפגינים שזורקים אבנים יש לבצע אלפ"ה בלבד ואין ירות עליהם.</p>
+    </div>
+    <div class="battle-card">
+      <h3>נפילתו של יהודה</h3>
+      <p>בשלב זה קרב היריות הופך לתופת רותחת של אש כשלכל הכח למעשה זו הפעם הראשונה תחת אש רציפה.</p>
+      <p>יהודה נמצא על מגדל 135 שמושך אליו אש היות והוא גבוה. לכח קשה לזהות מהיכן יורים מכיוון שהירי על הכח מתבצע מבין הבתים ומבין האזרחים, יהודה מזהה ומשיב אש בקור רוח.</p>
+      <p>במהלך הירי מקבל בוני כדור בזרוע, אך בוני היה בטוח שזו אבן מכיוון שזורקי האבנים היו קרובים מאוד. החופ"ל (חובש פלוגתי) חובש אותו והוא ממשיך בתפקודו כאילו לא פגע בו דבר כאשר הוא מייחס את הכאבים החזקים ל"אבן" שפגעה בו.</p>
+      <p>יהודה חש בבעיה ומזהה לכח למטה מהיכן יורים עליו. בוני שלא מבין — שואל אותו שוב.</p>
+      <p>יהודה מבין שהכח למטה לא מזהה ולכן הוא עומד להיפגע ותחת האש הוא מתרומם מעל המחסה ע"מ שהכח יראה אותו וישמע בצורה ברורה, הוא חושף את עצמו תוך הפגנת אומץ לב ומזהה לכח מהיכן יורים עליו. הכח מזהה ומנטרל.</p>
+      <p>מתוך התופת פוגע בו כדור אחד בלב, הוא נופל אחורה ומתמוטט מיד.</p>
+      <p>כאשר מ"מ 2 שומע צעקות שיהודה נפגע הוא רץ לאורחן ונכנס פנימה. מ"מ 2 רץ למעלה מהר תוך שהוא מדרבן את החובש ע"מ להגיש טיפול ולחלץ את יהודה.</p>
+      <p>יהודה שעדיין חי מורם ע"י מ"מ 2 שנושא אותו אחד על אחד ומוריד אותו תחת אש הפלסטינים ובחיפוי חיילי הפלוגה למטה אל הרופא.</p>
+      <p>הרופא בתום בדיקתו המעמיקה מודיע למ"מ 2 שיהודה איבד את חייו.</p>
+      <p>המפקדים מזועזעים קשות, ולחבריו לנשק ע"מ לא לפגוע במורל הם מדווחים שיהודה נפצע אנושות והוא פונה ע"י הרופא לטיפול בתאג"ד (תחנת איסוף גדודית).</p>
+    </div>
+    <div class="battle-card">
+      <h3>גבורת הפלוגה</h3>
+      <p>לאחר מכן מגיעה החצצית בפיקוד הסרס"פ אבי שמנסה לפזר באמצעותה את המפגינים. לאחר שהפלסטינים מזהים אותו הם ממקדים חלק מהאש אליו, אבי חוטף כדור בקסדה בצד שמאל, הכדור ניתז מהקסדה החוצה, אחר כך הוא חוטף עוד כדור שפוגע בחצצית ניתז למעלה חותך את גבתו ויוצא מתוך פנים הקסדה החוצה באיזור מרכז הראש. למרות כל הפגיעות הללו אבי לא נרתע וממשיך לדבוק במשימתו — פיזור המתפרעים, באומץ לב ובנחישות נדירים.</p>
+      <p>בוני המ"פ מחולץ לאחר שאבן פוגעת בראשו. חלמיש הסמ"פ ע"מ לא לפגוע במורל חייליו מחלץ את עצמו לבד מהג'יפ ולמרות פציעתו הקשה הוא מגיע בחיוך רחב לחובשים בנקודת הפינוי, אומר לכולם שלא קרה כלום ומשרה אוירה נינוחה ורגועה סביבו למרות הכדור שחטף.</p>
+      <p>אף על פי שהמ"פ והסמ"פ פצועים, החיילים נשארים נחושים ואיתנים ברוחם לבצע את משימתם וממשיכים בתפקודם המצויין ברגעי מבחן קשים אלו בדיוק כפי שחונכו באימונים.</p>
+    </div>
+    <div class="battle-card">
+      <h3>סיכום נפגעים</h3>
+      <p>מ"פ — נפגע קל מכדור ביד ואבן בראש.</p>
+      <p>סמ"פ — נפגע קל מכדור ברגלו.</p>
+      <p>חייל שגיא גולדנברג — נפגע קל מכדור בידו.</p>
+      <p style="color:var(--red-light); font-weight:500">חייל יהודה לוי ז"ל — הרוג.</p>
+    </div>
+    <div class="battle-card" style="border-color:var(--border-strong); background:rgba(201,168,76,0.04)">
+      <h3 style="color:var(--text)">לקח</h3>
+      <p>סופו של דבר מה שמחזיק את חיילים ומפקדים בשעות הקרב זאת המשמעת שמונחלת לחיילים יום יום שעה שעה בשגרה, ואחוות הלוחמים שנבנית יום יום כשהחיילים חיים אחד צמוד לשני וכשהם מזיעים יחד במסעות תחת האלונקה.</p>
+      <p>אחוות לוחמים שבגללה יהודה חשש לחיי חבריו יותר מאשר לחייו שלו ולכן הזדקף באומץ והצביע על האויב.</p>
+      <p>אחוות לוחמים שבגללה אבי הסרס"פ הסתער עם החצצית על זורקי האבנים והבקת"בים למרות שקיבל שני כדורים לקסדה וריקושט שפגע בכתפו ואותו גילה רק בלילה שהוריד לראשונה את החולצה.</p>
+      <p>אחווה שבגללה גם לאחר שהמ"פ והסמ"פ נפצעים הפלוגה ממשיכה בדבקות במשימתה.</p>
+      <p style="font-style:italic; margin-top:1rem; color:var(--text)">נכתב לזכרו של החייל סמל יהודה לוי ז"ל, ע"מ שאומץ ליבו ועוז רוחו יהוו דוגמא ומופת לחיקוי ואבן דרך בולטת בדרך הארוכה שעושים חיילי גדוד שקד וחטיבת גבעתי בדרך אל השלום.</p>
     </div>
   </div>
 </div>
@@ -462,155 +534,162 @@ footer .gold { color:var(--gold); }
   <p class="section-label">gallery</p>
   <h2 class="section-title">תמונות</h2>
   <div class="section-divider"></div>
-  <div class="photos-grid">
-    <div class="photo-thumb" onclick="openImg('imgs/pics/Yeuda.JPG', 'יהודה')">
-      <img src="imgs/pics/TN_Yeuda.JPG" alt="יהודה" onerror="this.src='imgs/pics/Yeuda.JPG'">
-      <div class="photo-caption">יהודה</div>
+  <div class="gallery-carousel" id="galleryTrack">
+    <div class="gallery-inner" id="galleryInner">
+      <div class="gallery-item" onclick="openImg('imgs/pics/Yeuda.JPG', 'יהודה')">
+        <img src="imgs/pics/TN_Yeuda.JPG" alt="יהודה" loading="lazy" onerror="this.src='imgs/pics/Yeuda.JPG'">
+        <div class="gallery-caption">יהודה</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/LitlleYeuda.JPG', 'יהודה הקטן')">
+        <img src="imgs/pics/TN_LitlleYeuda.JPG" alt="יהודה הקטן" loading="lazy" onerror="this.src='imgs/pics/LitlleYeuda.JPG'">
+        <div class="gallery-caption">יהודה הקטן</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/LitlleYeuda2.JPG', 'יהודה הקטן 2')">
+        <img src="imgs/pics/TN_LitlleYeuda2.JPG" alt="יהודה הקטן 2" loading="lazy" onerror="this.src='imgs/pics/LitlleYeuda2.JPG'">
+        <div class="gallery-caption">יהודה הקטן 2</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/verylitlleYeuda.JPG', 'יהודה תינוק')">
+        <img src="imgs/pics/TN_verylitlleYeuda.JPG" alt="יהודה תינוק" loading="lazy" onerror="this.src='imgs/pics/verylitlleYeuda.JPG'">
+        <div class="gallery-caption">יהודה תינוק</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaBarMitsva.JPG', 'בר מצווה')">
+        <img src="imgs/pics/TN_YeudaBarMitsva.JPG" alt="בר מצווה" loading="lazy" onerror="this.src='imgs/pics/YeudaBarMitsva.JPG'">
+        <div class="gallery-caption">בר מצווה</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaBarMitsva2.JPG', 'בר מצווה 2')">
+        <img src="imgs/pics/TN_YeudaBarMitsva2.JPG" alt="בר מצווה 2" loading="lazy" onerror="this.src='imgs/pics/YeudaBarMitsva2.JPG'">
+        <div class="gallery-caption">בר מצווה 2</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaCostume.JPG', 'בתחפושת')">
+        <img src="imgs/pics/TN_YeudaCostume.JPG" alt="בתחפושת" loading="lazy" onerror="this.src='imgs/pics/YeudaCostume.JPG'">
+        <div class="gallery-caption">בתחפושת</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndYafaAtYomHorim.JPG', 'יהודה ואמא ביום ההורים')">
+        <img src="imgs/pics/TN_YeudaAndYafaAtYomHorim.JPG" alt="יהודה ואמא ביום ההורים" loading="lazy" onerror="this.src='imgs/pics/YeudaAndYafaAtYomHorim.JPG'">
+        <div class="gallery-caption">יהודה ואמא ביום ההורים</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaInArmy.JPG', 'בצבא')">
+        <img src="imgs/pics/TN_YeudaInArmy.JPG" alt="בצבא" loading="lazy" onerror="this.src='imgs/pics/YeudaInArmy.JPG'">
+        <div class="gallery-caption">בצבא</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaWithGuns.JPG', 'עם נשק')">
+        <img src="imgs/pics/TN_YeudaWithGuns.JPG" alt="עם נשק" loading="lazy" onerror="this.src='imgs/pics/YeudaWithGuns.JPG'">
+        <div class="gallery-caption">עם נשק</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaWithGuns2.JPG', 'עם נשק 2')">
+        <img src="imgs/pics/TN_YeudaWithGuns2.JPG" alt="עם נשק 2" loading="lazy" onerror="this.src='imgs/pics/YeudaWithGuns2.JPG'">
+        <div class="gallery-caption">עם נשק 2</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaInOrhan.JPG', 'באורחן')">
+        <img src="imgs/pics/TN_YeudaInOrhan.JPG" alt="באורחן" loading="lazy" onerror="this.src='imgs/pics/YeudaInOrhan.JPG'">
+        <div class="gallery-caption">באורחן</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaOnBench.JPG', 'על הספסל')">
+        <img src="imgs/pics/TN_YeudaOnBench.JPG" alt="על הספסל" loading="lazy" onerror="this.src='imgs/pics/YeudaOnBench.JPG'">
+        <div class="gallery-caption">על הספסל</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaWithUniformComingHome.JPG', 'בא הביתה במדים')">
+        <img src="imgs/pics/TN_YeudaWithUniformComingHome.JPG" alt="בא הביתה במדים" loading="lazy" onerror="this.src='imgs/pics/YeudaWithUniformComingHome.JPG'">
+        <div class="gallery-caption">בא הביתה במדים</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaWithUniformComingHome2.JPG', 'בא הביתה במדים 2')">
+        <img src="imgs/pics/TN_YeudaWithUniformComingHome2.JPG" alt="בא הביתה במדים 2" loading="lazy" onerror="this.src='imgs/pics/YeudaWithUniformComingHome2.JPG'">
+        <div class="gallery-caption">בא הביתה במדים 2</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndAmir.JPG', 'יהודה ואמיר')">
+        <img src="imgs/pics/TN_YeudaAndAmir.JPG" alt="יהודה ואמיר" loading="lazy" onerror="this.src='imgs/pics/YeudaAndAmir.JPG'">
+        <div class="gallery-caption">יהודה ואמיר</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndGili.JPG', 'יהודה וגילי')">
+        <img src="imgs/pics/TN_YeudaAndGili.JPG" alt="יהודה וגילי" loading="lazy" onerror="this.src='imgs/pics/YeudaAndGili.JPG'">
+        <div class="gallery-caption">יהודה וגילי</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndTomer.JPG', 'יהודה ותומר')">
+        <img src="imgs/pics/TN_YeudaAndTomer.JPG" alt="יהודה ותומר" loading="lazy" onerror="this.src='imgs/pics/YeudaAndTomer.JPG'">
+        <div class="gallery-caption">יהודה ותומר</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndTomer2.JPG', 'יהודה ותומר 2')">
+        <img src="imgs/pics/TN_YeudaAndTomer2.JPG" alt="יהודה ותומר 2" loading="lazy" onerror="this.src='imgs/pics/YeudaAndTomer2.JPG'">
+        <div class="gallery-caption">יהודה ותומר 2</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndAndre.JPG', 'יהודה ואנדרה')">
+        <img src="imgs/pics/TN_YeudaAndAndre.JPG" alt="יהודה ואנדרה" loading="lazy" onerror="this.src='imgs/pics/YeudaAndAndre.JPG'">
+        <div class="gallery-caption">יהודה ואנדרה</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/YeudaAndFamilyInTrip.JPG', 'יהודה עם המשפחה בטיול')">
+        <img src="imgs/pics/TN_YeudaAndFamilyInTrip.JPG" alt="יהודה עם המשפחה בטיול" loading="lazy" onerror="this.src='imgs/pics/YeudaAndFamilyInTrip.JPG'">
+        <div class="gallery-caption">יהודה עם המשפחה בטיול</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/Mahlak2AndPkida.JPG', 'מחלקה 2 ופקידה')">
+        <img src="imgs/pics/TN_Mahlak2AndPkida.JPG" alt="מחלקה 2 ופקידה" loading="lazy" onerror="this.src='imgs/pics/Mahlak2AndPkida.JPG'">
+        <div class="gallery-caption">מחלקה 2 ופקידה</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/Mahlaka2.JPG', 'מחלקה 2')">
+        <img src="imgs/pics/TN_Mahlaka2.JPG" alt="מחלקה 2" loading="lazy" onerror="this.src='imgs/pics/Mahlaka2.JPG'">
+        <div class="gallery-caption">מחלקה 2</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/FlagWithSignatures.JPG', 'דגל עם חתימות')">
+        <img src="imgs/pics/TN_FlagWithSignatures.JPG" alt="דגל עם חתימות" loading="lazy" onerror="this.src='imgs/pics/FlagWithSignatures.JPG'">
+        <div class="gallery-caption">דגל עם חתימות</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/HartuvPainting.JPG', 'ציור הרטוב')">
+        <img src="imgs/pics/TN_HartuvPainting.JPG" alt="ציור הרטוב" loading="lazy" onerror="this.src='imgs/pics/HartuvPainting.JPG'">
+        <div class="gallery-caption">ציור הרטוב</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/family.JPG', 'משפחה')">
+        <img src="imgs/pics/TN_family.JPG" alt="משפחה" loading="lazy" onerror="this.src='imgs/pics/family.JPG'">
+        <div class="gallery-caption">משפחה</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/flag.JPG', 'דגל')">
+        <img src="imgs/pics/TN_flag.JPG" alt="דגל" loading="lazy" onerror="this.src='imgs/pics/flag.JPG'">
+        <div class="gallery-caption">דגל</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/Medals.JPG', 'עיטורים')">
+        <img src="imgs/pics/TN_Medals.JPG" alt="עיטורים" loading="lazy" onerror="this.src='imgs/pics/Medals.JPG'">
+        <div class="gallery-caption">עיטורים</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/Sisma.JPG', 'סיסמא')">
+        <img src="imgs/pics/TN_Sisma.JPG" alt="סיסמא" loading="lazy" onerror="this.src='imgs/pics/Sisma.JPG'">
+        <div class="gallery-caption">סיסמא</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/Tiberias.JPG', 'טבריה')">
+        <img src="imgs/pics/TN_Tiberias.JPG" alt="טבריה" loading="lazy" onerror="this.src='imgs/pics/Tiberias.JPG'">
+        <div class="gallery-caption">טבריה</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/TsometYeuda.JPG', 'צומת יהודה')">
+        <img src="imgs/pics/TN_TsometYeuda.JPG" alt="צומת יהודה" loading="lazy" onerror="this.src='imgs/pics/TsometYeuda.JPG'">
+        <div class="gallery-caption">צומת יהודה</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/IMG_1507.JPG', 'תמונה')">
+        <img src="imgs/pics/TN_IMG_1507.JPG" alt="תמונה" loading="lazy" onerror="this.src='imgs/pics/IMG_1507.JPG'">
+        <div class="gallery-caption">תמונה</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/IMG_1508.JPG', 'תמונה')">
+        <img src="imgs/pics/TN_IMG_1508.JPG" alt="תמונה" loading="lazy" onerror="this.src='imgs/pics/IMG_1508.JPG'">
+        <div class="gallery-caption">תמונה</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/IMG_1509.JPG', 'תמונה')">
+        <img src="imgs/pics/TN_IMG_1509.JPG" alt="תמונה" loading="lazy" onerror="this.src='imgs/pics/IMG_1509.JPG'">
+        <div class="gallery-caption">תמונה</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/stone1.JPG', 'מצבה 1')">
+        <img src="imgs/pics/TN_stone1.JPG" alt="מצבה 1" loading="lazy" onerror="this.src='imgs/pics/stone1.JPG'">
+        <div class="gallery-caption">מצבה 1</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/stone2.JPG', 'מצבה 2')">
+        <img src="imgs/pics/TN_stone2.JPG" alt="מצבה 2" loading="lazy" onerror="this.src='imgs/pics/stone2.JPG'">
+        <div class="gallery-caption">מצבה 2</div>
+      </div>
+      <div class="gallery-item" onclick="openImg('imgs/pics/stone3.JPG', 'מצבה 3')">
+        <img src="imgs/pics/TN_stone3.JPG" alt="מצבה 3" loading="lazy" onerror="this.src='imgs/pics/stone3.JPG'">
+        <div class="gallery-caption">מצבה 3</div>
+      </div>
     </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/LitlleYeuda.JPG', 'יהודה הקטן')">
-      <img src="imgs/pics/TN_LitlleYeuda.JPG" alt="יהודה הקטן" onerror="this.src='imgs/pics/LitlleYeuda.JPG'">
-      <div class="photo-caption">יהודה הקטן</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/LitlleYeuda2.JPG', 'יהודה הקטן 2')">
-      <img src="imgs/pics/TN_LitlleYeuda2.JPG" alt="יהודה הקטן 2" onerror="this.src='imgs/pics/LitlleYeuda2.JPG'">
-      <div class="photo-caption">יהודה הקטן 2</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/verylitlleYeuda.JPG', 'יהודה תינוק')">
-      <img src="imgs/pics/TN_verylitlleYeuda.JPG" alt="יהודה תינוק" onerror="this.src='imgs/pics/verylitlleYeuda.JPG'">
-      <div class="photo-caption">יהודה תינוק</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaBarMitsva.JPG', 'בר מצווה')">
-      <img src="imgs/pics/TN_YeudaBarMitsva.JPG" alt="בר מצווה" onerror="this.src='imgs/pics/YeudaBarMitsva.JPG'">
-      <div class="photo-caption">בר מצווה</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaBarMitsva2.JPG', 'בר מצווה 2')">
-      <img src="imgs/pics/TN_YeudaBarMitsva2.JPG" alt="בר מצווה 2" onerror="this.src='imgs/pics/YeudaBarMitsva2.JPG'">
-      <div class="photo-caption">בר מצווה 2</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaCostume.JPG', 'בתחפושת')">
-      <img src="imgs/pics/TN_YeudaCostume.JPG" alt="בתחפושת" onerror="this.src='imgs/pics/YeudaCostume.JPG'">
-      <div class="photo-caption">בתחפושת</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndYafaAtYomHorim.JPG', 'יהודה ואמא ביום ההורים')">
-      <img src="imgs/pics/TN_YeudaAndYafaAtYomHorim.JPG" alt="יהודה ואמא ביום ההורים" onerror="this.src='imgs/pics/YeudaAndYafaAtYomHorim.JPG'">
-      <div class="photo-caption">יהודה ואמא ביום ההורים</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaInArmy.JPG', 'בצבא')">
-      <img src="imgs/pics/TN_YeudaInArmy.JPG" alt="בצבא" onerror="this.src='imgs/pics/YeudaInArmy.JPG'">
-      <div class="photo-caption">בצבא</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaWithGuns.JPG', 'עם נשק')">
-      <img src="imgs/pics/TN_YeudaWithGuns.JPG" alt="עם נשק" onerror="this.src='imgs/pics/YeudaWithGuns.JPG'">
-      <div class="photo-caption">עם נשק</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaWithGuns2.JPG', 'עם נשק 2')">
-      <img src="imgs/pics/TN_YeudaWithGuns2.JPG" alt="עם נשק 2" onerror="this.src='imgs/pics/YeudaWithGuns2.JPG'">
-      <div class="photo-caption">עם נשק 2</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaInOrhan.JPG', 'באורחן')">
-      <img src="imgs/pics/TN_YeudaInOrhan.JPG" alt="באורחן" onerror="this.src='imgs/pics/YeudaInOrhan.JPG'">
-      <div class="photo-caption">באורחן</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaOnBench.JPG', 'על הספסל')">
-      <img src="imgs/pics/TN_YeudaOnBench.JPG" alt="על הספסל" onerror="this.src='imgs/pics/YeudaOnBench.JPG'">
-      <div class="photo-caption">על הספסל</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaWithUniformComingHome.JPG', 'בא הביתה במדים')">
-      <img src="imgs/pics/TN_YeudaWithUniformComingHome.JPG" alt="בא הביתה במדים" onerror="this.src='imgs/pics/YeudaWithUniformComingHome.JPG'">
-      <div class="photo-caption">בא הביתה במדים</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaWithUniformComingHome2.JPG', 'בא הביתה במדים 2')">
-      <img src="imgs/pics/TN_YeudaWithUniformComingHome2.JPG" alt="בא הביתה במדים 2" onerror="this.src='imgs/pics/YeudaWithUniformComingHome2.JPG'">
-      <div class="photo-caption">בא הביתה במדים 2</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndAmir.JPG', 'יהודה ואמיר')">
-      <img src="imgs/pics/TN_YeudaAndAmir.JPG" alt="יהודה ואמיר" onerror="this.src='imgs/pics/YeudaAndAmir.JPG'">
-      <div class="photo-caption">יהודה ואמיר</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndGili.JPG', 'יהודה וגילי')">
-      <img src="imgs/pics/TN_YeudaAndGili.JPG" alt="יהודה וגילי" onerror="this.src='imgs/pics/YeudaAndGili.JPG'">
-      <div class="photo-caption">יהודה וגילי</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndTomer.JPG', 'יהודה ותומר')">
-      <img src="imgs/pics/TN_YeudaAndTomer.JPG" alt="יהודה ותומר" onerror="this.src='imgs/pics/YeudaAndTomer.JPG'">
-      <div class="photo-caption">יהודה ותומר</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndTomer2.JPG', 'יהודה ותומר 2')">
-      <img src="imgs/pics/TN_YeudaAndTomer2.JPG" alt="יהודה ותומר 2" onerror="this.src='imgs/pics/YeudaAndTomer2.JPG'">
-      <div class="photo-caption">יהודה ותומר 2</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndAndre.JPG', 'יהודה ואנדרה')">
-      <img src="imgs/pics/TN_YeudaAndAndre.JPG" alt="יהודה ואנדרה" onerror="this.src='imgs/pics/YeudaAndAndre.JPG'">
-      <div class="photo-caption">יהודה ואנדרה</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/YeudaAndFamilyInTrip.JPG', 'יהודה עם המשפחה בטיול')">
-      <img src="imgs/pics/TN_YeudaAndFamilyInTrip.JPG" alt="יהודה עם המשפחה בטיול" onerror="this.src='imgs/pics/YeudaAndFamilyInTrip.JPG'">
-      <div class="photo-caption">יהודה עם המשפחה בטיול</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/Mahlak2AndPkida.JPG', 'מחלקה 2 ופקידה')">
-      <img src="imgs/pics/TN_Mahlak2AndPkida.JPG" alt="מחלקה 2 ופקידה" onerror="this.src='imgs/pics/Mahlak2AndPkida.JPG'">
-      <div class="photo-caption">מחלקה 2 ופקידה</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/Mahlaka2.JPG', 'מחלקה 2')">
-      <img src="imgs/pics/TN_Mahlaka2.JPG" alt="מחלקה 2" onerror="this.src='imgs/pics/Mahlaka2.JPG'">
-      <div class="photo-caption">מחלקה 2</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/FlagWithSignatures.JPG', 'דגל עם חתימות')">
-      <img src="imgs/pics/TN_FlagWithSignatures.JPG" alt="דגל עם חתימות" onerror="this.src='imgs/pics/FlagWithSignatures.JPG'">
-      <div class="photo-caption">דגל עם חתימות</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/HartuvPainting.JPG', 'ציור הרטוב')">
-      <img src="imgs/pics/TN_HartuvPainting.JPG" alt="ציור הרטוב" onerror="this.src='imgs/pics/HartuvPainting.JPG'">
-      <div class="photo-caption">ציור הרטוב</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/family.JPG', 'משפחה')">
-      <img src="imgs/pics/TN_family.JPG" alt="משפחה" onerror="this.src='imgs/pics/family.JPG'">
-      <div class="photo-caption">משפחה</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/flag.JPG', 'דגל')">
-      <img src="imgs/pics/TN_flag.JPG" alt="דגל" onerror="this.src='imgs/pics/flag.JPG'">
-      <div class="photo-caption">דגל</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/Medals.JPG', 'עיטורים')">
-      <img src="imgs/pics/TN_Medals.JPG" alt="עיטורים" onerror="this.src='imgs/pics/Medals.JPG'">
-      <div class="photo-caption">עיטורים</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/Sisma.JPG', 'סיסמא')">
-      <img src="imgs/pics/TN_Sisma.JPG" alt="סיסמא" onerror="this.src='imgs/pics/Sisma.JPG'">
-      <div class="photo-caption">סיסמא</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/Tiberias.JPG', 'טבריה')">
-      <img src="imgs/pics/TN_Tiberias.JPG" alt="טבריה" onerror="this.src='imgs/pics/Tiberias.JPG'">
-      <div class="photo-caption">טבריה</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/TsometYeuda.JPG', 'צומת יהודה')">
-      <img src="imgs/pics/TN_TsometYeuda.JPG" alt="צומת יהודה" onerror="this.src='imgs/pics/TsometYeuda.JPG'">
-      <div class="photo-caption">צומת יהודה</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/IMG_1507.JPG', 'תמונה')">
-      <img src="imgs/pics/TN_IMG_1507.JPG" alt="תמונה" onerror="this.src='imgs/pics/IMG_1507.JPG'">
-      <div class="photo-caption">תמונה</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/IMG_1508.JPG', 'תמונה')">
-      <img src="imgs/pics/TN_IMG_1508.JPG" alt="תמונה" onerror="this.src='imgs/pics/IMG_1508.JPG'">
-      <div class="photo-caption">תמונה</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/IMG_1509.JPG', 'תמונה')">
-      <img src="imgs/pics/TN_IMG_1509.JPG" alt="תמונה" onerror="this.src='imgs/pics/IMG_1509.JPG'">
-      <div class="photo-caption">תמונה</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/stone1.JPG', 'מצבה 1')">
-      <img src="imgs/pics/TN_stone1.JPG" alt="מצבה 1" onerror="this.src='imgs/pics/stone1.JPG'">
-      <div class="photo-caption">מצבה 1</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/stone2.JPG', 'מצבה 2')">
-      <img src="imgs/pics/TN_stone2.JPG" alt="מצבה 2" onerror="this.src='imgs/pics/stone2.JPG'">
-      <div class="photo-caption">מצבה 2</div>
-    </div>
-    <div class="photo-thumb" onclick="openImg('imgs/pics/stone3.JPG', 'מצבה 3')">
-      <img src="imgs/pics/TN_stone3.JPG" alt="מצבה 3" onerror="this.src='imgs/pics/stone3.JPG'">
-      <div class="photo-caption">מצבה 3</div>
-    </div>
+  </div>
+  <div class="gallery-nav">
+    <button class="gallery-btn" id="galleryPrev" onclick="galleryScroll(-1)" aria-label="הקודם">&#8250;</button>
+    <div class="gallery-dots" id="galleryDots"></div>
+    <button class="gallery-btn" id="galleryNext" onclick="galleryScroll(1)" aria-label="הבא">&#8249;</button>
   </div>
 </section>
 
