@@ -106,6 +106,17 @@ section { max-width:900px; margin:0 auto; padding:5rem 2rem; }
 .battle-card h3 { font-family:'Frank Ruhl Libre',serif; font-size:1.3rem; color:var(--gold); margin-bottom:1rem; }
 .battle-card p { color:var(--text2); font-size:.95rem; line-height:1.9; margin-bottom:.75rem; }
 .battle-card p:last-child { margin-bottom:0; }
+/* ── COLLAPSIBLE (battle section) ── */
+.collapsible { margin:0; padding:0; }
+.collapsible-summary { display:inline-flex; align-items:center; gap:.6rem; list-style:none; cursor:pointer; background:rgba(201,168,76,.06); border:1px solid var(--gold-dim); color:var(--gold); padding:.55rem 1.4rem; border-radius:30px; font-family:'Heebo',sans-serif; font-size:.88rem; font-weight:400; letter-spacing:.05em; margin-bottom:2rem; transition:all .2s; user-select:none; }
+.collapsible-summary::-webkit-details-marker { display:none; }
+.collapsible-summary::marker { content:''; }
+.collapsible-summary:hover { background:rgba(201,168,76,.14); border-color:var(--gold); }
+.collapsible-summary-text::before { content:'הצג את התוכן המלא'; }
+.collapsible[open] .collapsible-summary-text::before { content:'כווץ'; }
+.collapsible-summary-arrow { display:inline-block; width:7px; height:7px; border-right:2px solid var(--gold); border-bottom:2px solid var(--gold); transform:rotate(45deg); transition:transform .3s ease; margin-bottom:3px; }
+.collapsible[open] .collapsible-summary-arrow { transform:rotate(-135deg); margin-bottom:-1px; }
+
 
 /* ── HESPEDIM ── */
 .hesped-filters { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
@@ -306,6 +317,12 @@ footer .gold { color:var(--gold); }
     <h2 class="section-title">מורשת קרב</h2>
     <div class="section-divider"></div>
 
+    <details class="collapsible" open>
+      <summary class="collapsible-summary">
+        <span class="collapsible-summary-text"></span>
+        <span class="collapsible-summary-arrow"></span>
+      </summary>
+
     <div class="battle-card">
       <h3>פלוגת אוגוסט 95 שקד — מאורעות ברזל לוהט 26/9/96<br>צומת ״יהודה״, צומת הגוש, גוש קטיף</h3>
       <p>מורשת קרב זו שונה ממורשות הקרב של חטיבת גבעתי מ-48 ״מלחמת העצמאות״ בכך שהיא התרחשה בתקופתינו ועל חיילים בשירות סדיר. היא כוללת בתוכה סיפור מופלא של פלוגה, על אחוות לוחמים, הקרבה למען המדינה, הגנה על אזרחי המדינה ומשמעת ברוח המפקד.</p>
@@ -351,6 +368,7 @@ footer .gold { color:var(--gold); }
     <div class="battle-card" style="border-color:var(--border-strong); background:rgba(201,168,76,0.04)">
       <p style="font-style:italic; color:var(--text)">נכתב לזכרו של החייל סמל יהודה לוי ז״ל. ע״מ שאומץ ליבו ועוז רוחו יהוו דוגמא ומופת לחיקוי ואבן דרך בולטת בדרך הארוכה שעושים חיילי גדוד שקד וחטיבת גבעתי בדרך אל השלום.</p>
     </div>
+    </details>
   </div>
 </div>
 
