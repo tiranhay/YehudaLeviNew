@@ -1,0 +1,39 @@
+name: Build memorials manifest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/imgs/memorials/**'
+      - 'scripts/build_memorials_manifest.py'
+      - '.github/workflows/build-memorials-manifest.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate manifest
+        run: python3 scripts/build_memorials_manifest.py
+
+      - name: Commit manifest if changed
+        run: |
+          if [ -n "$(git status --porcelain site/data/memorials.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add site/data/memorials.json
+            git commit -m "chore: rebuild memorials manifest [skip ci]"
+            git push
+          else
+            echo "No manifest change."
+          fi
