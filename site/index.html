@@ -107,6 +107,8 @@ section { max-width:900px; margin:0 auto; padding:5rem 2rem; }
 .azkarot-header { padding:1.2rem 1.5rem; background:linear-gradient(to left,rgba(201,168,76,.08),transparent); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
 .azkarot-num { font-family:'Frank Ruhl Libre',serif; font-size:2rem; font-weight:900; color:var(--gold); line-height:1; }
 .azkarot-label { font-size:.8rem; color:var(--text3); letter-spacing:.08em; }
+.azkarot-year-num { font-family:'Frank Ruhl Libre',serif; font-size:1.6rem; font-weight:700; color:var(--gold); line-height:1; }
+.azkarot-year-num-special { color:var(--gold-light); }
 .azkarot-body { padding:1.2rem 1.5rem; font-size:.88rem; color:var(--text2); line-height:1.7; }
 
 /* ── PHOTOS ── */
@@ -148,7 +150,7 @@ footer .gold { color:var(--gold); }
 .modal-text p:last-child { margin-bottom:0; }
 
 /* ── IMAGE MODAL ── */
-.img-modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.96); z-index:1001; flex-direction:column; align-items:center; justify-content:center; padding:1rem; }
+.img-modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.96); z-index:1001; flex-direction:column; align-items:center; justify-content:center; padding:1rem; direction:ltr; }
 .img-modal-bg.open { display:flex; }
 .img-modal-bg img { max-width:88vw; max-height:80vh; object-fit:contain; border-radius:4px; transition:opacity .2s; }
 .img-modal-bg img.loading { opacity:0; }
@@ -182,7 +184,7 @@ footer .gold { color:var(--gold); }
 .gallery-nav { display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:1rem; direction:ltr; }
 .gallery-btn { width:36px; height:36px; border-radius:50%; border:1px solid var(--border); background:var(--bg2); color:var(--gold); font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; line-height:1; }
 .gallery-btn:hover { border-color:var(--gold); background:rgba(201,168,76,.1); }
-.gallery-dots { display:flex; gap:6px; }
+.gallery-dots { display:flex; gap:6px; direction:rtl; }
 .gallery-dot { width:6px; height:6px; border-radius:50%; background:var(--border-strong); cursor:pointer; transition:background .2s, transform .2s; }
 .gallery-dot.active { background:var(--gold); transform:scale(1.4); }
 
@@ -204,9 +206,9 @@ footer .gold { color:var(--gold); }
     יהודה לוי
     <span style="font-size:.3em; margin-top:.5em; margin-bottom:0; letter-spacing:.2em;">ז״ל</span>
   </h1>
-  <div class="hero-dates">א׳ בספטמבר 1976 — כ״ג בתשרי תשנ״ז (26.9.1996)</div>
+  <div class="hero-dates">1 בספטמבר 1976 — כ״ג בתשרי תשנ״ז (26.9.1996)</div>
   <div class="hero-divider"></div>
-  <p class="hero-quote">חייל בגדוד גבעתי, נפל בצומת ״יהודה״ — גוש קטיף<br>בן תשע עשרה שנה, לנצח בלבנו</p>
+  <p class="hero-quote">חייל בגדוד שקד, נפל בצומת ״יהודה״ — גוש קטיף<br>בן עשרים שנה, לנצח בלבנו</p>
   <div class="scroll-hint">גלול</div>
 </div>
 
@@ -225,7 +227,6 @@ footer .gold { color:var(--gold); }
 
 <!-- LIFE STORY -->
 <section id="lifestory">
-  <p class="section-label">biography</p>
   <h2 class="section-title">סיפור חיים</h2>
   <div class="section-divider"></div>
   <div class="prose">
@@ -246,11 +247,11 @@ footer .gold { color:var(--gold); }
       <div class="timeline-year">1983</div>
     </div>
     <div class="timeline-item">
-      <div><div class="timeline-event">בי"ס יסודי פינסקר — בית הספר שהוקמה לזכרו הנציחה את שמו ומספרת גבורתו לעד. מידי שנה נערך בו טקס אזכרה ליהודה</div></div>
+      <div><div class="timeline-event">ביה"ס היסודי פינסקר ששם הוקמה לזכרו ספריית בית הספר אשר מנציחה את שמו וסיפור גבורתו לעד, בבית ספר זה נערך גם מידי שנה טקס אזכרה ליהודה</div></div>
       <div class="timeline-year">1984–1990</div>
     </div>
     <div class="timeline-item">
-      <div><div class="timeline-event">חטיבה א׳ — בי"ס רוגוזין</div></div>
+      <div><div class="timeline-event">חטיבה א׳ — ביה"ס רוגוזין</div></div>
       <div class="timeline-year">1990–1993</div>
     </div>
     <div class="timeline-item">
@@ -258,7 +259,7 @@ footer .gold { color:var(--gold); }
       <div class="timeline-year">1993–1995</div>
     </div>
     <div class="timeline-item">
-      <div><div class="timeline-event" style="color:var(--gold)">יהודה מתגייס לצה"ל — גדוד גבעתי</div></div>
+      <div><div class="timeline-event" style="color:var(--gold)">יהודה מתגייס לצה"ל — גדוד שקד</div></div>
       <div class="timeline-year" style="color:var(--text2)">30.07.1995</div>
     </div>
     <div class="timeline-item" style="border-color:var(--red-light)">
@@ -267,14 +268,13 @@ footer .gold { color:var(--gold); }
     </div>
   </div>
   <div class="quote-block" style="margin-top:3rem">
-    <p>יהודה אהב מאוד כדורגל, היה אוהד משובע של מכבי חיפה. בילדותו אהב מאוד את הים, ובכלל כל מה שקשור במים. בגילאים צעירים היו ליהודה אוספים שונים — מכוניות מירוץ ומחקים.</p>
+    <p>יהודה אהב מאוד כדורגל, היה אוהד מושבע של מכבי חיפה. בילדותו אהב מאוד את הים, ובכלל כל מה שקשור במים. בגילאים צעירים היו ליהודה אוספים שונים — מכוניות מירוץ ומחקים.</p>
   </div>
 </section>
 
 <!-- BATTLE -->
 <div class="wide-section" id="battle">
   <div class="wide-inner">
-    <p class="section-label">legacy</p>
     <h2 class="section-title">מורשת קרב</h2>
     <div class="section-divider"></div>
     <p class="prose" style="margin-bottom:2rem">פלוגת אוגוסט 95 — שקד. מאורעות ״ברזל לוהט״, 26.9.96. צומת ״יהודה״ — גוש קטיף.</p>
@@ -352,7 +352,6 @@ footer .gold { color:var(--gold); }
 
 <!-- HESPEDIM -->
 <section id="hespedim">
-  <p class="section-label">eulogies</p>
   <h2 class="section-title">הספדים</h2>
   <div class="section-divider"></div>
   <p class="prose" style="margin-bottom:2rem">דברי פרידה, אהבה וזיכרון שנכתבו בידי יקיריו ולוחמי פלוגתו של יהודה. לחצו על כל כרטיס לקריאת ההספד המלא.</p>
@@ -498,40 +497,36 @@ footer .gold { color:var(--gold); }
 <!-- AZKAROT -->
 <div class="wide-section" id="azkarot">
   <div class="wide-inner">
-    <p class="section-label">memorial ceremonies</p>
-    <h2 class="section-title">אזכרות — 30 שנה</h2>
+    <h2 class="section-title">אזכרות</h2>
     <div class="section-divider"></div>
     <p class="prose">כל שנה, ב-26 בספטמבר, מתקיים טקס אזכרה לזכרו של יהודה.</p>
     <div class="azkarot-grid">
       <div class="azkarot-year">
-        <div class="azkarot-header"><div><div class="azkarot-num">א׳</div><div class="azkarot-label">שנה ראשונה</div></div><div style="color:var(--text3);font-size:.85rem">1997</div></div>
+        <div class="azkarot-header"><div class="azkarot-year-num">1997</div></div>
         <div class="azkarot-body">אזכרה ראשונה. המשפחה, חברים ולוחמי הפלוגה — יחד לראשונה בלעדיו.</div>
       </div>
       <div class="azkarot-year">
-        <div class="azkarot-header"><div><div class="azkarot-num">ה׳</div><div class="azkarot-label">חמש שנים</div></div><div style="color:var(--text3);font-size:.85rem">2001</div></div>
+        <div class="azkarot-header"><div class="azkarot-year-num">2001</div></div>
         <div class="azkarot-body">טקס מיוחד בבית הספר פינסקר — הנצחה מחודשת בקהילה.</div>
       </div>
       <div class="azkarot-year">
-        <div class="azkarot-header"><div><div class="azkarot-num">י׳</div><div class="azkarot-label">עשר שנים</div></div><div style="color:var(--text3);font-size:.85rem">2006</div></div>
+        <div class="azkarot-header"><div class="azkarot-year-num">2006</div></div>
         <div class="azkarot-body">ריכוז לוחמים ומפקדים, הצגת מורשת הקרב לדור הצעיר.</div>
       </div>
       <div class="azkarot-year">
-        <div class="azkarot-header"><div><div class="azkarot-num">ט״ו</div><div class="azkarot-label">חמש עשרה</div></div><div style="color:var(--text3);font-size:.85rem">2011</div></div>
+        <div class="azkarot-header"><div class="azkarot-year-num">2011</div></div>
         <div class="azkarot-body">טקס משפחתי עם חברים ותיקים וצעירים. שירה ותפילה.</div>
       </div>
       <div class="azkarot-year">
-        <div class="azkarot-header"><div><div class="azkarot-num">כ׳</div><div class="azkarot-label">עשרים שנה</div></div><div style="color:var(--text3);font-size:.85rem">2016</div></div>
+        <div class="azkarot-header"><div class="azkarot-year-num">2016</div></div>
         <div class="azkarot-body">עשרים שנה. טקס מרגש עם כל מי שהכיר ואהב.</div>
       </div>
       <div class="azkarot-year">
-        <div class="azkarot-header"><div><div class="azkarot-num">כ״ה</div><div class="azkarot-label">עשרים וחמש</div></div><div style="color:var(--text3);font-size:.85rem">2021</div></div>
+        <div class="azkarot-header"><div class="azkarot-year-num">2021</div></div>
         <div class="azkarot-body">ריכוז גדול, יחד בזיכרון. רבע מאה ועדיין בלב.</div>
       </div>
       <div class="azkarot-year" style="border-color:var(--border-strong)">
-        <div class="azkarot-header" style="background:linear-gradient(to left,rgba(201,168,76,.15),transparent)">
-          <div><div class="azkarot-num" style="color:var(--gold-light)">ל׳</div><div class="azkarot-label">שלושים שנה</div></div>
-          <div style="color:var(--gold-dim);font-size:.85rem;font-weight:500">2026</div>
-        </div>
+        <div class="azkarot-header"><div class="azkarot-year-num">2026</div></div>
         <div class="azkarot-body">יובל — שלושים שנה לנפילתו. אזכרה מיוחדת ומרגשת — 26 בספטמבר 2026.</div>
       </div>
     </div>
@@ -540,7 +535,6 @@ footer .gold { color:var(--gold); }
 
 <!-- PHOTOS -->
 <section id="photos">
-  <p class="section-label">gallery</p>
   <h2 class="section-title">תמונות</h2>
   <div class="section-divider"></div>
   <div class="gallery-carousel" id="galleryTrack">
@@ -705,7 +699,6 @@ footer .gold { color:var(--gold); }
 <!-- NEWSPAPER -->
 <div class="wide-section" id="newspaper">
   <div class="wide-inner">
-    <p class="section-label">press</p>
     <h2 class="section-title">כתבות עיתון</h2>
     <div class="section-divider"></div>
     <div class="gallery-carousel" id="newspaperTrack">
@@ -752,8 +745,8 @@ footer .gold { color:var(--gold); }
 <footer>
   <div class="footer-divider" style="margin-bottom:2rem"></div>
   <p class="gold" style="font-family:'Frank Ruhl Libre',serif; font-size:1.3rem; margin-bottom:.5rem">יהודה לוי ז״ל</p>
-  <p>א׳ בספטמבר 1976 — כ״ג בתשרי תשנ״ז</p>
-  <p style="margin-top:.3rem">נפל בצומת ״יהודה״, גוש קטיף • חייל בגדוד גבעתי</p>
+  <p>1 בספטמבר 1976 — כ״ג בתשרי תשנ״ז</p>
+  <p style="margin-top:.3rem">נפל בצומת ״יהודה״, גוש קטיף • חייל בגדוד שקד</p>
   <div class="footer-divider" style="margin:2rem auto 1.5rem"></div>
   <p>זכרו יהיה ברוך לעולם ועד</p>
   <p style="margin-top:1rem; font-size:.72rem">אתר הנצחה — עוצב מחדש לכבוד שלושים שנה לנפילתו · 2026</p>
