@@ -312,7 +312,7 @@ function makeCarousel(innerId, dotsId, scrollFnName) {
   });
   window.addEventListener('mousemove', function(e) {
     if (!dragging) return;
-    current = Math.max(0, Math.min(startOffset + (startX - e.clientX) / ITEM_W, maxOffset));
+    current = Math.max(0, Math.min(startOffset + (e.clientX - startX) / ITEM_W, maxOffset));
     inner.style.transform = 'translateX(' + (current * ITEM_W) + 'px)';
   });
   window.addEventListener('mouseup', function() {
@@ -326,7 +326,7 @@ function makeCarousel(innerId, dotsId, scrollFnName) {
     tStartX = e.touches[0].clientX; tStartOff = current;
   }, { passive: true });
   inner.addEventListener('touchmove', function(e) {
-    current = Math.max(0, Math.min(tStartOff + (tStartX - e.touches[0].clientX) / ITEM_W, maxOffset));
+    current = Math.max(0, Math.min(tStartOff + (e.touches[0].clientX - tStartX) / ITEM_W, maxOffset));
     inner.style.transform = 'translateX(' + (current * ITEM_W) + 'px)';
   }, { passive: true });
   inner.addEventListener('touchend', function() { goTo(Math.round(current)); });
