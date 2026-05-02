@@ -47,6 +47,18 @@ body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; 
 .hero-divider { width:120px; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); margin:1.5rem auto; }
 .hero-quote { font-family:'Frank Ruhl Libre',serif; font-size:clamp(1rem,2vw,1.2rem); color:var(--text2); max-width:500px; font-style:italic; font-weight:300; }
 .hero-photo { width:clamp(140px,20vw,200px); height:clamp(140px,20vw,200px); border-radius:50%; object-fit:cover; border:2px solid var(--gold-dim); box-shadow:0 0 0 8px rgba(201,168,76,.06), 0 30px 60px rgba(0,0,0,.5); margin-bottom:2rem; }
+.hero-emblems-row { display:flex; align-items:center; justify-content:center; gap:clamp(1rem,3vw,2.5rem); margin-bottom:1.5rem; flex-wrap:nowrap; }
+.hero-emblems-row .hero-photo { margin-bottom:0; }
+.hero-emblem { height:clamp(70px,11vw,110px); width:auto; object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,.45)); transition:transform .3s ease; }
+.hero-emblem:hover { transform:scale(1.05); }
+.hero-emblem-givati { /* shield, taller */ }
+.hero-emblem-shaked { /* wings, wider — slightly larger to balance */ height:clamp(60px,9vw,95px); }
+.unit-tag { display:inline-block; font-family:'Frank Ruhl Libre',serif; font-size:clamp(.85rem,1.6vw,1.05rem); font-weight:700; letter-spacing:.18em; color:var(--gold); border:1px solid var(--gold-dim); border-radius:30px; padding:.4rem 1.4rem; background:rgba(201,168,76,.06); margin-bottom:1.5rem; }
+@media (max-width:560px) {
+  .hero-emblems-row { gap:.7rem; }
+  .hero-emblem { height:60px; }
+  .hero-emblem-shaked { height:52px; }
+}
 .scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:var(--text3); font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:.5rem; }
 .scroll-hint::after { content:''; width:1px; height:30px; background:linear-gradient(to bottom,var(--gold-dim),transparent); animation:scrollLine 2s ease-in-out infinite; }
 @keyframes scrollLine { 0%,100%{opacity:1} 50%{opacity:.3} }
@@ -199,7 +211,12 @@ footer .gold { color:var(--gold); }
     <div class="candle"><div class="flame" style="animation-delay:.7s"></div><div class="candle-body"></div></div>
     <div class="candle"><div class="flame" style="animation-delay:1.2s"></div><div class="candle-body"></div></div>
   </div>
-  <img src="imgs/1.JPG" alt="יהודה לוי" class="hero-photo">
+  <div class="hero-emblems-row">
+    <img src="imgs/insignia/shaked.png" alt="גדוד שקד" class="hero-emblem hero-emblem-shaked">
+    <img src="imgs/1.JPG" alt="יהודה לוי" class="hero-photo">
+    <img src="imgs/insignia/givati.png" alt="חטיבת גבעתי" class="hero-emblem hero-emblem-givati">
+  </div>
+  <div class="unit-tag">פלוגת אוגוסט 95</div>
   <p class="hero-star">✦ ✦ ✦</p>
   <h1 class="hero-name">
     <span>לזכרו של</span>
