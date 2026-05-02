@@ -407,34 +407,71 @@ document.addEventListener('keydown', function(e) {
 })();
 
 
-// ── Memorial extras: load manifest, render non-formal visit cards ──
-(function loadMemorialExtras() {
-  var formalYears = ['1997','2001','2006','2011','2016','2021','2026'];
-  var grid = document.getElementById('extraVisitsGrid');
+// ── Render unified azkarot grid (formal years + manifest extras) ──
+(function setupAzkarotGrid() {
+  var grid = document.getElementById('azkarotGrid');
   if (!grid) return;
+
+  // Formal anniversary years with their prose
+  var FORMAL = {
+    1997: 'אזכרה ראשונה. המשפחה, חברים ולוחמי הפלוגה — יחד לראשונה בלעדיו.',
+    2001: 'טקס מיוחד בבית הספר פינסקר — הנצחה מחודשת בקהילה.',
+    2006: 'ריכוז לוחמים ומפקדים, הצגת מורשת הקרב לדור הצעיר.',
+    2011: 'טקס משפחתי עם חברים ותיקים וצעירים. שירה ותפילה. (כולל טיול לנחל השופט).',
+    2016: 'עשרים שנה. טקס מרגש עם כל מי שהכיר ואהב.',
+    2021: 'ריכוז גדול, יחד בזיכרון. רבע מאה ועדיין בלב.',
+    2026: 'יובל — שלושים שנה לנפילתו. אזכרה מיוחדת ומרגשת — 26 בספטמבר 2026.'
+  };
+  var SPECIAL_YEAR = 2026; // gets emphasized border
+
+  function pluralize(n, singular, plural) {
+    return n + ' ' + (n === 1 ? singular : plural);
+  }
+
+  function render(manifestData) {
+    // Aggregate by year
+    var byYear = {};
+    Object.keys(FORMAL).forEach(function(y) {
+      byYear[y] = { year: +y, prose: FORMAL[y], hasFormal: true, manifest: null };
+    });
+    if (manifestData && manifestData.memorials) {
+      manifestData.memorials.forEach(function(m) {
+        var y = String(m.year);
+        if (!byYear[y]) byYear[y] = { year: m.year, prose: '', hasFormal: false, manifest: m };
+        else byYear[y].manifest = m;
+      });
+    }
+
+    var years = Object.keys(byYear).map(Number).sort(function(a, b) { return a - b; });
+    grid.innerHTML = years.map(function(y) {
+      var entry = byYear[y];
+      var href;
+      if (entry.manifest) href = 'memorial.html?date=' + entry.manifest.date;
+      else href = 'memorial.html?year=' + y;
+      var body;
+      if (entry.hasFormal) {
+        body = entry.prose;
+      } else {
+        var parts = [];
+        if (entry.manifest && entry.manifest.photos.length) parts.push(pluralize(entry.manifest.photos.length, 'תמונה', 'תמונות'));
+        if (entry.manifest && entry.manifest.speeches.length) parts.push(pluralize(entry.manifest.speeches.length, 'הספד', 'הספדים'));
+        var summary = parts.length ? parts.join(' · ') : '';
+        body = '<div style="color:var(--text3);font-size:.78rem;letter-spacing:.05em;margin-bottom:.5rem">' + entry.manifest.displayDate + '</div>' + summary;
+      }
+      var styleAttr = (y === SPECIAL_YEAR) ? ' style="border-color:var(--border-strong)"' : '';
+      return '<a class="azkarot-year" href="' + href + '"' + styleAttr + '>' +
+        '<div class="azkarot-header"><div class="azkarot-year-num' + (y === SPECIAL_YEAR ? ' azkarot-year-num-special' : '') + '">' + y + '</div></div>' +
+        '<div class="azkarot-body">' + body + '</div></a>';
+    }).join('');
+  }
+
+  // Initial render with formal years only
+  render(null);
+
+  // Then enrich with manifest data if available
   fetch('data/memorials.json')
     .then(function(r) { return r.ok ? r.json() : null; })
-    .then(function(data) {
-      if (!data || !data.memorials) return;
-      var extras = data.memorials.filter(function(m) {
-        return formalYears.indexOf(String(m.year)) === -1;
-      });
-      if (!extras.length) return;
-      var heading = document.getElementById('extraVisitsHeading');
-      var sub = document.getElementById('extraVisitsSub');
-      if (heading) heading.style.display = '';
-      if (sub) sub.style.display = '';
-      grid.innerHTML = extras.map(function(m) {
-        var bodyParts = [];
-        if (m.photos && m.photos.length) bodyParts.push(m.photos.length + ' תמונה' + (m.photos.length > 1 ? 'ות' : ''));
-        if (m.speeches && m.speeches.length) bodyParts.push(m.speeches.length + ' הספד' + (m.speeches.length > 1 ? 'ים' : ''));
-        var bodyText = bodyParts.length ? bodyParts.join(' · ') : '—';
-        return '<a class="azkarot-year" href="memorial.html?date=' + m.date + '">' +
-          '<div class="azkarot-header"><div class="azkarot-year-num">' + m.year + '</div></div>' +
-          '<div class="azkarot-body"><div style="color:var(--text3);font-size:.78rem;letter-spacing:.05em;margin-bottom:.4rem">' + m.displayDate + '</div>' + bodyText + '</div>' +
-          '<div class="azkarot-arrow">צפו</div></a>';
-      }).join('');
-    })
+    .then(function(data) { if (data) render(data); })
     .catch(function(e) { console.warn('memorials manifest load failed:', e); });
 })();
 

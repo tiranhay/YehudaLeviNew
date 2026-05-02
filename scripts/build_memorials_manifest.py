@@ -11,6 +11,7 @@ Photos with a sibling 'name(1).ext' are treated as thumbnail pairs:
   small (no '(1)') is the thumb; large ('(1)') is the full image.
 """
 import os, json, re, sys
+from urllib.parse import quote
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = os.path.join(ROOT, 'site', 'imgs', 'memorials')
@@ -18,6 +19,11 @@ OUTPUT = os.path.join(ROOT, 'site', 'data', 'memorials.json')
 WEB_BASE = 'imgs/memorials'   # path used by HTML (relative to site/)
 
 DATE_RE = re.compile(r'^(\d{2})_(\d{2})_(\d{4})')
+
+
+def url_path(p: str) -> str:
+    """URL-encode a path while keeping slashes."""
+    return quote(p, safe='/')
 
 def parse_date(name: str):
     m = DATE_RE.match(name)
@@ -69,14 +75,14 @@ def detect_pairs(rel_files):
         large_rel = os.path.join(dirpath, large_name) if dirpath else large_name
         if large_rel in by_path:
             photos.append({
-                'thumb': rel.replace(os.sep, '/'),
-                'full': large_rel.replace(os.sep, '/'),
+                'thumb': url_path(rel.replace(os.sep, '/')),
+                'full': url_path(large_rel.replace(os.sep, '/')),
                 'caption': base,
             })
         else:
             photos.append({
-                'thumb': rel.replace(os.sep, '/'),
-                'full': rel.replace(os.sep, '/'),
+                'thumb': url_path(rel.replace(os.sep, '/')),
+                'full': url_path(rel.replace(os.sep, '/')),
                 'caption': base,
             })
     return photos
@@ -105,8 +111,8 @@ def main():
                 photos = detect_pairs(rel_files)
                 # Prefix with date_key for web path
                 for p in photos:
-                    p['thumb'] = f'{WEB_BASE}/{date_key}/{p["thumb"]}'
-                    p['full'] = f'{WEB_BASE}/{date_key}/{p["full"]}'
+                    p['thumb'] = url_path(f'{WEB_BASE}/{date_key}/') + p['thumb']
+                    p['full'] = url_path(f'{WEB_BASE}/{date_key}/') + p['full']
                 get(date_key)['photos'].extend(photos)
             else:
                 # Unknown folder — log and skip
@@ -119,8 +125,8 @@ def main():
             date_key = f'{dd:02d}_{mm:02d}_{yyyy}'
             base = os.path.splitext(entry)[0]
             get(date_key)['photos'].append({
-                'thumb': f'{WEB_BASE}/{entry}',
-                'full': f'{WEB_BASE}/{entry}',
+                'thumb': url_path(f'{WEB_BASE}/{entry}'),
+                'full': url_path(f'{WEB_BASE}/{entry}'),
                 'caption': base,
             })
 
@@ -137,7 +143,7 @@ def main():
                         ext = os.path.splitext(f)[1].lstrip('.').lower()
                         get(date_key)['speeches'].append({
                             'title': title,
-                            'file': f'{WEB_BASE}/speeches/{date_key}/{f}',
+                            'file': url_path(f'{WEB_BASE}/speeches/{date_key}/{f}'),
                             'ext': ext,
                         })
 
