@@ -75,7 +75,7 @@ section { max-width:900px; margin:0 auto; padding:5rem 2rem; }
 .timeline-item:hover { background:rgba(201,168,76,.03); border-radius:4px; }
 .timeline-item::after { content:''; position:absolute; right:-4px; top:50%; transform:translateY(-50%); width:9px; height:9px; border-radius:50%; background:var(--gold); box-shadow:0 0 12px rgba(201,168,76,.4); }
 .timeline-event { font-size:1rem; color:var(--text); font-weight:400; }
-.timeline-year { font-family:'Frank Ruhl Libre',serif; font-size:1.1rem; font-weight:700; color:var(--gold); text-align:left; padding-top:.1rem; white-space:nowrap; }
+.timeline-year { font-family:'Frank Ruhl Libre',serif; font-size:1.1rem; font-weight:700; color:var(--gold); text-align:left; padding-top:.1rem; white-space:nowrap; direction:ltr; unicode-bidi:embed; }
 
 /* ── BATTLE ── */
 .battle-card { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:2.5rem; margin-bottom:1.5rem; position:relative; overflow:hidden; }
@@ -206,7 +206,7 @@ footer .gold { color:var(--gold); }
     יהודה לוי
     <span style="font-size:.3em; margin-top:.5em; margin-bottom:0; letter-spacing:.2em;">ז״ל</span>
   </h1>
-  <div class="hero-dates">1 בספטמבר 1976 — כ״ג בתשרי תשנ״ז (26.9.1996)</div>
+  <div class="hero-dates">1 בספטמבר 1976 - 26 לספטמבר 1996 (י״ג בתשרי)</div>
   <div class="hero-divider"></div>
   <p class="hero-quote">חייל בגדוד שקד, נפל בצומת ״יהודה״ — גוש קטיף<br>בן 20 בנופלו, לנצח בלבנו</p>
   <div class="scroll-hint">גלול</div>
@@ -248,15 +248,15 @@ footer .gold { color:var(--gold); }
     </div>
     <div class="timeline-item">
       <div><div class="timeline-event">ביה"ס היסודי פינסקר ששם הוקמה לזכרו ספריית בית הספר אשר מנציחה את שמו וסיפור גבורתו לעד, בבית ספר זה נערך גם מידי שנה טקס אזכרה ליהודה</div></div>
-      <div class="timeline-year">1984–1990</div>
+      <div class="timeline-year">1984-1990</div>
     </div>
     <div class="timeline-item">
       <div><div class="timeline-event">חטיבה א׳ — ביה"ס רוגוזין</div></div>
-      <div class="timeline-year">1990–1993</div>
+      <div class="timeline-year">1990-1993</div>
     </div>
     <div class="timeline-item">
       <div><div class="timeline-event">תיכון רוגוזין</div></div>
-      <div class="timeline-year">1993–1995</div>
+      <div class="timeline-year">1993-1995</div>
     </div>
     <div class="timeline-item">
       <div><div class="timeline-event" style="color:var(--gold)">יהודה מתגייס לצה"ל — גדוד שקד</div></div>
@@ -721,7 +721,7 @@ footer .gold { color:var(--gold); }
 <footer>
   <div class="footer-divider" style="margin-bottom:2rem"></div>
   <p class="gold" style="font-family:'Frank Ruhl Libre',serif; font-size:1.3rem; margin-bottom:.5rem">יהודה לוי ז״ל</p>
-  <p>1 בספטמבר 1976 — כ״ג בתשרי תשנ״ז</p>
+  <p>1 בספטמבר 1976 - 26 לספטמבר 1996 (י״ג בתשרי)</p>
   <p style="margin-top:.3rem">נפל בצומת ״יהודה״, גוש קטיף • חייל בגדוד שקד</p>
   <p style="margin-top:1rem"><a href="https://www.izkor.gov.il/%D7%99%D7%94%D7%95%D7%93%D7%94%20%D7%9C%D7%95%D7%99/en_eea7e50eed192745add0d0835865b0f0" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold-dim); padding-bottom:2px; transition:border-color .2s">דף הזיכרון באתר יזכור</a></p>
   <div class="footer-divider" style="margin:2rem auto 1.5rem"></div>
