@@ -27,7 +27,7 @@ html { scroll-behavior:smooth; scroll-padding-top:50px; }
 body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; font-weight:300; line-height:1.8; overflow-x:hidden; }
 
 /* ── HERO ── */
-.hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; text-align:center; padding:3rem 2rem 6rem; overflow:hidden; }
+.hero { min-height:100vh; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; text-align:center; padding:3rem 2rem 6rem; overflow:hidden; }
 .hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(139,26,26,0.15) 0%, transparent 70%), radial-gradient(ellipse 80% 40% at 50% 100%, rgba(201,168,76,0.06) 0%, transparent 60%); pointer-events:none; }
 .candle-row { display:flex; gap:1.3rem; margin-bottom:1.5rem; }
 .candle { display:flex; flex-direction:column; align-items:center; }
@@ -58,9 +58,17 @@ body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; 
 .hero-emblem-shaked { /* wings, wider — slightly larger to balance */ height:clamp(60px,9vw,95px); }
 .unit-tag { display:inline-block; font-family:'Frank Ruhl Libre',serif; font-size:clamp(.85rem,1.6vw,1.05rem); font-weight:700; letter-spacing:.18em; color:var(--gold); border:1px solid var(--gold-dim); border-radius:30px; padding:.4rem 1.4rem; background:rgba(201,168,76,.06); margin-bottom:1.5rem; }
 @media (max-width:560px) {
-  .hero-emblems-row { gap:.7rem; }
-  .hero-emblem { height:60px; }
-  .hero-emblem-shaked { height:52px; }
+  .hero { padding:2rem 1rem 4.5rem; }
+  .hero-emblems-row { gap:.7rem; margin-bottom:1rem; }
+  .hero-emblem { height:55px; }
+  .hero-emblem-shaked { height:48px; }
+  .hero-photo { width:120px; height:120px; }
+  .candle-row { margin-bottom:1rem; gap:1rem; }
+  .candle-body { height:30px; }
+  .hero-name { line-height:1.05; }
+  .hero-divider { margin:1rem auto; }
+  .scroll-hint { bottom:1rem; }
+  .scroll-hint::after { height:22px; }
 }
 .scroll-hint { position:absolute; bottom:1.5rem; left:50%; transform:translateX(-50%); color:var(--text3); font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:.5rem; }
 .scroll-hint::after { content:''; width:1px; height:30px; background:linear-gradient(to bottom,var(--gold-dim),transparent); animation:scrollLine 2s ease-in-out infinite; }
@@ -70,7 +78,7 @@ body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; 
 nav { position:sticky; top:0; z-index:100; background:rgba(10,10,10,.95); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
 .nav-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; padding:0; }
 .nav-inner a { color:var(--text2); text-decoration:none; font-size:.82rem; letter-spacing:.06em; padding:.9rem 1rem; transition:color .2s,border-color .2s; border-bottom:2px solid transparent; white-space:nowrap; }
-.nav-inner a:hover { color:var(--gold); border-bottom-color:var(--gold); }
+.nav-inner a:hover, .nav-inner a.active { color:var(--gold); border-bottom-color:var(--gold); }
 .nav-name { font-family:'Frank Ruhl Libre',serif; font-size:1rem !important; color:var(--gold) !important; font-weight:700; }
 
 /* ── SECTIONS ── */

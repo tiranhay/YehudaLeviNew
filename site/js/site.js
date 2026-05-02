@@ -282,3 +282,47 @@ document.addEventListener('keydown', function(e) {
   }
   if (e.key === 'Escape') closeModal();
 });
+
+
+// ── Active section highlight in nav ──
+(function setupActiveSectionNav() {
+  var sectionIds = ['top', 'lifestory', 'battle', 'hespedim', 'azkarot', 'photos', 'newspaper'];
+  var pairs = sectionIds.map(function(id) {
+    return {
+      id: id,
+      el: document.getElementById(id),
+      link: document.querySelector('.nav-inner a[href="#' + id + '"]')
+    };
+  }).filter(function(p) { return p.el && p.link; });
+  if (!pairs.length) return;
+
+  function setActive(id) {
+    pairs.forEach(function(p) {
+      p.link.classList.toggle('active', p.id === id);
+    });
+  }
+
+  function update() {
+    // We pick the section whose top is closest to (but at or above)
+    // a probe line just below the sticky nav.
+    var probeY = window.scrollY + 100;
+    var current = pairs[0];
+    for (var i = 0; i < pairs.length; i++) {
+      var top = pairs[i].el.getBoundingClientRect().top + window.scrollY;
+      if (top <= probeY) current = pairs[i];
+      else break;
+    }
+    setActive(current.id);
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() { update(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+})();
+
