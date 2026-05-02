@@ -428,6 +428,20 @@ document.addEventListener('keydown', function(e) {
     return n + ' ' + (n === 1 ? singular : plural);
   }
 
+  function counts(m) {
+    if (!m) return '';
+    var parts = [];
+    if (m.photos && m.photos.length) parts.push(pluralize(m.photos.length, 'תמונה', 'תמונות'));
+    if (m.speeches && m.speeches.length) parts.push(pluralize(m.speeches.length, 'הספד', 'הספדים'));
+    return parts.join(' · ');
+  }
+
+  function escapeHtml(t) {
+    var d = document.createElement('div');
+    d.textContent = t;
+    return d.innerHTML;
+  }
+
   function render(manifestData) {
     // Aggregate by year
     var byYear = {};
@@ -445,23 +459,27 @@ document.addEventListener('keydown', function(e) {
     var years = Object.keys(byYear).map(Number).sort(function(a, b) { return a - b; });
     grid.innerHTML = years.map(function(y) {
       var entry = byYear[y];
-      var href;
-      if (entry.manifest) href = 'memorial.html?date=' + entry.manifest.date;
-      else href = 'memorial.html?year=' + y;
-      var body;
-      if (entry.hasFormal) {
-        body = entry.prose;
-      } else {
-        var parts = [];
-        if (entry.manifest && entry.manifest.photos.length) parts.push(pluralize(entry.manifest.photos.length, 'תמונה', 'תמונות'));
-        if (entry.manifest && entry.manifest.speeches.length) parts.push(pluralize(entry.manifest.speeches.length, 'הספד', 'הספדים'));
-        var summary = parts.length ? parts.join(' · ') : '';
-        body = '<div style="color:var(--text3);font-size:.78rem;letter-spacing:.05em;margin-bottom:.5rem">' + entry.manifest.displayDate + '</div>' + summary;
+      var manifest = entry.manifest;
+      var href = manifest ? ('memorial.html?date=' + manifest.date) : ('memorial.html?year=' + y);
+
+      // Compose body parts (in order: date → main text → counts)
+      var parts = [];
+      if (manifest) {
+        parts.push('<div style="color:var(--text3);font-size:.78rem;letter-spacing:.05em;margin-bottom:.5rem">' + manifest.displayDate + '</div>');
       }
+      // Main text: title.txt overrides everything; otherwise formal prose; otherwise nothing
+      var mainText = '';
+      if (manifest && manifest.title) mainText = escapeHtml(manifest.title);
+      else if (entry.hasFormal) mainText = entry.prose;
+      if (mainText) parts.push(mainText);
+      // Counts always when there's content
+      var c = counts(manifest);
+      if (c) parts.push('<div style="color:var(--text3);font-size:.78rem;margin-top:.5rem">' + c + '</div>');
+
       var styleAttr = (y === SPECIAL_YEAR) ? ' style="border-color:var(--border-strong)"' : '';
       return '<a class="azkarot-year" href="' + href + '"' + styleAttr + '>' +
         '<div class="azkarot-header"><div class="azkarot-year-num' + (y === SPECIAL_YEAR ? ' azkarot-year-num-special' : '') + '">' + y + '</div></div>' +
-        '<div class="azkarot-body">' + body + '</div></a>';
+        '<div class="azkarot-body">' + parts.join('') + '</div></a>';
     }).join('');
   }
 

@@ -218,13 +218,22 @@ function render(m) {
     return;
   }
 
-  // Title: e.g. "אזכרה — 2016 (20 שנה)"
+  // Title: prefer title.txt content; otherwise default 'אזכרה — YYYY (X שנה לנפילתו)'
   var year = m.year;
   var yearsSince = year - 1996;  // יהודה fell in 1996
-  var titleParts = ['אזכרה — ' + year];
-  if (yearsSince > 0) titleParts.push('(' + yearsSince + ' שנה לנפילתו)');
-  titleEl.textContent = titleParts.join(' ');
-  dateEl.textContent = m.displayDate;
+  if (m.title) {
+    titleEl.textContent = m.title;
+    var subParts = [m.displayDate];
+    if (yearsSince > 0) subParts.push(yearsSince + ' שנה לנפילתו');
+    dateEl.textContent = subParts.join(' · ');
+    document.title = m.title + ' — אתר יהודה לוי ז״ל';
+  } else {
+    var titleParts = ['אזכרה — ' + year];
+    if (yearsSince > 0) titleParts.push('(' + yearsSince + ' שנה לנפילתו)');
+    titleEl.textContent = titleParts.join(' ');
+    dateEl.textContent = m.displayDate;
+    document.title = titleParts.join(' ') + ' — אתר יהודה לוי ז״ל';
+  }
 
   // Speeches
   if (m.speeches && m.speeches.length) {

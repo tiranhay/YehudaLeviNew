@@ -114,6 +114,16 @@ def main():
                     p['thumb'] = url_path(f'{WEB_BASE}/{date_key}/') + p['thumb']
                     p['full'] = url_path(f'{WEB_BASE}/{date_key}/') + p['full']
                 get(date_key)['photos'].extend(photos)
+                # Optional title.txt at the root of the date folder
+                title_path = os.path.join(full, 'title.txt')
+                if os.path.isfile(title_path):
+                    try:
+                        with open(title_path, encoding='utf-8') as tf:
+                            title_text = tf.read().strip()
+                        if title_text:
+                            get(date_key)['title'] = title_text
+                    except Exception as ex:
+                        print(f'  warn: failed to read {title_path}: {ex}', file=sys.stderr)
             else:
                 # Unknown folder — log and skip
                 print(f'  warn: unknown folder (no date prefix): {entry}', file=sys.stderr)
