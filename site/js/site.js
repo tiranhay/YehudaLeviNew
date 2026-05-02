@@ -125,9 +125,9 @@ function closeImgModal() {
       // Block at the edges (slight resistance feel)
       var atStart = imgCurrent === 0;
       var atEnd = imgCurrent === IMG_LIST.length - 1;
-      // In RTL: dx>0 (swiping right) = previous; dx<0 (swiping left) = next
+      // dx>0 (swiping right) = next; dx<0 (swiping left) = previous
       var pull = dx;
-      if ((dx > 0 && atStart) || (dx < 0 && atEnd)) pull = dx * 0.3;
+      if ((dx > 0 && atEnd) || (dx < 0 && atStart)) pull = dx * 0.3;
       imgEl.style.transform = 'translateX(' + pull + 'px)';
       imgEl.style.opacity = String(Math.max(0.3, 1 - Math.abs(dx) / 400));
     }
@@ -141,8 +141,8 @@ function closeImgModal() {
     var dy = (e.changedTouches[0].clientY) - startY;
     if (Math.abs(dy) > SWIPE_MAX_VERT) { resetImg(); return; }
     if (Math.abs(dx) < SWIPE_THRESHOLD) { resetImg(); return; }
-    // Decide direction (matches keyboard: ArrowRight => prev, ArrowLeft => next)
-    var dir = dx > 0 ? -1 : 1;
+    // Decide direction: swipe right -> next; swipe left -> previous
+    var dir = dx > 0 ? 1 : -1;
     var atStart = imgCurrent === 0;
     var atEnd = imgCurrent === IMG_LIST.length - 1;
     if ((dir === -1 && atStart) || (dir === 1 && atEnd)) { resetImg(); return; }
