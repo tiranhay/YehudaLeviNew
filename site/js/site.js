@@ -443,42 +443,70 @@ document.addEventListener('keydown', function(e) {
   }
 
   function render(manifestData) {
-    // Aggregate by year
-    var byYear = {};
-    Object.keys(FORMAL).forEach(function(y) {
-      byYear[y] = { year: +y, prose: FORMAL[y], hasFormal: true, manifest: null };
-    });
+    // Build one card per manifest entry, plus placeholders for formal
+    // anniversary years that don't have a manifest entry yet.
+    var entries = [];
+
     if (manifestData && manifestData.memorials) {
       manifestData.memorials.forEach(function(m) {
-        var y = String(m.year);
-        if (!byYear[y]) byYear[y] = { year: m.year, prose: '', hasFormal: false, manifest: m };
-        else byYear[y].manifest = m;
+        entries.push({
+          kind: 'manifest',
+          year: m.year,
+          sortKey: m.year * 10000 + (m.month * 100) + m.day,
+          manifest: m,
+          href: 'memorial.html?date=' + m.date
+        });
       });
     }
 
-    var years = Object.keys(byYear).map(Number).sort(function(a, b) { return a - b; });
-    grid.innerHTML = years.map(function(y) {
-      var entry = byYear[y];
-      var manifest = entry.manifest;
-      var href = manifest ? ('memorial.html?date=' + manifest.date) : ('memorial.html?year=' + y);
-
-      // Compose body parts (in order: date → main text → counts)
-      var parts = [];
-      if (manifest) {
-        parts.push('<div style="color:var(--text3);font-size:.78rem;letter-spacing:.05em;margin-bottom:.5rem">' + manifest.displayDate + '</div>');
+    var yearsWithManifest = {};
+    entries.forEach(function(e) { yearsWithManifest[e.year] = true; });
+    Object.keys(FORMAL).forEach(function(y) {
+      if (!yearsWithManifest[+y]) {
+        entries.push({
+          kind: 'placeholder',
+          year: +y,
+          sortKey: (+y) * 10000 + 9999,  // sort to end of year
+          prose: FORMAL[y],
+          href: 'memorial.html?year=' + y
+        });
       }
-      // Main text: title.txt overrides everything; otherwise formal prose; otherwise nothing
-      var mainText = '';
-      if (manifest && manifest.title) mainText = escapeHtml(manifest.title);
-      else if (entry.hasFormal) mainText = entry.prose;
-      if (mainText) parts.push(mainText);
-      // Counts always when there's content
-      var c = counts(manifest);
-      if (c) parts.push('<div style="color:var(--text3);font-size:.78rem;margin-top:.5rem">' + c + '</div>');
+    });
 
-      var styleAttr = (y === SPECIAL_YEAR) ? ' style="border-color:var(--border-strong)"' : '';
-      return '<a class="azkarot-year" href="' + href + '"' + styleAttr + '>' +
-        '<div class="azkarot-header"><div class="azkarot-year-num' + (y === SPECIAL_YEAR ? ' azkarot-year-num-special' : '') + '">' + y + '</div></div>' +
+    entries.sort(function(a, b) { return a.sortKey - b.sortKey; });
+
+    // Attach formal prose only to the first chronological entry of each formal year
+    var formalProseAssigned = {};
+    entries.forEach(function(e) {
+      if (e.kind === 'manifest' && FORMAL[e.year] && !formalProseAssigned[e.year]) {
+        e.formalProse = FORMAL[e.year];
+        formalProseAssigned[e.year] = true;
+      }
+    });
+
+    grid.innerHTML = entries.map(function(entry) {
+      var styleAttr = (entry.year === SPECIAL_YEAR) ? ' style="border-color:var(--border-strong)"' : '';
+      var numClass = 'azkarot-year-num' + (entry.year === SPECIAL_YEAR ? ' azkarot-year-num-special' : '');
+      var parts = [];
+
+      if (entry.kind === 'placeholder') {
+        parts.push(entry.prose);
+      } else {
+        var m = entry.manifest;
+        // Date subtitle
+        parts.push('<div style="color:var(--text3);font-size:.78rem;letter-spacing:.05em;margin-bottom:.5rem">' + m.displayDate + '</div>');
+        // Main text: title.txt > formal prose (first entry only) > nothing
+        var mainText = '';
+        if (m.title) mainText = escapeHtml(m.title);
+        else if (entry.formalProse) mainText = entry.formalProse;
+        if (mainText) parts.push(mainText);
+        // Counts
+        var c = counts(m);
+        if (c) parts.push('<div style="color:var(--text3);font-size:.78rem;margin-top:.5rem">' + c + '</div>');
+      }
+
+      return '<a class="azkarot-year" href="' + entry.href + '"' + styleAttr + '>' +
+        '<div class="azkarot-header"><div class="' + numClass + '">' + entry.year + '</div></div>' +
         '<div class="azkarot-body">' + parts.join('') + '</div></a>';
     }).join('');
   }
