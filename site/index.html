@@ -179,7 +179,7 @@ footer .gold { color:var(--gold); }
 .gallery-item:hover { border-color:var(--gold-dim); transform:translateY(-2px); }
 .gallery-item img { width:140px; height:140px; object-fit:cover; display:block; }
 .gallery-caption { font-size:.68rem; color:var(--text3); padding:.3rem .4rem; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; background:rgba(0,0,0,.3); }
-.gallery-nav { display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:1rem; }
+.gallery-nav { display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:1rem; direction:ltr; }
 .gallery-btn { width:36px; height:36px; border-radius:50%; border:1px solid var(--border); background:var(--bg2); color:var(--gold); font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; line-height:1; }
 .gallery-btn:hover { border-color:var(--gold); background:rgba(201,168,76,.1); }
 .gallery-dots { display:flex; gap:6px; }
@@ -696,9 +696,9 @@ footer .gold { color:var(--gold); }
     </div>
   </div>
   <div class="gallery-nav">
-    <button class="gallery-btn" id="galleryPrev" onclick="galleryScroll(-1)" aria-label="הקודם">&#8250;</button>
+    <button class="gallery-btn" id="galleryPrev" onclick="galleryScroll(-1)" aria-label="הקודם">&#8249;</button>
     <div class="gallery-dots" id="galleryDots"></div>
-    <button class="gallery-btn" id="galleryNext" onclick="galleryScroll(1)" aria-label="הבא">&#8249;</button>
+    <button class="gallery-btn" id="galleryNext" onclick="galleryScroll(1)" aria-label="הבא">&#8250;</button>
   </div>
 </section>
 
@@ -741,9 +741,9 @@ footer .gold { color:var(--gold); }
       </div>
     </div>
     <div class="gallery-nav">
-      <button class="gallery-btn" onclick="newspaperScroll(-1)">&#8250;</button>
+      <button class="gallery-btn" onclick="newspaperScroll(-1)" aria-label="הקודם">&#8249;</button>
       <div class="gallery-dots" id="newspaperDots"></div>
-      <button class="gallery-btn" onclick="newspaperScroll(1)">&#8249;</button>
+      <button class="gallery-btn" onclick="newspaperScroll(1)" aria-label="הבא">&#8250;</button>
     </div>
   </div>
 </div>
