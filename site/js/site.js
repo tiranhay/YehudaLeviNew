@@ -72,7 +72,90 @@ function imgModalBgClick(e) {
 function closeImgModal() {
   document.getElementById('imgModal').classList.remove('open');
   document.body.style.overflow = '';
+  // Reset any in-flight swipe transform
+  var imgEl = document.getElementById('modalImg');
+  if (imgEl) { imgEl.style.transition = ''; imgEl.style.transform = ''; imgEl.style.opacity = ''; }
 }
+
+// ── Swipe support for image modal (mobile) ──
+(function setupImgModalSwipe() {
+  var modal = document.getElementById('imgModal');
+  if (!modal) return;
+  var imgEl = document.getElementById('modalImg');
+
+  var startX = 0, startY = 0, startTime = 0;
+  var isTracking = false, isHorizontal = false, decided = false;
+  var SWIPE_THRESHOLD = 50;     // min horizontal pixels to count as swipe
+  var SWIPE_MAX_VERT = 80;      // max vertical drift for a horizontal swipe
+  var DECIDE_DIST = 10;         // pixels needed to decide if gesture is horizontal
+
+  function resetImg() {
+    if (!imgEl) return;
+    imgEl.style.transition = 'transform .25s ease, opacity .25s ease';
+    imgEl.style.transform = '';
+    imgEl.style.opacity = '';
+  }
+
+  modal.addEventListener('touchstart', function(e) {
+    if (e.touches.length !== 1) { isTracking = false; return; }
+    // Don't capture taps on buttons (close/prev/next) — let them work normally
+    var t = e.target;
+    if (t && t.closest && t.closest('button')) { isTracking = false; return; }
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    startTime = Date.now();
+    isTracking = true;
+    isHorizontal = false;
+    decided = false;
+    if (imgEl) imgEl.style.transition = 'none';
+  }, { passive: true });
+
+  modal.addEventListener('touchmove', function(e) {
+    if (!isTracking) return;
+    var dx = e.touches[0].clientX - startX;
+    var dy = e.touches[0].clientY - startY;
+    if (!decided) {
+      if (Math.abs(dx) < DECIDE_DIST && Math.abs(dy) < DECIDE_DIST) return;
+      isHorizontal = Math.abs(dx) > Math.abs(dy);
+      decided = true;
+    }
+    if (!isHorizontal) return;
+    // Visual feedback: drag image with finger
+    if (imgEl) {
+      // Block at the edges (slight resistance feel)
+      var atStart = imgCurrent === 0;
+      var atEnd = imgCurrent === IMG_LIST.length - 1;
+      // In RTL: dx>0 (swiping right) = previous; dx<0 (swiping left) = next
+      var pull = dx;
+      if ((dx > 0 && atStart) || (dx < 0 && atEnd)) pull = dx * 0.3;
+      imgEl.style.transform = 'translateX(' + pull + 'px)';
+      imgEl.style.opacity = String(Math.max(0.3, 1 - Math.abs(dx) / 400));
+    }
+  }, { passive: true });
+
+  modal.addEventListener('touchend', function(e) {
+    if (!isTracking) return;
+    isTracking = false;
+    if (!isHorizontal) { resetImg(); return; }
+    var dx = (e.changedTouches[0].clientX) - startX;
+    var dy = (e.changedTouches[0].clientY) - startY;
+    if (Math.abs(dy) > SWIPE_MAX_VERT) { resetImg(); return; }
+    if (Math.abs(dx) < SWIPE_THRESHOLD) { resetImg(); return; }
+    // Decide direction (matches keyboard: ArrowRight => prev, ArrowLeft => next)
+    var dir = dx > 0 ? -1 : 1;
+    var atStart = imgCurrent === 0;
+    var atEnd = imgCurrent === IMG_LIST.length - 1;
+    if ((dir === -1 && atStart) || (dir === 1 && atEnd)) { resetImg(); return; }
+    // Reset transform before changing the image so the next image starts clean
+    resetImg();
+    imgNav(dir);
+  }, { passive: true });
+
+  modal.addEventListener('touchcancel', function() {
+    isTracking = false;
+    resetImg();
+  }, { passive: true });
+})();
 
 // ── Hesped modal ──
 function openHesped(key) {
