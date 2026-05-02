@@ -71,11 +71,11 @@ section { max-width:900px; margin:0 auto; padding:5rem 2rem; }
 /* ── TIMELINE ── */
 .timeline { position:relative; margin:2rem 0; }
 .timeline::before { content:''; position:absolute; right:0; top:0; bottom:0; width:1px; background:linear-gradient(to bottom,transparent,var(--border-strong),transparent); }
-.timeline-item { display:grid; grid-template-columns:1fr 80px; gap:1.5rem; padding:1.5rem 2rem 1.5rem 0; border-bottom:1px solid var(--border); position:relative; transition:background .2s; }
+.timeline-item { display:grid; grid-template-columns:1fr 100px; gap:1.5rem; padding:1.5rem 2rem 1.5rem 0; border-bottom:1px solid var(--border); position:relative; transition:background .2s; }
 .timeline-item:hover { background:rgba(201,168,76,.03); border-radius:4px; }
 .timeline-item::after { content:''; position:absolute; right:-4px; top:50%; transform:translateY(-50%); width:9px; height:9px; border-radius:50%; background:var(--gold); box-shadow:0 0 12px rgba(201,168,76,.4); }
 .timeline-event { font-size:1rem; color:var(--text); font-weight:400; }
-.timeline-year { font-family:'Frank Ruhl Libre',serif; font-size:1.1rem; font-weight:700; color:var(--gold); text-align:left; padding-top:.1rem; }
+.timeline-year { font-family:'Frank Ruhl Libre',serif; font-size:1.1rem; font-weight:700; color:var(--gold); text-align:left; padding-top:.1rem; white-space:nowrap; }
 
 /* ── BATTLE ── */
 .battle-card { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:2.5rem; margin-bottom:1.5rem; position:relative; overflow:hidden; }
@@ -167,7 +167,7 @@ footer .gold { color:var(--gold); }
 @media (max-width:640px) {
   .nav-inner { justify-content:flex-start; overflow-x:auto; flex-wrap:nowrap; }
   .hespedim-grid { grid-template-columns:1fr 1fr; }
-  .timeline-item { grid-template-columns:1fr 60px; }
+  .timeline-item { grid-template-columns:1fr 90px; }
   .modal { padding:2rem 1.5rem 1.5rem; }
   .modal-title { font-size:1.5rem; }
   .photos-grid { grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); }
