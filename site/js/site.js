@@ -51,10 +51,11 @@ function showImgAt(idx) {
   document.getElementById('imgCaption').textContent = item.caption;
   document.getElementById('imgCounter').textContent = (idx + 1) + ' / ' + IMG_LIST.length;
   // Update nav buttons
-  var prev = document.getElementById('imgNavPrev');
-  var next = document.getElementById('imgNavNext');
-  if (prev) prev.disabled = idx === 0;
-  if (next) next.disabled = idx === IMG_LIST.length - 1;
+  // After RTL swap: #imgNavPrev now triggers NEXT (+1), #imgNavNext triggers PREV (-1)
+  var leftBtn = document.getElementById('imgNavPrev');   // visually LEFT, calls imgNav(+1)
+  var rightBtn = document.getElementById('imgNavNext');  // visually RIGHT, calls imgNav(-1)
+  if (leftBtn)  leftBtn.disabled  = idx === IMG_LIST.length - 1;  // disable at end
+  if (rightBtn) rightBtn.disabled = idx === 0;                    // disable at start
 }
 
 function imgNav(dir) {
