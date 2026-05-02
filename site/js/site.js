@@ -365,7 +365,7 @@ document.addEventListener('keydown', function(e) {
 
 // ── Active section highlight in nav (IntersectionObserver) ──
 (function setupActiveSectionNav() {
-  var sectionIds = ['top', 'lifestory', 'battle', 'hespedim', 'azkarot', 'photos', 'newspaper'];
+  var sectionIds = ['top', 'lifestory', 'battle', 'hespedim', 'photos', 'newspaper', 'azkarot'];
   var navLinks = {};
   sectionIds.forEach(function(id) {
     var link = document.querySelector('.nav-inner a[href="#' + id + '"]');
