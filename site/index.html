@@ -136,8 +136,9 @@ section { max-width:900px; margin:0 auto; padding:5rem 2rem; }
 
 /* ── AZKAROT ── */
 .azkarot-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.5rem; margin-top:2rem; }
-.azkarot-year { background:var(--bg3); border:1px solid var(--border); border-radius:8px; overflow:hidden; transition:border-color .25s; }
-.azkarot-year:hover { border-color:var(--border-strong); }
+.azkarot-year { background:var(--bg3); border:1px solid var(--border); border-radius:8px; overflow:hidden; transition:all .25s; text-decoration:none; color:inherit; display:block; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.azkarot-year:hover { border-color:var(--border-strong); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.3); }
+.azkarot-year, .azkarot-year * { text-decoration:none !important; }
 .azkarot-header { padding:1.2rem 1.5rem; background:linear-gradient(to left,rgba(201,168,76,.08),transparent); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
 .azkarot-num { font-family:'Frank Ruhl Libre',serif; font-size:2rem; font-weight:900; color:var(--gold); line-height:1; }
 .azkarot-label { font-size:.8rem; color:var(--text3); letter-spacing:.08em; }
@@ -529,47 +530,7 @@ footer .gold { color:var(--gold); }
     <h2 class="section-title">אזכרות</h2>
     <div class="section-divider"></div>
     <p class="prose">כל שנה, ב-26 בספטמבר, מתקיים טקס אזכרה לזכרו של יהודה.</p>
-    <div class="azkarot-grid">
-      <a class="azkarot-year" href="memorial.html?year=1997">
-        <div class="azkarot-header"><div class="azkarot-year-num">1997</div></div>
-        <div class="azkarot-body">אזכרה ראשונה. המשפחה, חברים ולוחמי הפלוגה — יחד לראשונה בלעדיו.</div>
-        <div class="azkarot-arrow">צפו באזכרה</div>
-      </a>
-      <a class="azkarot-year" href="memorial.html?year=2001">
-        <div class="azkarot-header"><div class="azkarot-year-num">2001</div></div>
-        <div class="azkarot-body">טקס מיוחד בבית הספר פינסקר — הנצחה מחודשת בקהילה.</div>
-        <div class="azkarot-arrow">צפו באזכרה</div>
-      </a>
-      <a class="azkarot-year" href="memorial.html?year=2006">
-        <div class="azkarot-header"><div class="azkarot-year-num">2006</div></div>
-        <div class="azkarot-body">ריכוז לוחמים ומפקדים, הצגת מורשת הקרב לדור הצעיר.</div>
-        <div class="azkarot-arrow">צפו באזכרה</div>
-      </a>
-      <a class="azkarot-year" href="memorial.html?year=2011">
-        <div class="azkarot-header"><div class="azkarot-year-num">2011</div></div>
-        <div class="azkarot-body">טקס משפחתי עם חברים ותיקים וצעירים. שירה ותפילה. (כולל טיול לנחל השופט).</div>
-        <div class="azkarot-arrow">צפו באזכרה</div>
-      </a>
-      <a class="azkarot-year" href="memorial.html?year=2016">
-        <div class="azkarot-header"><div class="azkarot-year-num">2016</div></div>
-        <div class="azkarot-body">עשרים שנה. טקס מרגש עם כל מי שהכיר ואהב.</div>
-        <div class="azkarot-arrow">צפו באזכרה</div>
-      </a>
-      <a class="azkarot-year" href="memorial.html?year=2021">
-        <div class="azkarot-header"><div class="azkarot-year-num">2021</div></div>
-        <div class="azkarot-body">ריכוז גדול, יחד בזיכרון. רבע מאה ועדיין בלב.</div>
-        <div class="azkarot-arrow">צפו באזכרה</div>
-      </a>
-      <a class="azkarot-year" href="memorial.html?year=2026" style="border-color:var(--border-strong)">
-        <div class="azkarot-header"><div class="azkarot-year-num">2026</div></div>
-        <div class="azkarot-body">יובל — שלושים שנה לנפילתו. אזכרה מיוחדת ומרגשת — 26 בספטמבר 2026.</div>
-        <div class="azkarot-arrow">צפו באזכרה</div>
-      </a>
-    </div>
-
-    <h3 class="azkarot-extras-heading" id="extraVisitsHeading" style="display:none">ביקורים נוספים</h3>
-    <p class="azkarot-extras-sub" id="extraVisitsSub" style="display:none">ימי הזיכרון ותאריכים נוספים שתועדו</p>
-    <div class="azkarot-grid" id="extraVisitsGrid"></div>
+    <div class="azkarot-grid" id="azkarotGrid"></div>
   </div>
 </div>
 
