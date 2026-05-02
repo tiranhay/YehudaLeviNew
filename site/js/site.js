@@ -159,7 +159,22 @@ function closeImgModal() {
 })();
 
 // ── Hesped modal ──
-function openHesped(key) {
+var HESPED_LIST = []; // ordered list of visible hesped keys
+var hespedCurrent = -1;
+
+function rebuildHespedList() {
+  HESPED_LIST = [];
+  document.querySelectorAll('.hesped-card').forEach(function(card) {
+    if (card.classList.contains('hidden')) return;
+    var key = card.dataset.key;
+    if (key) HESPED_LIST.push(key);
+  });
+}
+
+function showHespedAt(idx) {
+  if (idx < 0 || idx >= HESPED_LIST.length) return;
+  hespedCurrent = idx;
+  var key = HESPED_LIST[idx];
   var nameRole = NAMES[key] || [key, ''];
   document.getElementById('modalTitle').textContent = nameRole[0];
   document.getElementById('modalRole').textContent = nameRole[1];
@@ -171,14 +186,73 @@ function openHesped(key) {
     .filter(Boolean)
     .map(function(p) { return '<p>' + p.replace(/\n/g, '<br>') + '</p>'; })
     .join('');
+  // Scroll modal text to top when navigating
+  container.scrollTop = 0;
+  var modalEl = document.querySelector('.modal');
+  if (modalEl) modalEl.scrollTop = 0;
+  // Update prev/next buttons (RTL convention: LEFT button = next/forward)
+  var leftBtn = document.getElementById('hespedNavLeft');
+  var rightBtn = document.getElementById('hespedNavRight');
+  if (leftBtn)  leftBtn.disabled  = idx === HESPED_LIST.length - 1;
+  if (rightBtn) rightBtn.disabled = idx === 0;
+}
+
+function openHesped(key) {
+  rebuildHespedList();
+  var idx = HESPED_LIST.indexOf(key);
+  if (idx < 0) idx = 0;
+  showHespedAt(idx);
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+
+function navHesped(dir) {
+  // dir=+1 means "go to next hesped", dir=-1 means previous
+  showHespedAt(hespedCurrent + dir);
 }
 
 function closeModal() {
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow = '';
 }
+
+// ── Swipe + keyboard nav for hesped modal ──
+(function setupHespedModalSwipe() {
+  var modal = document.getElementById('modal');
+  if (!modal) return;
+  var startX = 0, startY = 0, isTracking = false, isHorizontal = false, decided = false;
+
+  modal.addEventListener('touchstart', function(e) {
+    if (e.touches.length !== 1) { isTracking = false; return; }
+    var t = e.target;
+    if (t && t.closest && (t.closest('button') || t.closest('a'))) { isTracking = false; return; }
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isTracking = true; isHorizontal = false; decided = false;
+  }, { passive: true });
+
+  modal.addEventListener('touchmove', function(e) {
+    if (!isTracking) return;
+    var dx = e.touches[0].clientX - startX;
+    var dy = e.touches[0].clientY - startY;
+    if (!decided) {
+      if (Math.abs(dx) < 12 && Math.abs(dy) < 12) return;
+      isHorizontal = Math.abs(dx) > Math.abs(dy) * 1.4;
+      decided = true;
+    }
+  }, { passive: true });
+
+  modal.addEventListener('touchend', function(e) {
+    if (!isTracking) return;
+    isTracking = false;
+    if (!isHorizontal) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) < 60) return;
+    // Same convention as image lightbox: swipe right -> next, swipe left -> prev
+    navHesped(dx > 0 ? 1 : -1);
+  }, { passive: true });
+})();
+
 
 // ── Hesped filter ──
 function filterHespedim(group, btn) {
@@ -280,49 +354,87 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { imgNav(1);  return; }
     if (e.key === 'Escape') { closeImgModal(); return; }
   }
+  if (document.getElementById('modal').classList.contains('open')) {
+    if (e.key === 'ArrowLeft')  { navHesped(1);  return; }   // RTL: left = next
+    if (e.key === 'ArrowRight') { navHesped(-1); return; }   // RTL: right = prev
+    if (e.key === 'Escape') { closeModal(); return; }
+  }
   if (e.key === 'Escape') closeModal();
 });
 
 
-// ── Active section highlight in nav ──
+// ── Active section highlight in nav (IntersectionObserver) ──
 (function setupActiveSectionNav() {
   var sectionIds = ['top', 'lifestory', 'battle', 'hespedim', 'azkarot', 'photos', 'newspaper'];
-  var pairs = sectionIds.map(function(id) {
-    return {
-      id: id,
-      el: document.getElementById(id),
-      link: document.querySelector('.nav-inner a[href="#' + id + '"]')
-    };
-  }).filter(function(p) { return p.el && p.link; });
-  if (!pairs.length) return;
+  var navLinks = {};
+  sectionIds.forEach(function(id) {
+    var link = document.querySelector('.nav-inner a[href="#' + id + '"]');
+    if (link) {
+      navLinks[id] = link;
+      // Blur after click so the focused link does not appear permanently active
+      link.addEventListener('click', function() {
+        setTimeout(function() { link.blur(); }, 50);
+      });
+    }
+  });
 
   function setActive(id) {
-    pairs.forEach(function(p) {
-      p.link.classList.toggle('active', p.id === id);
+    sectionIds.forEach(function(k) {
+      if (navLinks[k]) navLinks[k].classList.toggle('active', k === id);
     });
   }
 
-  function update() {
-    // We pick the section whose top is closest to (but at or above)
-    // a probe line just below the sticky nav.
-    var probeY = window.scrollY + 100;
-    var current = pairs[0];
-    for (var i = 0; i < pairs.length; i++) {
-      var top = pairs[i].el.getBoundingClientRect().top + window.scrollY;
-      if (top <= probeY) current = pairs[i];
-      else break;
-    }
-    setActive(current.id);
-  }
+  if (!('IntersectionObserver' in window)) return;
 
-  var ticking = false;
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(function() { update(); ticking = false; });
-      ticking = true;
+  var visible = {};
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      visible[e.target.id] = e.isIntersecting;
+    });
+    // Pick the topmost section that's currently in the trigger zone
+    for (var i = 0; i < sectionIds.length; i++) {
+      if (visible[sectionIds[i]]) { setActive(sectionIds[i]); return; }
     }
-  }, { passive: true });
-  window.addEventListener('resize', update, { passive: true });
-  update();
+  }, {
+    rootMargin: '-80px 0px -55% 0px',
+    threshold: 0
+  });
+
+  sectionIds.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+})();
+
+
+// ── Memorial extras: load manifest, render non-formal visit cards ──
+(function loadMemorialExtras() {
+  var formalYears = ['1997','2001','2006','2011','2016','2021','2026'];
+  var grid = document.getElementById('extraVisitsGrid');
+  if (!grid) return;
+  fetch('data/memorials.json')
+    .then(function(r) { return r.ok ? r.json() : null; })
+    .then(function(data) {
+      if (!data || !data.memorials) return;
+      var extras = data.memorials.filter(function(m) {
+        return formalYears.indexOf(String(m.year)) === -1;
+      });
+      if (!extras.length) return;
+      var heading = document.getElementById('extraVisitsHeading');
+      var sub = document.getElementById('extraVisitsSub');
+      if (heading) heading.style.display = '';
+      if (sub) sub.style.display = '';
+      grid.innerHTML = extras.map(function(m) {
+        var bodyParts = [];
+        if (m.photos && m.photos.length) bodyParts.push(m.photos.length + ' תמונה' + (m.photos.length > 1 ? 'ות' : ''));
+        if (m.speeches && m.speeches.length) bodyParts.push(m.speeches.length + ' הספד' + (m.speeches.length > 1 ? 'ים' : ''));
+        var bodyText = bodyParts.length ? bodyParts.join(' · ') : '—';
+        return '<a class="azkarot-year" href="memorial.html?date=' + m.date + '">' +
+          '<div class="azkarot-header"><div class="azkarot-year-num">' + m.year + '</div></div>' +
+          '<div class="azkarot-body"><div style="color:var(--text3);font-size:.78rem;letter-spacing:.05em;margin-bottom:.4rem">' + m.displayDate + '</div>' + bodyText + '</div>' +
+          '<div class="azkarot-arrow">צפו</div></a>';
+      }).join('');
+    })
+    .catch(function(e) { console.warn('memorials manifest load failed:', e); });
 })();
 

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אזכרה — יהודה לוי ז״ל</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#c9a84c; --gold-light:#e8cc80; --gold-dim:#8a6e30;
+  --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a;
+  --text:#f0ead8; --text2:#a89e88; --text3:#6b6257;
+  --red:#8b1a1a; --red-light:#c0392b;
+  --border:rgba(201,168,76,0.2); --border-strong:rgba(201,168,76,0.5);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; font-weight:300; line-height:1.8; min-height:100vh; }
+
+.page-header { background:linear-gradient(to bottom,var(--bg2),var(--bg)); border-bottom:1px solid var(--border); padding:2.5rem 2rem 2rem; text-align:center; }
+.back-link { display:inline-flex; align-items:center; gap:.5rem; color:var(--text2); text-decoration:none; font-size:.85rem; letter-spacing:.05em; padding:.5rem 1.2rem; border:1px solid var(--border); border-radius:30px; transition:all .2s; margin-bottom:1.5rem; }
+.back-link:hover { border-color:var(--gold); color:var(--gold); background:rgba(201,168,76,.06); }
+.back-link::before { content:'›'; font-size:1.2rem; line-height:1; }
+.page-title { font-family:'Frank Ruhl Libre',serif; font-size:clamp(1.8rem,4vw,2.6rem); color:var(--gold); font-weight:700; }
+.page-date { font-family:'Frank Ruhl Libre',serif; font-size:1rem; color:var(--text2); margin-top:.5rem; letter-spacing:.08em; }
+
+main { max-width:1100px; margin:0 auto; padding:3rem 1.5rem 4rem; }
+section { margin-bottom:3.5rem; }
+.section-heading { font-family:'Frank Ruhl Libre',serif; font-size:1.6rem; color:var(--gold); margin-bottom:.5rem; font-weight:700; }
+.section-divider { width:60px; height:2px; background:var(--gold); margin-bottom:1.8rem; }
+.empty-state { color:var(--text3); font-size:.95rem; padding:2rem; background:var(--bg2); border:1px dashed var(--border); border-radius:8px; text-align:center; }
+
+/* Photos grid */
+.photos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:.75rem; }
+.photo-tile { aspect-ratio:1; background:var(--bg3); border:1px solid var(--border); border-radius:6px; overflow:hidden; cursor:pointer; transition:all .25s; position:relative; }
+.photo-tile:hover { border-color:var(--gold-dim); transform:translateY(-2px); }
+.photo-tile img { width:100%; height:100%; object-fit:cover; display:block; }
+
+/* Speeches */
+.speeches-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1rem; }
+.speech-card { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:1.4rem 1.5rem; transition:all .2s; display:flex; align-items:center; gap:1rem; text-decoration:none; color:inherit; }
+.speech-card:hover { border-color:var(--gold-dim); background:var(--bg3); }
+.speech-icon { flex:0 0 40px; width:40px; height:40px; border-radius:8px; background:rgba(201,168,76,.12); border:1px solid var(--gold-dim); color:var(--gold); display:flex; align-items:center; justify-content:center; font-size:.7rem; font-weight:700; letter-spacing:.05em; font-family:'Frank Ruhl Libre',serif; text-transform:uppercase; }
+.speech-meta { flex:1; min-width:0; }
+.speech-title { font-family:'Frank Ruhl Libre',serif; font-size:1.05rem; font-weight:500; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.speech-sub { font-size:.78rem; color:var(--text3); margin-top:.15rem; letter-spacing:.05em; }
+
+/* Image lightbox */
+.img-modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.96); z-index:1000; flex-direction:column; align-items:center; justify-content:center; padding:1rem; direction:ltr; }
+.img-modal-bg.open { display:flex; }
+.img-modal-bg img { max-width:90vw; max-height:80vh; object-fit:contain; border-radius:4px; transition:opacity .2s; }
+.img-modal-bg img.loading { opacity:0; }
+#imgCounter { color:var(--text3); font-size:.75rem; margin-top:.5rem; letter-spacing:.1em; }
+.img-modal-close { position:absolute; top:1rem; right:1rem; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.1rem; transition:background .2s; z-index:10; }
+.img-modal-close:hover { background:rgba(255,255,255,.25); }
+.img-nav-btn { position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.6rem; transition:background .2s; z-index:10; }
+.img-nav-btn:hover { background:rgba(201,168,76,.4); border-color:var(--gold); }
+.img-nav-btn:disabled { opacity:.2; cursor:default; }
+#imgNavLeft { left:1rem; }
+#imgNavRight { right:1rem; }
+
+/* Loading state */
+.loading-state { color:var(--text3); text-align:center; padding:4rem 2rem; font-size:.95rem; }
+
+footer { background:var(--bg2); border-top:1px solid var(--border); padding:2rem; text-align:center; color:var(--text3); font-size:.8rem; }
+footer a { color:var(--gold); text-decoration:none; }
+
+@media (max-width:560px) {
+  .page-header { padding:2rem 1rem 1.5rem; }
+  main { padding:2rem 1rem 3rem; }
+  .photos-grid { grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <a class="back-link" href="index.html#azkarot">חזרה לאתר</a>
+  <h1 class="page-title" id="pageTitle">אזכרה</h1>
+  <p class="page-date" id="pageDate"></p>
+</div>
+
+<main>
+  <div class="loading-state" id="loadingState">טוען...</div>
+
+  <section id="speechesSection" style="display:none">
+    <h2 class="section-heading">הספדים ונאומים</h2>
+    <div class="section-divider"></div>
+    <div class="speeches-grid" id="speechesGrid"></div>
+  </section>
+
+  <section id="photosSection" style="display:none">
+    <h2 class="section-heading">תמונות</h2>
+    <div class="section-divider"></div>
+    <div class="photos-grid" id="photosGrid"></div>
+  </section>
+
+  <section id="emptySection" style="display:none">
+    <div class="empty-state">עדיין לא הועלה תוכן עבור אזכרה זו.<br>תמונות והספדים יתווספו בהמשך.</div>
+  </section>
+</main>
+
+<footer>
+  <p>אתר הנצחה — יהודה לוי ז״ל · <a href="index.html">דף הבית</a></p>
+</footer>
+
+<!-- IMAGE LIGHTBOX -->
+<div class="img-modal-bg" id="imgModal" onclick="if(event.target===this) closeImg()">
+  <button class="img-modal-close" onclick="closeImg()">✕</button>
+  <button class="img-nav-btn" id="imgNavLeft" onclick="navImg(1); event.stopPropagation()">&#8249;</button>
+  <img id="modalImg" src="" alt="">
+  <button class="img-nav-btn" id="imgNavRight" onclick="navImg(-1); event.stopPropagation()">&#8250;</button>
+  <div id="imgCounter"></div>
+</div>
+
+<script>
+// ── URL params ──
+function getParam(name) {
+  return new URLSearchParams(location.search).get(name);
+}
+
+var IMG_LIST = [];
+var imgCurrent = 0;
+
+function showImg(idx) {
+  if (idx < 0 || idx >= IMG_LIST.length) return;
+  imgCurrent = idx;
+  var item = IMG_LIST[idx];
+  var imgEl = document.getElementById('modalImg');
+  imgEl.classList.add('loading');
+  imgEl.onload = function() { imgEl.classList.remove('loading'); };
+  imgEl.src = item.full;
+  imgEl.alt = item.caption || '';
+  document.getElementById('imgCounter').textContent = (idx + 1) + ' / ' + IMG_LIST.length;
+  // Buttons: in RTL convention from main site, LEFT button advances forward (next), RIGHT goes back (prev)
+  var leftBtn = document.getElementById('imgNavLeft');
+  var rightBtn = document.getElementById('imgNavRight');
+  leftBtn.disabled = (idx === IMG_LIST.length - 1);
+  rightBtn.disabled = (idx === 0);
+}
+
+function openImg(idx) {
+  showImg(idx);
+  document.getElementById('imgModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function navImg(dir) {
+  // dir=+1 means "go to next", dir=-1 means "go to prev"
+  showImg(imgCurrent + dir);
+}
+
+function closeImg() {
+  document.getElementById('imgModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('imgModal').classList.contains('open')) return;
+  if (e.key === 'Escape') closeImg();
+  else if (e.key === 'ArrowRight') navImg(-1);
+  else if (e.key === 'ArrowLeft') navImg(1);
+});
+
+// Swipe support for image modal
+(function() {
+  var modal = document.getElementById('imgModal');
+  var startX = 0, startY = 0, isTracking = false, isHorizontal = false, decided = false;
+  modal.addEventListener('touchstart', function(e) {
+    if (e.touches.length !== 1) { isTracking = false; return; }
+    if (e.target && e.target.closest && e.target.closest('button')) { isTracking = false; return; }
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    isTracking = true; isHorizontal = false; decided = false;
+  }, { passive: true });
+  modal.addEventListener('touchmove', function(e) {
+    if (!isTracking) return;
+    var dx = e.touches[0].clientX - startX;
+    var dy = e.touches[0].clientY - startY;
+    if (!decided) {
+      if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+      isHorizontal = Math.abs(dx) > Math.abs(dy);
+      decided = true;
+    }
+  }, { passive: true });
+  modal.addEventListener('touchend', function(e) {
+    if (!isTracking) return;
+    isTracking = false;
+    if (!isHorizontal) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) < 50) return;
+    navImg(dx > 0 ? 1 : -1);
+  }, { passive: true });
+})();
+
+// ── Render memorial detail ──
+function findMemorial(memorials, year, dateKey) {
+  if (dateKey) {
+    return memorials.find(function(m) { return m.date === dateKey; });
+  }
+  if (year) {
+    return memorials.find(function(m) { return String(m.year) === String(year); });
+  }
+  return null;
+}
+
+function render(m) {
+  document.getElementById('loadingState').style.display = 'none';
+
+  var titleEl = document.getElementById('pageTitle');
+  var dateEl = document.getElementById('pageDate');
+
+  if (!m) {
+    titleEl.textContent = 'אזכרה לא נמצאה';
+    dateEl.textContent = '';
+    document.getElementById('emptySection').style.display = 'block';
+    return;
+  }
+
+  // Title: e.g. "אזכרה — 2016 (20 שנה)"
+  var year = m.year;
+  var yearsSince = year - 1996;  // יהודה fell in 1996
+  var titleParts = ['אזכרה — ' + year];
+  if (yearsSince > 0) titleParts.push('(' + yearsSince + ' שנה לנפילתו)');
+  titleEl.textContent = titleParts.join(' ');
+  dateEl.textContent = m.displayDate;
+
+  // Speeches
+  if (m.speeches && m.speeches.length) {
+    document.getElementById('speechesSection').style.display = '';
+    var sg = document.getElementById('speechesGrid');
+    sg.innerHTML = m.speeches.map(function(s) {
+      return '<a class="speech-card" href="' + s.file + '" target="_blank" rel="noopener">' +
+        '<div class="speech-icon">' + (s.ext || 'doc').toUpperCase() + '</div>' +
+        '<div class="speech-meta"><div class="speech-title">' + s.title + '</div>' +
+        '<div class="speech-sub">לחצו לפתיחה</div></div></a>';
+    }).join('');
+  }
+
+  // Photos
+  if (m.photos && m.photos.length) {
+    document.getElementById('photosSection').style.display = '';
+    IMG_LIST = m.photos;
+    var pg = document.getElementById('photosGrid');
+    pg.innerHTML = m.photos.map(function(p, i) {
+      return '<div class="photo-tile" onclick="openImg(' + i + ')"><img src="' + p.thumb + '" alt="' + (p.caption || '') + '" loading="lazy"></div>';
+    }).join('');
+  }
+
+  // Empty state if neither
+  if ((!m.photos || !m.photos.length) && (!m.speeches || !m.speeches.length)) {
+    document.getElementById('emptySection').style.display = 'block';
+  }
+}
+
+// Load manifest
+fetch('data/memorials.json')
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    var year = getParam('year');
+    var dateKey = getParam('date');
+    render(findMemorial(data.memorials, year, dateKey));
+  })
+  .catch(function(e) {
+    console.error('Failed to load manifest', e);
+    document.getElementById('loadingState').textContent = 'שגיאה בטעינת תוכן האזכרה';
+  });
+</script>
+
+</body>
+</html>

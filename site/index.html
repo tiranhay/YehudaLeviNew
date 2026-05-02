@@ -182,6 +182,13 @@ footer .gold { color:var(--gold); }
 .modal-text { font-size:1rem; color:var(--text2); line-height:2.1; font-family:'Frank Ruhl Libre',serif; font-weight:300; }
 .modal-text p { margin-bottom:1.2rem; }
 .modal-text p:last-child { margin-bottom:0; }
+.modal-nav { display:flex; justify-content:space-between; gap:.75rem; margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border); direction:ltr; }
+.modal-nav-btn { background:rgba(201,168,76,.06); border:1px solid var(--gold-dim); color:var(--gold); padding:.55rem 1.1rem; border-radius:24px; font-family:'Heebo',sans-serif; font-size:.85rem; cursor:pointer; transition:all .2s; flex:1; max-width:200px; white-space:nowrap; }
+.modal-nav-btn:hover:not(:disabled) { background:rgba(201,168,76,.14); border-color:var(--gold); }
+.modal-nav-btn:disabled { opacity:.3; cursor:default; }
+@media (max-width:560px) {
+  .modal-nav-btn { font-size:.78rem; padding:.5rem .8rem; }
+}
 
 /* ── IMAGE MODAL ── */
 .img-modal-bg { display:none; position:fixed; inset:0; background:rgba(0,0,0,.96); z-index:1001; flex-direction:column; align-items:center; justify-content:center; padding:1rem; direction:ltr; }
@@ -523,35 +530,46 @@ footer .gold { color:var(--gold); }
     <div class="section-divider"></div>
     <p class="prose">כל שנה, ב-26 בספטמבר, מתקיים טקס אזכרה לזכרו של יהודה.</p>
     <div class="azkarot-grid">
-      <div class="azkarot-year">
+      <a class="azkarot-year" href="memorial.html?year=1997">
         <div class="azkarot-header"><div class="azkarot-year-num">1997</div></div>
         <div class="azkarot-body">אזכרה ראשונה. המשפחה, חברים ולוחמי הפלוגה — יחד לראשונה בלעדיו.</div>
-      </div>
-      <div class="azkarot-year">
+        <div class="azkarot-arrow">צפו באזכרה</div>
+      </a>
+      <a class="azkarot-year" href="memorial.html?year=2001">
         <div class="azkarot-header"><div class="azkarot-year-num">2001</div></div>
         <div class="azkarot-body">טקס מיוחד בבית הספר פינסקר — הנצחה מחודשת בקהילה.</div>
-      </div>
-      <div class="azkarot-year">
+        <div class="azkarot-arrow">צפו באזכרה</div>
+      </a>
+      <a class="azkarot-year" href="memorial.html?year=2006">
         <div class="azkarot-header"><div class="azkarot-year-num">2006</div></div>
         <div class="azkarot-body">ריכוז לוחמים ומפקדים, הצגת מורשת הקרב לדור הצעיר.</div>
-      </div>
-      <div class="azkarot-year">
+        <div class="azkarot-arrow">צפו באזכרה</div>
+      </a>
+      <a class="azkarot-year" href="memorial.html?year=2011">
         <div class="azkarot-header"><div class="azkarot-year-num">2011</div></div>
-        <div class="azkarot-body">טקס משפחתי עם חברים ותיקים וצעירים. שירה ותפילה.</div>
-      </div>
-      <div class="azkarot-year">
+        <div class="azkarot-body">טקס משפחתי עם חברים ותיקים וצעירים. שירה ותפילה. (כולל טיול לנחל השופט).</div>
+        <div class="azkarot-arrow">צפו באזכרה</div>
+      </a>
+      <a class="azkarot-year" href="memorial.html?year=2016">
         <div class="azkarot-header"><div class="azkarot-year-num">2016</div></div>
         <div class="azkarot-body">עשרים שנה. טקס מרגש עם כל מי שהכיר ואהב.</div>
-      </div>
-      <div class="azkarot-year">
+        <div class="azkarot-arrow">צפו באזכרה</div>
+      </a>
+      <a class="azkarot-year" href="memorial.html?year=2021">
         <div class="azkarot-header"><div class="azkarot-year-num">2021</div></div>
         <div class="azkarot-body">ריכוז גדול, יחד בזיכרון. רבע מאה ועדיין בלב.</div>
-      </div>
-      <div class="azkarot-year" style="border-color:var(--border-strong)">
+        <div class="azkarot-arrow">צפו באזכרה</div>
+      </a>
+      <a class="azkarot-year" href="memorial.html?year=2026" style="border-color:var(--border-strong)">
         <div class="azkarot-header"><div class="azkarot-year-num">2026</div></div>
         <div class="azkarot-body">יובל — שלושים שנה לנפילתו. אזכרה מיוחדת ומרגשת — 26 בספטמבר 2026.</div>
-      </div>
+        <div class="azkarot-arrow">צפו באזכרה</div>
+      </a>
     </div>
+
+    <h3 class="azkarot-extras-heading" id="extraVisitsHeading" style="display:none">ביקורים נוספים</h3>
+    <p class="azkarot-extras-sub" id="extraVisitsSub" style="display:none">ימי הזיכרון ותאריכים נוספים שתועדו</p>
+    <div class="azkarot-grid" id="extraVisitsGrid"></div>
   </div>
 </div>
 
@@ -783,6 +801,10 @@ footer .gold { color:var(--gold); }
     <div class="modal-title" id="modalTitle"></div>
     <div class="modal-role" id="modalRole"></div>
     <div class="modal-text" id="modalText"></div>
+    <div class="modal-nav" id="modalNav">
+      <button class="modal-nav-btn" id="hespedNavLeft" onclick="navHesped(1)">‹ הספד הבא</button>
+      <button class="modal-nav-btn" id="hespedNavRight" onclick="navHesped(-1)">הספד קודם ›</button>
+    </div>
   </div>
 </div>
 
