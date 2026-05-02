@@ -27,12 +27,12 @@ html { scroll-behavior:smooth; scroll-padding-top:50px; }
 body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; font-weight:300; line-height:1.8; overflow-x:hidden; }
 
 /* ── HERO ── */
-.hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; text-align:center; padding:3rem 2rem; overflow:hidden; }
+.hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; text-align:center; padding:3rem 2rem 6rem; overflow:hidden; }
 .hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(139,26,26,0.15) 0%, transparent 70%), radial-gradient(ellipse 80% 40% at 50% 100%, rgba(201,168,76,0.06) 0%, transparent 60%); pointer-events:none; }
-.candle-row { display:flex; gap:2rem; margin-bottom:2rem; }
+.candle-row { display:flex; gap:1.3rem; margin-bottom:1.5rem; }
 .candle { display:flex; flex-direction:column; align-items:center; }
-.flame { width:10px; height:20px; background:radial-gradient(ellipse at 50% 80%, #fff8 0%, #ffcc00 40%, #ff6600 80%, transparent 100%); border-radius:50% 50% 20% 20%; animation:flicker 2.5s ease-in-out infinite alternate; filter:blur(0.5px); }
-.candle-body { width:12px; height:50px; background:linear-gradient(to bottom,#f5f0e8,#d4cbbf); border-radius:2px; }
+.flame { width:8px; height:14px; background:radial-gradient(ellipse at 50% 80%, #ffffff 0%, #e9d5ff 25%, #c084fc 55%, #7e22ce 85%, transparent 100%); border-radius:50% 50% 20% 20%; animation:flicker 2.5s ease-in-out infinite alternate; filter:blur(0.5px) drop-shadow(0 0 4px rgba(168,85,247,.4)); }
+.candle-body { width:9px; height:36px; background:linear-gradient(to bottom,#f5f0e8,#d4cbbf); border-radius:2px; }
 @keyframes flicker {
   0%   { transform:scale(1,1) skew(0deg); opacity:.9; }
   25%  { transform:scale(.9,1.1) skew(-2deg); opacity:1; }
@@ -47,9 +47,12 @@ body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; 
 .hero-divider { width:120px; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); margin:1.5rem auto; }
 .hero-quote { font-family:'Frank Ruhl Libre',serif; font-size:clamp(1rem,2vw,1.2rem); color:var(--text2); max-width:500px; font-style:italic; font-weight:300; }
 .hero-photo { width:clamp(140px,20vw,200px); height:clamp(140px,20vw,200px); border-radius:50%; object-fit:cover; border:2px solid var(--gold-dim); box-shadow:0 0 0 8px rgba(201,168,76,.06), 0 30px 60px rgba(0,0,0,.5); margin-bottom:2rem; }
-.hero-emblems-row { display:flex; align-items:center; justify-content:center; gap:clamp(1rem,3vw,2.5rem); margin-bottom:1.5rem; flex-wrap:nowrap; }
+.hero-emblems-row { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:clamp(1rem,3vw,2.5rem); margin:0 auto 1.5rem; max-width:min(640px,100%); width:100%; }
 .hero-emblems-row .hero-photo { margin-bottom:0; }
 .hero-emblem { height:clamp(70px,11vw,110px); width:auto; object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,.45)); transition:transform .3s ease; }
+.hero-emblems-row > .hero-emblem-shaked { justify-self:end; }
+.hero-emblems-row > .hero-emblem-givati { justify-self:start; }
+.hero-emblems-row > .hero-photo { justify-self:center; }
 .hero-emblem:hover { transform:scale(1.05); }
 .hero-emblem-givati { /* shield, taller */ }
 .hero-emblem-shaked { /* wings, wider — slightly larger to balance */ height:clamp(60px,9vw,95px); }
@@ -59,7 +62,7 @@ body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; 
   .hero-emblem { height:60px; }
   .hero-emblem-shaked { height:52px; }
 }
-.scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:var(--text3); font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:.5rem; }
+.scroll-hint { position:absolute; bottom:1.5rem; left:50%; transform:translateX(-50%); color:var(--text3); font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:.5rem; }
 .scroll-hint::after { content:''; width:1px; height:30px; background:linear-gradient(to bottom,var(--gold-dim),transparent); animation:scrollLine 2s ease-in-out infinite; }
 @keyframes scrollLine { 0%,100%{opacity:1} 50%{opacity:.3} }
 
