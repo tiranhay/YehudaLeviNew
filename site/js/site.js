@@ -218,7 +218,7 @@ function makeCarousel(innerId, dotsId, scrollFnName) {
   }
 
   function updateDots() {
-    var page = Math.min(Math.round(current / VISIBLE), pages - 1);
+    var page = maxOffset > 0 ? Math.min(Math.round(current / maxOffset * (pages - 1)), pages - 1) : 0;
     dotsEl.querySelectorAll('.gallery-dot').forEach(function(d, i) {
       d.classList.toggle('active', i === page);
     });
