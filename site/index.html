@@ -100,6 +100,7 @@ section { max-width:900px; margin:0 auto; padding:5rem 2rem; }
 .battle-card { background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:2.5rem; margin-bottom:1.5rem; position:relative; overflow:hidden; }
 .battle-card::before { content:''; position:absolute; top:0; right:0; width:4px; height:100%; background:linear-gradient(to bottom,var(--red),var(--gold)); }
 .battle-card h3 { font-family:'Frank Ruhl Libre',serif; font-size:1.3rem; color:var(--gold); margin-bottom:1rem; }
+.battle-gallery-heading { font-family:'Frank Ruhl Libre',serif; color:var(--gold); font-size:1.15rem; font-weight:500; margin:2.5rem 0 1.2rem; letter-spacing:.04em; }
 .battle-card p { color:var(--text2); font-size:.95rem; line-height:1.9; margin-bottom:.75rem; }
 .battle-card p:last-child { margin-bottom:0; }
 /* ── COLLAPSIBLE (battle section) ── */
@@ -377,6 +378,18 @@ footer .gold { color:var(--gold); }
 
     <div class="battle-card" style="border-color:var(--border-strong); background:rgba(201,168,76,0.04)">
       <p style="font-style:italic; color:var(--text)">נכתב לזכרו של החייל סמל יהודה לוי ז״ל. ע״מ שאומץ ליבו ועוז רוחו יהוו דוגמא ומופת לחיקוי ואבן דרך בולטת בדרך הארוכה שעושים חיילי גדוד שקד וחטיבת גבעתי בדרך אל השלום.</p>
+    </div>
+
+    <div id="battleGallery" style="display:none">
+      <h3 class="battle-gallery-heading">תמונות מהקרב</h3>
+      <div class="gallery-carousel" id="battleTrack">
+        <div class="gallery-inner" id="battleInner"></div>
+      </div>
+      <div class="gallery-nav">
+        <button class="gallery-btn" onclick="battleScroll(1)" aria-label="הבא">&#8249;</button>
+        <div class="gallery-dots" id="battleDots"></div>
+        <button class="gallery-btn" onclick="battleScroll(-1)" aria-label="הקודם">&#8250;</button>
+      </div>
     </div>
     </details>
   </div>

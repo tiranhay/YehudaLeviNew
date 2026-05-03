@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build manifest + thumbnails for site/imgs/pics and site/imgs/newspaper.
+"""Build manifest + thumbnails for site/imgs/pics, site/imgs/newspaper and site/imgs/battle.
 
 For every full-size image without a `TN_<name>` thumbnail sibling, the script
 generates one with Pillow (longest side <= 600px, JPEG quality 80). Then it
@@ -32,6 +32,7 @@ OUTPUT_PATH = os.path.join(DATA_DIR, 'pics.json')
 FOLDERS = [
     ('pics',      os.path.join(SITE, 'imgs', 'pics'),      'imgs/pics'),
     ('newspaper', os.path.join(SITE, 'imgs', 'newspaper'), 'imgs/newspaper'),
+    ('battle',    os.path.join(SITE, 'imgs', 'battle'),    'imgs/battle'),
 ]
 
 IMG_EXTS = {'.jpg', '.jpeg', '.png', '.webp'}

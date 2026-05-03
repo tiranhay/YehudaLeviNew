@@ -147,13 +147,11 @@
     {
       "name": "stone3.JPG",
       "caption": "מצבה 3"
-    }
-    ,
+    },
     {
       "name": "NP_033459_4.jpg",
       "caption": "בחוף הים"
-    }
-    ,
+    },
     {
       "name": "NP_033459_5.jpg",
       "caption": "יהודה בתחפושת"
@@ -188,5 +186,6 @@
       "name": "Image-07.JPG",
       "caption": "כתבה 7"
     }
-  ]
+  ],
+  "battle": []
 }
