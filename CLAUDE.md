@@ -111,28 +111,23 @@
 
 ## יומן שינויים (descending — חדש למעלה)
 
-### 2026-05-03 — שינוי פלטת צבעים: זהב → סגול-לבנדר
+### 2026-05-03 — Revert: חזרה לזהב
+**הקשר:** הסגול שניסינו לא מצא חן בעיני תיראן.
+**מה שונה:** הוחזרו הערכים המקוריים של 3 משתני ה-CSS וכל ה-rgba ב-`site/index.html` וב-`site/memorial.html`. `CLAUDE.md` עצמו נשמר.
+**מסקנה לעתיד:** אם תהיה בקשה נוספת לטפל בנושא "הכיתוב הצהוב נבלע ברקע" — לא להחליף פלטה. אופציות עדיפות שלא נוסו:
+1. להעלות את הניגוד של הזהב הקיים (להבהיר את `--gold` ל-`#d4b85a` או `#dec06a`).
+2. להוסיף `text-shadow` עדין שחור לכותרות.
+3. לשנות את הרקע (`--bg`) למשהו פחות שחור-מוחלט (כמו `#141414`).
+4. להגדיל מעט את משקל הפונט של הכותרות.
+לדבר עם תיראן לפני שמתקדמים.
+
+### 2026-05-03 — ניסיון: שינוי פלטת צבעים זהב → סגול-לבנדר (נדחה והוחזר)
 **הקשר:** תיראן קיבל הערה שהכיתוב הצהוב (#c9a84c) נבלע ברקע השחור.
-**מה שונה:**
-- `--gold`: `#c9a84c` → `#a78bfa` (violet-400, אותה רמת בהירות, ניגוד טוב יותר)
-- `--gold-light`: `#e8cc80` → `#d8b4fe`
-- `--gold-dim`: `#8a6e30` → `#6d28d9`
-- כל `rgba(201,168,76, x)` → `rgba(167,139,250, x)`
-- שונה גם ב-`site/index.html` וגם ב-`site/memorial.html`
-**שמות המשתנים נותרו `--gold-*`** כדי לא לשבור הפניות. אם נחליט להישאר עם הסגול לטווח ארוך, כדאי בעתיד rename ל-`--accent-*`.
-**אם לא ימצא חן — איך לחזור אחורה:** `git revert <commit-hash>` של הקומיט הזה.
+**מה שונה:** `--gold` → `#a78bfa`, `--gold-light` → `#d8b4fe`, `--gold-dim` → `#6d28d9`, כל `rgba(201,168,76,…)` → `rgba(167,139,250,…)`. ב-`site/index.html` וב-`site/memorial.html`.
+**תוצאה:** לא מצא חן בעיני תיראן. הוחזר במיידי. ראה הערך מעל.
 
 ### 2026-05-03 — תוספת CLAUDE.md
 נוצר קובץ זה בעקבות תובנה שכל סשן Cowork מתחיל ללא זיכרון. הקובץ ישמש כמקור-אמת לכל סוכן Claude עתידי.
 
 ### לפני 2026-05-03 (מהיסטוריית git)
-- `25673bf` — Make all sections collapsible (closed by default)
-- `782ddbb` — Render one azkarot card per manifest entry (not per year)
-- `bac18a3` — Three small fixes
-- `bc7d705` — Memorials system: detail page, dynamic azkarot cards, manifest
-- `005b666` — Fix carousel swipe direction (gallery + newspaper)
-- `86e261b` — Add title.txt support: read at build time, render on cards + detail page
-- `dbba444` — Move אזכרות to be the last section (after כתבות)
-- `5c459be` — Replace static azkarot HTML with empty container; clean link styling
-
-(לרשימה מלאה: `git log --oneline`)
+- `2

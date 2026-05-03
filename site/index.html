@@ -8,9 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --gold:#a78bfa;
-  --gold-light:#d8b4fe;
-  --gold-dim:#6d28d9;
+  --gold:#c9a84c;
+  --gold-light:#e8cc80;
+  --gold-dim:#8a6e30;
   --bg: #0a0a0a;
   --bg2: #111111;
   --bg3: #1a1a1a;
@@ -19,8 +19,8 @@
   --text3: #6b6257;
   --red: #8b1a1a;
   --red-light: #c0392b;
-  --border: rgba(167,139,250,0.2);
-  --border-strong: rgba(167,139,250,0.5);
+  --border: rgba(201,168,76,0.2);
+  --border-strong: rgba(201,168,76,0.5);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; scroll-padding-top:50px; }
@@ -28,7 +28,7 @@ body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; 
 
 /* ── HERO ── */
 .hero { min-height:100vh; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; text-align:center; padding:3rem 2rem 6rem; overflow:hidden; }
-.hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(139,26,26,0.15) 0%, transparent 70%), radial-gradient(ellipse 80% 40% at 50% 100%, rgba(167,139,250,0.06) 0%, transparent 60%); pointer-events:none; }
+.hero::before { content:''; position:absolute; inset:0; background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(139,26,26,0.15) 0%, transparent 70%), radial-gradient(ellipse 80% 40% at 50% 100%, rgba(201,168,76,0.06) 0%, transparent 60%); pointer-events:none; }
 .candle-row { display:flex; gap:1.3rem; margin-bottom:1.5rem; }
 .candle { display:flex; flex-direction:column; align-items:center; }
 .flame { width:8px; height:14px; background:radial-gradient(ellipse at 50% 80%, #ffffff 0%, #e9d5ff 25%, #c084fc 55%, #7e22ce 85%, transparent 100%); border-radius:50% 50% 20% 20%; animation:flicker 2.5s ease-in-out infinite alternate; filter:blur(0.5px) drop-shadow(0 0 4px rgba(168,85,247,.4)); }
@@ -46,7 +46,7 @@ body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; 
 .hero-dates { font-family:'Frank Ruhl Libre',serif; font-size:clamp(1rem,2.5vw,1.3rem); color:var(--text2); margin-top:1rem; letter-spacing:.1em; }
 .hero-divider { width:120px; height:1px; background:linear-gradient(to right,transparent,var(--gold),transparent); margin:1.5rem auto; }
 .hero-quote { font-family:'Frank Ruhl Libre',serif; font-size:clamp(1rem,2vw,1.2rem); color:var(--text2); max-width:500px; font-style:italic; font-weight:300; }
-.hero-photo { width:clamp(140px,20vw,200px); height:clamp(140px,20vw,200px); border-radius:50%; object-fit:cover; border:2px solid var(--gold-dim); box-shadow:0 0 0 8px rgba(167,139,250,.06), 0 30px 60px rgba(0,0,0,.5); margin-bottom:2rem; }
+.hero-photo { width:clamp(140px,20vw,200px); height:clamp(140px,20vw,200px); border-radius:50%; object-fit:cover; border:2px solid var(--gold-dim); box-shadow:0 0 0 8px rgba(201,168,76,.06), 0 30px 60px rgba(0,0,0,.5); margin-bottom:2rem; }
 .hero-emblems-row { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:clamp(1rem,3vw,2.5rem); margin:0 auto 1.5rem; max-width:min(640px,100%); width:100%; }
 .hero-emblems-row .hero-photo { margin-bottom:0; }
 .hero-emblem { height:clamp(70px,11vw,110px); width:auto; object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,.45)); transition:transform .3s ease; }
@@ -56,7 +56,7 @@ body { background:var(--bg); color:var(--text); font-family:'Heebo',sans-serif; 
 .hero-emblem:hover { transform:scale(1.05); }
 .hero-emblem-givati { /* shield, taller */ }
 .hero-emblem-shaked { /* wings, wider — slightly larger to balance */ height:clamp(60px,9vw,95px); }
-.unit-tag { display:inline-block; font-family:'Frank Ruhl Libre',serif; font-size:clamp(.85rem,1.6vw,1.05rem); font-weight:700; letter-spacing:.18em; color:var(--gold); border:1px solid var(--gold-dim); border-radius:30px; padding:.4rem 1.4rem; background:rgba(167,139,250,.06); margin-bottom:1.5rem; }
+.unit-tag { display:inline-block; font-family:'Frank Ruhl Libre',serif; font-size:clamp(.85rem,1.6vw,1.05rem); font-weight:700; letter-spacing:.18em; color:var(--gold); border:1px solid var(--gold-dim); border-radius:30px; padding:.4rem 1.4rem; background:rgba(201,168,76,.06); margin-bottom:1.5rem; }
 @media (max-width:560px) {
   .hero { padding:2rem 1rem 6rem; }
   .hero-emblems-row { gap:.7rem; margin-bottom:1rem; }
@@ -95,8 +95,8 @@ section { max-width:900px; margin:0 auto; padding:5rem 2rem; }
 .timeline { position:relative; margin:2rem 0; }
 .timeline::before { content:''; position:absolute; right:0; top:0; bottom:0; width:1px; background:linear-gradient(to bottom,transparent,var(--border-strong),transparent); }
 .timeline-item { display:grid; grid-template-columns:1fr 100px; gap:1.5rem; padding:1.5rem 2rem 1.5rem 0; border-bottom:1px solid var(--border); position:relative; transition:background .2s; }
-.timeline-item:hover { background:rgba(167,139,250,.03); border-radius:4px; }
-.timeline-item::after { content:''; position:absolute; right:-4px; top:50%; transform:translateY(-50%); width:9px; height:9px; border-radius:50%; background:var(--gold); box-shadow:0 0 12px rgba(167,139,250,.4); }
+.timeline-item:hover { background:rgba(201,168,76,.03); border-radius:4px; }
+.timeline-item::after { content:''; position:absolute; right:-4px; top:50%; transform:translateY(-50%); width:9px; height:9px; border-radius:50%; background:var(--gold); box-shadow:0 0 12px rgba(201,168,76,.4); }
 .timeline-event { font-size:1rem; color:var(--text); font-weight:400; }
 .timeline-year { font-family:'Frank Ruhl Libre',serif; font-size:1.1rem; font-weight:700; color:var(--gold); text-align:left; padding-top:.1rem; white-space:nowrap; direction:ltr; unicode-bidi:embed; }
 
@@ -108,10 +108,10 @@ section { max-width:900px; margin:0 auto; padding:5rem 2rem; }
 .battle-card p:last-child { margin-bottom:0; }
 /* ── COLLAPSIBLE (battle section) ── */
 .collapsible { margin:0; padding:0; }
-.collapsible-summary { display:inline-flex; align-items:center; gap:.6rem; list-style:none; cursor:pointer; background:rgba(167,139,250,.06); border:1px solid var(--gold-dim); color:var(--gold); padding:.55rem 1.4rem; border-radius:30px; font-family:'Heebo',sans-serif; font-size:.88rem; font-weight:400; letter-spacing:.05em; margin-bottom:2rem; transition:all .2s; user-select:none; }
+.collapsible-summary { display:inline-flex; align-items:center; gap:.6rem; list-style:none; cursor:pointer; background:rgba(201,168,76,.06); border:1px solid var(--gold-dim); color:var(--gold); padding:.55rem 1.4rem; border-radius:30px; font-family:'Heebo',sans-serif; font-size:.88rem; font-weight:400; letter-spacing:.05em; margin-bottom:2rem; transition:all .2s; user-select:none; }
 .collapsible-summary::-webkit-details-marker { display:none; }
 .collapsible-summary::marker { content:''; }
-.collapsible-summary:hover { background:rgba(167,139,250,.14); border-color:var(--gold); }
+.collapsible-summary:hover { background:rgba(201,168,76,.14); border-color:var(--gold); }
 .collapsible-summary-text::before { content:'הצג את התוכן המלא'; }
 .collapsible[open] .collapsible-summary-text::before { content:'כווץ'; }
 .collapsible-summary-arrow { display:inline-block; width:7px; height:7px; border-right:2px solid var(--gold); border-bottom:2px solid var(--gold); transform:rotate(45deg); transition:transform .3s ease; margin-bottom:3px; }
@@ -139,7 +139,7 @@ section { max-width:900px; margin:0 auto; padding:5rem 2rem; }
 .azkarot-year { background:var(--bg3); border:1px solid var(--border); border-radius:8px; overflow:hidden; transition:all .25s; text-decoration:none; color:inherit; display:block; cursor:pointer; -webkit-tap-highlight-color:transparent; }
 .azkarot-year:hover { border-color:var(--border-strong); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.3); }
 .azkarot-year, .azkarot-year * { text-decoration:none !important; }
-.azkarot-header { padding:1.2rem 1.5rem; background:linear-gradient(to left,rgba(167,139,250,.08),transparent); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+.azkarot-header { padding:1.2rem 1.5rem; background:linear-gradient(to left,rgba(201,168,76,.08),transparent); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
 .azkarot-num { font-family:'Frank Ruhl Libre',serif; font-size:2rem; font-weight:900; color:var(--gold); line-height:1; }
 .azkarot-label { font-size:.8rem; color:var(--text3); letter-spacing:.08em; }
 .azkarot-year-num { font-family:'Frank Ruhl Libre',serif; font-size:1.6rem; font-weight:700; color:var(--gold); line-height:1; }
@@ -163,7 +163,7 @@ section { max-width:900px; margin:0 auto; padding:5rem 2rem; }
 .newspaper-item .overlay span { font-size:.75rem; color:var(--gold-light); letter-spacing:.05em; }
 
 /* ── QUOTE ── */
-.quote-block { border-right:3px solid var(--gold); padding:1.5rem 2rem; margin:2rem 0; background:rgba(167,139,250,.04); border-radius:0 8px 8px 0; }
+.quote-block { border-right:3px solid var(--gold); padding:1.5rem 2rem; margin:2rem 0; background:rgba(201,168,76,.04); border-radius:0 8px 8px 0; }
 .quote-block p { font-family:'Frank Ruhl Libre',serif; font-size:1.15rem; font-style:italic; line-height:1.9; }
 
 /* ── FOOTER ── */
@@ -177,15 +177,15 @@ footer .gold { color:var(--gold); }
 .modal { background:var(--bg2); border:1px solid var(--border-strong); border-radius:12px; max-width:680px; width:100%; max-height:88vh; overflow-y:auto; padding:3rem 2.5rem 2.5rem; position:relative; direction:rtl; }
 .modal-close { position:absolute; top:1rem; left:1rem; width:34px; height:34px; border-radius:50%; background:var(--bg3); border:1px solid var(--border); color:var(--text2); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1rem; transition:all .2s; line-height:1; }
 .modal-close:hover { background:var(--red); color:white; border-color:var(--red); }
-.modal-tag { display:inline-block; font-size:.72rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); background:rgba(167,139,250,.1); border:1px solid rgba(167,139,250,.25); border-radius:20px; padding:.25rem .75rem; margin-bottom:1rem; }
+.modal-tag { display:inline-block; font-size:.72rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.25); border-radius:20px; padding:.25rem .75rem; margin-bottom:1rem; }
 .modal-title { font-family:'Frank Ruhl Libre',serif; font-size:2rem; font-weight:700; margin-bottom:.25rem; }
 .modal-role { font-size:.88rem; color:var(--text2); margin-bottom:2rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border); }
 .modal-text { font-size:1rem; color:var(--text2); line-height:1.9; font-family:'Heebo',sans-serif; font-weight:300; }
 .modal-text p { margin-bottom:1.2rem; }
 .modal-text p:last-child { margin-bottom:0; }
 .modal-nav { display:flex; justify-content:space-between; gap:.75rem; margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border); direction:ltr; }
-.modal-nav-btn { background:rgba(167,139,250,.06); border:1px solid var(--gold-dim); color:var(--gold); padding:.55rem 1.1rem; border-radius:24px; font-family:'Heebo',sans-serif; font-size:.85rem; cursor:pointer; transition:all .2s; flex:1; max-width:200px; white-space:nowrap; }
-.modal-nav-btn:hover:not(:disabled) { background:rgba(167,139,250,.14); border-color:var(--gold); }
+.modal-nav-btn { background:rgba(201,168,76,.06); border:1px solid var(--gold-dim); color:var(--gold); padding:.55rem 1.1rem; border-radius:24px; font-family:'Heebo',sans-serif; font-size:.85rem; cursor:pointer; transition:all .2s; flex:1; max-width:200px; white-space:nowrap; }
+.modal-nav-btn:hover:not(:disabled) { background:rgba(201,168,76,.14); border-color:var(--gold); }
 .modal-nav-btn:disabled { opacity:.3; cursor:default; }
 @media (max-width:560px) {
   .modal-nav-btn { font-size:.78rem; padding:.5rem .8rem; }
@@ -201,7 +201,7 @@ footer .gold { color:var(--gold); }
 .img-modal-close { position:absolute; top:1rem; right:1rem; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.1rem; transition:background .2s; z-index:10; }
 .img-modal-close:hover { background:rgba(255,255,255,.25); }
 .img-nav-btn { position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.6rem; transition:background .2s; z-index:10; }
-.img-nav-btn:hover { background:rgba(167,139,250,.4); border-color:var(--gold); }
+.img-nav-btn:hover { background:rgba(201,168,76,.4); border-color:var(--gold); }
 .img-nav-btn:disabled { opacity:.2; cursor:default; }
 #imgNavPrev { left:1rem; }
 #imgNavNext { right:1rem; }
@@ -225,7 +225,7 @@ footer .gold { color:var(--gold); }
 .gallery-caption { font-size:.68rem; color:var(--text3); padding:.3rem .4rem; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; background:rgba(0,0,0,.3); }
 .gallery-nav { display:flex; align-items:center; justify-content:center; gap:1rem; margin-top:1rem; direction:ltr; }
 .gallery-btn { width:36px; height:36px; border-radius:50%; border:1px solid var(--border); background:var(--bg2); color:var(--gold); font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; line-height:1; }
-.gallery-btn:hover { border-color:var(--gold); background:rgba(167,139,250,.1); }
+.gallery-btn:hover { border-color:var(--gold); background:rgba(201,168,76,.1); }
 .gallery-dots { display:flex; gap:6px; direction:rtl; }
 .gallery-dot { width:6px; height:6px; border-radius:50%; background:var(--border-strong); cursor:pointer; transition:background .2s, transform .2s; }
 .gallery-dot.active { background:var(--gold); transform:scale(1.4); }
@@ -365,7 +365,7 @@ footer .gold { color:var(--gold); }
       <p>עם רדת החשיכה בערך בשעה 18:30 הפלסטינים מפסיקים את הירי. בסביבות השעה 19:30 מגיעים מח״ט גבעתי ומג״ד שקד לפלוגה על מנת לשוחח עם המ״מים על אירועי היום. המח״ט אומר למ״מ 2 שהכח עמד במשימתו בצורה יפה וראויה לכל שבח, ושמנסיונו מה שפלוגה עברה זו לא היתקלות רגילה, אלא יום קרב רצוף באש תופת על כוחותינו. מ״מ 2 נוסע בערב למג״ד, כדי לקבל פקודה ובפלוגה נשאר מ״מ 3 שדואג לארגון הפלוגה מבחינה מנהלתית. מ״מ 2 חזור בסביבות השעה 03:00 בבוקר, והוא מעיר את החיילים כדי שימלאו שקי פק״ל לביצור והכנת עמדות במוצב. החיילים שהיו לאחר יום קרב קשה ללא ארוחה אחת, ולאחר לילה ללא שינה, לא התלוננו אלא ירדו מהמוצב והחלו למלא את שקי הפק״ל בחול עד הבוקר.</p>
     </div>
 
-    <div class="battle-card" style="border-color:var(--border-strong); background:rgba(167,139,250,0.04)">
+    <div class="battle-card" style="border-color:var(--border-strong); background:rgba(201,168,76,0.04)">
       <p style="font-weight:500; color:var(--text)">* עולה השאלה מה מחזיק חיילים אלה בשעות הקשות לאחר יום קשה מאוד? התשובה היא ללא ספק משמעת ואחוות לוחמים.</p>
       <p>השיעור העיקרי שניתן ללמוד מקרב זה על חיילים ועל שירות ביחידה קרבית בכלל, זה שסופו של דבר מה שמחזיק את חיילים ומפקדים בשעות הקרב זאת המשמעת שמונחלת לחיילים יום יום שעה שעה בשגרה, ואחוות הלוחמים שנבנית יום יום כשהחיילים חיים אחד צמוד לשני וכשהם מזיעים יחד במסעות תחת האלונקה. אחוות לוחמים שבגללה יהודה חשש לחיי חבריו יותר מאשר לחייו שלו ולכן הזדקף באומץ והצביע על האויב. אחוות לוחמים שבגללה אבי הסרס״פ הסתער עם החצצית על זורקי האבנים והבקת״בים למרות שקיבל שני כדורים לקסדה וריקושט שפגע בכתפו ואותו גילה רק בלילה שהוריד לראשונה את החולצה. אחווה שבגללה גם לאחר שהמ״פ והסמ״פ נפצעים הפלוגה ממשיכה בדבקות במשימתה.</p>
       <p>על תפקודה בקרב קיבלה הפלוגה שבחים רבים, ובשיחות שקוימו מספר ימים לאחר מכן בין הפלוגה לקחצ״ר, מח״ט הגיזרה ומח״ט גבעתי נאמר לכלל חיילי הפלוגה ע״י מפקדים בכירים אלו שמגיע לפלוגה צל״ש על תפקודה ועל אומץ הלב שגילו חייליה.</p>
@@ -379,7 +379,7 @@ footer .gold { color:var(--gold); }
       <p style="color:var(--red-light); font-weight:500">חייל יהודה לוי ז״ל - הרוג.</p>
     </div>
 
-    <div class="battle-card" style="border-color:var(--border-strong); background:rgba(167,139,250,0.04)">
+    <div class="battle-card" style="border-color:var(--border-strong); background:rgba(201,168,76,0.04)">
       <p style="font-style:italic; color:var(--text)">נכתב לזכרו של החייל סמל יהודה לוי ז״ל. ע״מ שאומץ ליבו ועוז רוחו יהוו דוגמא ומופת לחיקוי ואבן דרך בולטת בדרך הארוכה שעושים חיילי גדוד שקד וחטיבת גבעתי בדרך אל השלום.</p>
     </div>
     </details>
