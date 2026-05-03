@@ -25,6 +25,21 @@ def url_path(p: str) -> str:
     """URL-encode a path while keeping slashes."""
     return quote(p, safe='/')
 
+# Match bare 11-char IDs and the typical YouTube URL formats.
+_YT_ID_RE   = re.compile(r'^[A-Za-z0-9_-]{11}$')
+_YT_URL_RE  = re.compile(r'(?:v=|youtu\.be/|embed/|/shorts/)([A-Za-z0-9_-]{11})')
+
+def extract_youtube_id(text: str):
+    """Accept a bare 11-char ID or various YouTube URL formats."""
+    text = (text or '').strip()
+    if not text:
+        return None
+    if _YT_ID_RE.fullmatch(text):
+        return text
+    m = _YT_URL_RE.search(text)
+    return m.group(1) if m else None
+
+
 def parse_date(name: str):
     m = DATE_RE.match(name)
     if not m:
@@ -124,6 +139,20 @@ def main():
                             get(date_key)['title'] = title_text
                     except Exception as ex:
                         print(f'  warn: failed to read {title_path}: {ex}', file=sys.stderr)
+                # Optional youtube.txt at the root of the date folder.
+                # Contents: a bare 11-char video ID or any YouTube URL.
+                youtube_path = os.path.join(full, 'youtube.txt')
+                if os.path.isfile(youtube_path):
+                    try:
+                        with open(youtube_path, encoding='utf-8') as yf:
+                            yt_raw = yf.read().strip()
+                        yt_id = extract_youtube_id(yt_raw)
+                        if yt_id:
+                            get(date_key)['youtube'] = yt_id
+                        else:
+                            print(f'  warn: youtube.txt in {entry} has unrecognized content: {yt_raw!r}', file=sys.stderr)
+                    except Exception as ex:
+                        print(f'  warn: failed to read {youtube_path}: {ex}', file=sys.stderr)
             else:
                 # Unknown folder — log and skip
                 print(f'  warn: unknown folder (no date prefix): {entry}', file=sys.stderr)
@@ -176,7 +205,7 @@ def main():
     print(f'Wrote {OUTPUT}')
     print(f'  {len(output["memorials"])} memorial date(s)')
     for m in output['memorials']:
-        print(f'    {m["date"]}: {len(m["photos"])} photo(s), {len(m["speeches"])} speech(es)')
+        print(f'    {m["date"]}: {len(m["photos"])} photo(s), {len(m["speeches"])} speech(es)' + (f', YT={m["youtube"]}' if m.get('youtube') else ''))
     return 0
 
 if __name__ == '__main__':

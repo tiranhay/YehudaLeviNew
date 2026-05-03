@@ -31,6 +31,10 @@ section { margin-bottom:3.5rem; }
 .section-divider { width:60px; height:2px; background:var(--gold); margin-bottom:1.8rem; }
 .empty-state { color:var(--text3); font-size:.95rem; padding:2rem; background:var(--bg2); border:1px dashed var(--border); border-radius:8px; text-align:center; }
 
+/* YouTube embed (16:9) */
+.video-wrap { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000; border:1px solid var(--border); }
+.video-wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+
 /* Photos grid */
 .photos-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:.75rem; }
 .photo-tile { aspect-ratio:1; background:var(--bg3); border:1px solid var(--border); border-radius:6px; overflow:hidden; cursor:pointer; transition:all .25s; position:relative; }
@@ -83,6 +87,14 @@ footer a { color:var(--gold); text-decoration:none; }
 
 <main>
   <div class="loading-state" id="loadingState">טוען...</div>
+
+  <section id="videoSection" style="display:none">
+    <h2 class="section-heading">הקלטת האזכרה</h2>
+    <div class="section-divider"></div>
+    <div class="video-wrap">
+      <iframe id="videoFrame" src="" title="הקלטת אזכרה" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+  </section>
 
   <section id="speechesSection" style="display:none">
     <h2 class="section-heading">הספדים ונאומים</h2>
@@ -235,6 +247,12 @@ function render(m) {
     document.title = titleParts.join(' ') + ' — אתר יהודה לוי ז״ל';
   }
 
+  // Video (YouTube embed) — uses youtube-nocookie for better privacy
+  if (m.youtube) {
+    document.getElementById('videoSection').style.display = '';
+    document.getElementById('videoFrame').src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(m.youtube);
+  }
+
   // Speeches
   if (m.speeches && m.speeches.length) {
     document.getElementById('speechesSection').style.display = '';
@@ -258,7 +276,7 @@ function render(m) {
   }
 
   // Empty state if neither
-  if ((!m.photos || !m.photos.length) && (!m.speeches || !m.speeches.length)) {
+  if ((!m.photos || !m.photos.length) && (!m.speeches || !m.speeches.length) && !m.youtube) {
     document.getElementById('emptySection').style.display = 'block';
   }
 }
