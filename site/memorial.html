@@ -64,6 +64,15 @@ section { margin-bottom:3.5rem; }
 #imgNavLeft { left:1rem; }
 #imgNavRight { right:1rem; }
 
+#videoList .video-wrap + .video-wrap { margin-top:1.5rem; }
+
+/* Long-form content (testimonies, articles) */
+.content-prose { color:var(--text2); font-size:1rem; line-height:1.95; max-width:780px; margin:0 auto; }
+.content-prose p { margin-bottom:1.2rem; }
+.content-prose strong { color:var(--text); font-weight:500; }
+.content-prose .content-heading { font-family:'Frank Ruhl Libre',serif; font-size:1.35rem; color:var(--gold); font-weight:700; margin-top:2.2rem; margin-bottom:.6rem; padding-bottom:.4rem; border-bottom:1px solid var(--border); }
+.content-prose .content-title { font-family:'Frank Ruhl Libre',serif; font-size:1.55rem; color:var(--gold); font-weight:700; margin-bottom:1.5rem; text-align:center; padding-bottom:.8rem; border-bottom:2px solid var(--gold-dim); }
+
 /* Loading state */
 .loading-state { color:var(--text3); text-align:center; padding:4rem 2rem; font-size:.95rem; }
 
@@ -89,11 +98,13 @@ footer a { color:var(--gold); text-decoration:none; }
   <div class="loading-state" id="loadingState">טוען...</div>
 
   <section id="videoSection" style="display:none">
-    <h2 class="section-heading">הקלטת האזכרה</h2>
+    <h2 class="section-heading" id="videoSectionHeading">הקלטת האזכרה</h2>
     <div class="section-divider"></div>
-    <div class="video-wrap">
-      <iframe id="videoFrame" src="" title="הקלטת אזכרה" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
-    </div>
+    <div id="videoList"></div>
+  </section>
+
+  <section id="contentSection" style="display:none">
+    <div class="content-prose" id="contentBody"></div>
   </section>
 
   <section id="speechesSection" style="display:none">
@@ -247,10 +258,22 @@ function render(m) {
     document.title = titleParts.join(' ') + ' — אתר יהודה לוי ז״ל';
   }
 
-  // Video (YouTube embed) — uses youtube-nocookie for better privacy
-  if (m.youtube) {
+  // Videos (YouTube embed) — supports array of IDs (or single string for backwards compat)
+  var ytList = m.youtube;
+  if (typeof ytList === 'string') ytList = [ytList];
+  if (ytList && ytList.length) {
     document.getElementById('videoSection').style.display = '';
-    document.getElementById('videoFrame').src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(m.youtube);
+    document.getElementById('videoSectionHeading').textContent = ytList.length > 1 ? 'הקלטות מהאזכרה' : 'הקלטת האזכרה';
+    var listEl = document.getElementById('videoList');
+    listEl.innerHTML = ytList.map(function(id) {
+      return '<div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) + '" title="הקלטת אזכרה" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
+    }).join('');
+  }
+
+  // Long-form content (content.md / content.txt)
+  if (m.content) {
+    document.getElementById('contentSection').style.display = '';
+    document.getElementById('contentBody').innerHTML = renderMarkdownLite(m.content);
   }
 
   // Speeches
@@ -275,10 +298,39 @@ function render(m) {
     }).join('');
   }
 
-  // Empty state if neither
-  if ((!m.photos || !m.photos.length) && (!m.speeches || !m.speeches.length) && !m.youtube) {
+  // Empty state if no content at all
+  if ((!m.photos || !m.photos.length) && (!m.speeches || !m.speeches.length) && !m.youtube && !m.content) {
     document.getElementById('emptySection').style.display = 'block';
   }
+}
+
+// ── Lightweight markdown rendering for content.md ──
+// Supports: blank-line paragraphs, __bold__ → <strong>, lone __X__ paragraph → heading,
+// single newlines inside paragraphs → <br>. Everything is HTML-escaped first.
+function escapeHtmlContent(t) {
+  var d = document.createElement('div');
+  d.textContent = t;
+  return d.innerHTML;
+}
+function renderMarkdownLite(text) {
+  var paragraphs = text.split(/\n\s*\n+/);
+  var out = [];
+  paragraphs.forEach(function(para) {
+    para = para.trim();
+    if (!para) return;
+    // Lone __X__ paragraph (heading)
+    var headingMatch = para.match(/^__([^_\n]+)__\s*$/);
+    if (headingMatch) {
+      var cls = (out.length === 0) ? 'content-title' : 'content-heading';
+      out.push('<div class="' + cls + '">' + escapeHtmlContent(headingMatch[1]) + '</div>');
+      return;
+    }
+    var html = escapeHtmlContent(para);
+    html = html.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+    html = html.replace(/\n/g, '<br>');
+    out.push('<p>' + html + '</p>');
+  });
+  return out.join('\n');
 }
 
 // Load manifest

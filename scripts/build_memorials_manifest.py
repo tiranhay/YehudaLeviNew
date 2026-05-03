@@ -139,18 +139,39 @@ def main():
                             get(date_key)['title'] = title_text
                     except Exception as ex:
                         print(f'  warn: failed to read {title_path}: {ex}', file=sys.stderr)
-                # Optional youtube.txt at the root of the date folder.
-                # Contents: a bare 11-char video ID or any YouTube URL.
+
+                # Optional content.md or content.txt — long-form text for the memorial page
+                for content_name in ('content.md', 'content.txt'):
+                    content_path = os.path.join(full, content_name)
+                    if os.path.isfile(content_path):
+                        try:
+                            with open(content_path, encoding='utf-8') as cf:
+                                content_text = cf.read().strip()
+                            if content_text:
+                                get(date_key)['content'] = content_text
+                                break
+                        except Exception as ex:
+                            print(f'  warn: failed to read {content_path}: {ex}', file=sys.stderr)
+                # Optional youtube.txt — one video per line (bare ID or any YouTube URL).
+                # Blank lines and lines starting with '#' are ignored.
                 youtube_path = os.path.join(full, 'youtube.txt')
                 if os.path.isfile(youtube_path):
                     try:
                         with open(youtube_path, encoding='utf-8') as yf:
-                            yt_raw = yf.read().strip()
-                        yt_id = extract_youtube_id(yt_raw)
-                        if yt_id:
-                            get(date_key)['youtube'] = yt_id
-                        else:
-                            print(f'  warn: youtube.txt in {entry} has unrecognized content: {yt_raw!r}', file=sys.stderr)
+                            yt_lines = yf.read().splitlines()
+                        yt_ids = []
+                        for line in yt_lines:
+                            line = line.strip()
+                            if not line or line.startswith('#'):
+                                continue
+                            yt_id = extract_youtube_id(line)
+                            if yt_id:
+                                if yt_id not in yt_ids:
+                                    yt_ids.append(yt_id)
+                            else:
+                                print(f'  warn: youtube.txt in {entry} has unrecognized line: {line!r}', file=sys.stderr)
+                        if yt_ids:
+                            get(date_key)['youtube'] = yt_ids
                     except Exception as ex:
                         print(f'  warn: failed to read {youtube_path}: {ex}', file=sys.stderr)
             else:
@@ -205,7 +226,7 @@ def main():
     print(f'Wrote {OUTPUT}')
     print(f'  {len(output["memorials"])} memorial date(s)')
     for m in output['memorials']:
-        print(f'    {m["date"]}: {len(m["photos"])} photo(s), {len(m["speeches"])} speech(es)' + (f', YT={m["youtube"]}' if m.get('youtube') else ''))
+        print(f'    {m["date"]}: {len(m["photos"])} photo(s), {len(m["speeches"])} speech(es)' + (f', YT×{len(m["youtube"])}' if m.get('youtube') else ''))
     return 0
 
 if __name__ == '__main__':
