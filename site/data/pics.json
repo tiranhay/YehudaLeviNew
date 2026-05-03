@@ -184,6 +184,16 @@
       "thumb": "imgs/pics/TN_stone3.JPG",
       "full": "imgs/pics/stone3.JPG",
       "caption": "מצבה 3"
+    },
+    {
+      "thumb": "imgs/pics/TN_NP_033459_4.jpg",
+      "full": "imgs/pics/NP_033459_4.jpg",
+      "caption": "NP 033459 4"
+    },
+    {
+      "thumb": "imgs/pics/TN_NP_033459_5.jpg",
+      "full": "imgs/pics/NP_033459_5.jpg",
+      "caption": "NP 033459 5"
     }
   ],
   "newspaper": [
@@ -221,6 +231,11 @@
       "thumb": "imgs/newspaper/TN_Image-07.JPG",
       "full": "imgs/newspaper/Image-07.JPG",
       "caption": "כתבה 7"
+    },
+    {
+      "thumb": "imgs/newspaper/TN_NP_033459_3.jpg",
+      "full": "imgs/newspaper/NP_033459_3.jpg",
+      "caption": "NP 033459 3"
     },
     {
       "thumb": "imgs/newspaper/TN_%D7%94%D7%A7%D7%9E%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8%D7%99%D7%94%20%D7%9C%D7%94%D7%A0%D7%A6%D7%97%D7%AA%20%D7%99%D7%94%D7%95%D7%93%D7%94.jpg",
