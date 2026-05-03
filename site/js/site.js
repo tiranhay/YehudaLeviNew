@@ -461,14 +461,20 @@ document.addEventListener('keydown', function(e) {
   var grid = document.getElementById('azkarotGrid');
   if (!grid) return;
 
-  // Formal anniversary years with their prose
+  // Formal anniversary years with their prose.
+  // Years here that have NO manifest entry render as placeholder cards.
+  // Years here that DO have manifest entries get the prose attached.
+  // Years removed from this object simply won't render until photos
+  // (i.e. a manifest entry) appear for them.
+  //
+  // Past proses kept for reference (re-add a line above to restore):
+  //   1997: 'אזכרה ראשונה. המשפחה, חברים ולוחמי הפלוגה — יחד לראשונה בלעדיו.',
+  //   2001: 'טקס מיוחד בבית הספר פינסקר — הנצחה מחודשת בקהילה.',
+  //   2006: 'ריכוז לוחמים ומפקדים, הצגת מורשת הקרב לדור הצעיר.',
+  //   2021: 'ריכוז גדול, יחד בזיכרון. רבע מאה ועדיין בלב.',
   var FORMAL = {
-    1997: 'אזכרה ראשונה. המשפחה, חברים ולוחמי הפלוגה — יחד לראשונה בלעדיו.',
-    2001: 'טקס מיוחד בבית הספר פינסקר — הנצחה מחודשת בקהילה.',
-    2006: 'ריכוז לוחמים ומפקדים, הצגת מורשת הקרב לדור הצעיר.',
     2011: 'טקס משפחתי עם חברים ותיקים וצעירים. שירה ותפילה. (כולל טיול לנחל השופט).',
     2016: 'עשרים שנה. טקס מרגש עם כל מי שהכיר ואהב.',
-    2021: 'ריכוז גדול, יחד בזיכרון. רבע מאה ועדיין בלב.',
     2026: 'יובל — שלושים שנה לנפילתו. אזכרה מיוחדת ומרגשת — 26 בספטמבר 2026.'
   };
   var SPECIAL_YEAR = 2026; // gets emphasized border
