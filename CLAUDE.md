@@ -18,17 +18,21 @@
 ```
 .
 ├── .github/workflows/
-│   └── build-memorials-manifest.yml   ← CI שבונה אוטומטית את memorials.json
+│   ├── build-memorials-manifest.yml   ← CI שבונה אוטומטית את memorials.json
+│   └── build-pics-manifest.yml        ← CI שבונה pics.json + thumbnails חסרים
 ├── scripts/
-│   └── build_memorials_manifest.py    ← סקריפט שסורק imgs/memorials ומייצר JSON
+│   ├── build_memorials_manifest.py    ← סורק imgs/memorials ומייצר JSON
+│   └── build_pics_manifest.py         ← סורק pics+newspaper, מייצר thumbnails+JSON
 ├── site/                              ← תיקיית האתר עצמו (כל מה שעולה לאינטרנט)
 │   ├── index.html                     ← דף הבית (כל הסקציות)
 │   ├── memorial.html                  ← עמוד פרטי לכל אזכרה (dynamic via ?date=...)
 │   ├── js/
-│   │   ├── site.js                    ← לוגיקה: ניווט, גלריות, פילטרים, רנדור אזכרות
+│   │   ├── site.js                    ← לוגיקה: ניווט, גלריות, פילטרים, רנדור דינמי
 │   │   └── hespedim.js                ← תוכן 31 ההספדים (data + render)
 │   ├── data/
-│   │   └── memorials.json             ← נבנה אוטומטית — אל תערוך ידנית
+│   │   ├── memorials.json             ← נבנה אוטומטית — אל תערוך ידנית
+│   │   ├── pics.json                  ← נבנה אוטומטית — אל תערוך ידנית
+│   │   └── pics_captions.json         ← captions+order לתמונות (כן לערוך ידנית)
 │   └── imgs/
 │       ├── 1.JPG                      ← תמונת פרופיל ראשית
 │       ├── insignia/                  ← סמלי יחידות (givati.png, shaked.png)
@@ -111,23 +115,17 @@
 
 ## יומן שינויים (descending — חדש למעלה)
 
-### 2026-05-03 — Revert: חזרה לזהב
-**הקשר:** הסגול שניסינו לא מצא חן בעיני תיראן.
-**מה שונה:** הוחזרו הערכים המקוריים של 3 משתני ה-CSS וכל ה-rgba ב-`site/index.html` וב-`site/memorial.html`. `CLAUDE.md` עצמו נשמר.
-**מסקנה לעתיד:** אם תהיה בקשה נוספת לטפל בנושא "הכיתוב הצהוב נבלע ברקע" — לא להחליף פלטה. אופציות עדיפות שלא נוסו:
-1. להעלות את הניגוד של הזהב הקיים (להבהיר את `--gold` ל-`#d4b85a` או `#dec06a`).
-2. להוסיף `text-shadow` עדין שחור לכותרות.
-3. לשנות את הרקע (`--bg`) למשהו פחות שחור-מוחלט (כמו `#141414`).
-4. להגדיל מעט את משקל הפונט של הכותרות.
-לדבר עם תיראן לפני שמתקדמים.
+### 2026-05-03 — יישור hero + מערכת manifest אוטומטית לתמונות
+**הקשר:**
+1. תיראן החליף את `imgs/insignia/shaked.png` בקובץ עם פרופורציות שונות, וכל ה-hero (נרות, תמונה עגולה, סמלי גדודים) נראה לא מיושר.
+2. בקשה: שכל תמונה חדשה שתועלה ל-`imgs/pics/` או `imgs/newspaper/` תיכנס לאתר אוטומטית עם thumbnail, בלי לערוך קוד ידנית — כמו שעובד עם אזכרות.
 
-### 2026-05-03 — ניסיון: שינוי פלטת צבעים זהב → סגול-לבנדר (נדחה והוחזר)
-**הקשר:** תיראן קיבל הערה שהכיתוב הצהוב (#c9a84c) נבלע ברקע השחור.
-**מה שונה:** `--gold` → `#a78bfa`, `--gold-light` → `#d8b4fe`, `--gold-dim` → `#6d28d9`, כל `rgba(201,168,76,…)` → `rgba(167,139,250,…)`. ב-`site/index.html` וב-`site/memorial.html`.
-**תוצאה:** לא מצא חן בעיני תיראן. הוחזר במיידי. ראה הערך מעל.
+**מה שונה:**
 
-### 2026-05-03 — תוספת CLAUDE.md
-נוצר קובץ זה בעקבות תובנה שכל סשן Cowork מתחיל ללא זיכרון. הקובץ ישמש כמקור-אמת לכל סוכן Claude עתידי.
+*יישור hero (`site/index.html`):*
+- `.hero-emblems-row` עברה מ-`grid (1fr auto 1fr) + justify-self:start/end` לשימוש ב-`flex` עם תאים בגודל קבוע: `width=height=clamp(80px,11vw,110px)` + `object-fit:contain`. עכשיו כל החלפת קובץ של סמל לא תזיז שום דבר במסך — התמונה ממורכזת בתוך תא ריבועי, וכל הסמלים שווים בגודל.
+- `.candle-row` קיבל `justify-content:center; align-items:flex-end` (היה default, אז זה bullet-proofing).
+- mobile: שני הסמלים עכשיו 55×55 (היה shaked קטן יותר ידנית).
 
-### לפני 2026-05-03 (מהיסטוריית git)
-- `2
+*מערכת manifest דינמית לתמונות:*
+- חדש: `scripts/build_pics_manifest.py` — סורק את `site/imgs

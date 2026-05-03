@@ -1,0 +1,226 @@
+{
+  "pics": [
+    {
+      "thumb": "imgs/pics/TN_Yeuda.JPG",
+      "full": "imgs/pics/Yeuda.JPG",
+      "caption": "יהודה"
+    },
+    {
+      "thumb": "imgs/pics/TN_LitlleYeuda.JPG",
+      "full": "imgs/pics/LitlleYeuda.JPG",
+      "caption": "יהודה הקטן"
+    },
+    {
+      "thumb": "imgs/pics/TN_LitlleYeuda2.JPG",
+      "full": "imgs/pics/LitlleYeuda2.JPG",
+      "caption": "יהודה הקטן 2"
+    },
+    {
+      "thumb": "imgs/pics/TN_verylitlleYeuda.JPG",
+      "full": "imgs/pics/verylitlleYeuda.JPG",
+      "caption": "יהודה תינוק"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaBarMitsva.JPG",
+      "full": "imgs/pics/YeudaBarMitsva.JPG",
+      "caption": "בר מצווה"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaBarMitsva2.JPG",
+      "full": "imgs/pics/YeudaBarMitsva2.JPG",
+      "caption": "בר מצווה 2"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaCostume.JPG",
+      "full": "imgs/pics/YeudaCostume.JPG",
+      "caption": "בתחפושת"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaAndYafaAtYomHorim.JPG",
+      "full": "imgs/pics/YeudaAndYafaAtYomHorim.JPG",
+      "caption": "יהודה ואמא ביום ההורים"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaInArmy.JPG",
+      "full": "imgs/pics/YeudaInArmy.JPG",
+      "caption": "בצבא"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaWithGuns.JPG",
+      "full": "imgs/pics/YeudaWithGuns.JPG",
+      "caption": "עם נשק"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaWithGuns2.JPG",
+      "full": "imgs/pics/YeudaWithGuns2.JPG",
+      "caption": "עם נשק 2"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaInOrhan.JPG",
+      "full": "imgs/pics/YeudaInOrhan.JPG",
+      "caption": "באורחן"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaOnBench.JPG",
+      "full": "imgs/pics/YeudaOnBench.JPG",
+      "caption": "על הספסל"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaWithUniformComingHome.JPG",
+      "full": "imgs/pics/YeudaWithUniformComingHome.JPG",
+      "caption": "בא הביתה במדים"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaWithUniformComingHome2.JPG",
+      "full": "imgs/pics/YeudaWithUniformComingHome2.JPG",
+      "caption": "בא הביתה במדים 2"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaAndAmir.JPG",
+      "full": "imgs/pics/YeudaAndAmir.JPG",
+      "caption": "יהודה ואמיר"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaAndGili.JPG",
+      "full": "imgs/pics/YeudaAndGili.JPG",
+      "caption": "יהודה וגילי"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaAndTomer.JPG",
+      "full": "imgs/pics/YeudaAndTomer.JPG",
+      "caption": "יהודה ותומר"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaAndTomer2.JPG",
+      "full": "imgs/pics/YeudaAndTomer2.JPG",
+      "caption": "יהודה ותומר 2"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaAndAndre.JPG",
+      "full": "imgs/pics/YeudaAndAndre.JPG",
+      "caption": "יהודה ואנדרה"
+    },
+    {
+      "thumb": "imgs/pics/TN_YeudaAndFamilyInTrip.JPG",
+      "full": "imgs/pics/YeudaAndFamilyInTrip.JPG",
+      "caption": "יהודה עם המשפחה בטיול"
+    },
+    {
+      "thumb": "imgs/pics/TN_Mahlak2AndPkida.JPG",
+      "full": "imgs/pics/Mahlak2AndPkida.JPG",
+      "caption": "מחלקה 2 ופקידה"
+    },
+    {
+      "thumb": "imgs/pics/TN_Mahlaka2.JPG",
+      "full": "imgs/pics/Mahlaka2.JPG",
+      "caption": "מחלקה 2"
+    },
+    {
+      "thumb": "imgs/pics/TN_FlagWithSignatures.JPG",
+      "full": "imgs/pics/FlagWithSignatures.JPG",
+      "caption": "דגל עם חתימות"
+    },
+    {
+      "thumb": "imgs/pics/TN_HartuvPainting.JPG",
+      "full": "imgs/pics/HartuvPainting.JPG",
+      "caption": "ציור הרטוב"
+    },
+    {
+      "thumb": "imgs/pics/TN_family.JPG",
+      "full": "imgs/pics/family.JPG",
+      "caption": "משפחה"
+    },
+    {
+      "thumb": "imgs/pics/TN_flag.JPG",
+      "full": "imgs/pics/flag.JPG",
+      "caption": "דגל"
+    },
+    {
+      "thumb": "imgs/pics/TN_Medals.JPG",
+      "full": "imgs/pics/Medals.JPG",
+      "caption": "עיטורים"
+    },
+    {
+      "thumb": "imgs/pics/TN_Sisma.JPG",
+      "full": "imgs/pics/Sisma.JPG",
+      "caption": "סיסמא"
+    },
+    {
+      "thumb": "imgs/pics/TN_Tiberias.JPG",
+      "full": "imgs/pics/Tiberias.JPG",
+      "caption": "טבריה"
+    },
+    {
+      "thumb": "imgs/pics/TN_TsometYeuda.JPG",
+      "full": "imgs/pics/TsometYeuda.JPG",
+      "caption": "צומת יהודה"
+    },
+    {
+      "thumb": "imgs/pics/TN_IMG_1507.JPG",
+      "full": "imgs/pics/IMG_1507.JPG",
+      "caption": "תמונה"
+    },
+    {
+      "thumb": "imgs/pics/TN_IMG_1508.JPG",
+      "full": "imgs/pics/IMG_1508.JPG",
+      "caption": "תמונה"
+    },
+    {
+      "thumb": "imgs/pics/TN_IMG_1509.JPG",
+      "full": "imgs/pics/IMG_1509.JPG",
+      "caption": "תמונה"
+    },
+    {
+      "thumb": "imgs/pics/TN_stone1.JPG",
+      "full": "imgs/pics/stone1.JPG",
+      "caption": "מצבה 1"
+    },
+    {
+      "thumb": "imgs/pics/TN_stone2.JPG",
+      "full": "imgs/pics/stone2.JPG",
+      "caption": "מצבה 2"
+    },
+    {
+      "thumb": "imgs/pics/TN_stone3.JPG",
+      "full": "imgs/pics/stone3.JPG",
+      "caption": "מצבה 3"
+    }
+  ],
+  "newspaper": [
+    {
+      "thumb": "imgs/newspaper/TN_Image-01.JPG",
+      "full": "imgs/newspaper/Image-01.JPG",
+      "caption": "כתבה 1"
+    },
+    {
+      "thumb": "imgs/newspaper/TN_Image-02.JPG",
+      "full": "imgs/newspaper/Image-02.JPG",
+      "caption": "כתבה 2"
+    },
+    {
+      "thumb": "imgs/newspaper/TN_Image-03.JPG",
+      "full": "imgs/newspaper/Image-03.JPG",
+      "caption": "כתבה 3"
+    },
+    {
+      "thumb": "imgs/newspaper/TN_Image-04.JPG",
+      "full": "imgs/newspaper/Image-04.JPG",
+      "caption": "כתבה 4"
+    },
+    {
+      "thumb": "imgs/newspaper/TN_Image-05.JPG",
+      "full": "imgs/newspaper/Image-05.JPG",
+      "caption": "כתבה 5"
+    },
+    {
+      "thumb": "imgs/newspaper/TN_Image-06.JPG",
+      "full": "imgs/newspaper/Image-06.JPG",
+      "caption": "כתבה 6"
+    },
+    {
+      "thumb": "imgs/newspaper/TN_Image-07.JPG",
+      "full": "imgs/newspaper/Image-07.JPG",
+      "caption": "כתבה 7"
+    }
+  ]
+}

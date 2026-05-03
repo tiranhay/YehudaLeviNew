@@ -1,0 +1,45 @@
+name: Build pics manifest
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/imgs/pics/**'
+      - 'site/imgs/newspaper/**'
+      - 'site/data/pics_captions.json'
+      - 'scripts/build_pics_manifest.py'
+      - '.github/workflows/build-pics-manifest.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Pillow
+        run: pip install Pillow
+
+      - name: Generate thumbnails + manifest
+        run: python3 scripts/build_pics_manifest.py
+
+      - name: Commit changes if any
+        run: |
+          # Add any new TN_ thumbnails plus the regenerated manifest.
+          git add site/data/pics.json site/imgs/pics/TN_* site/imgs/newspaper/TN_* 2>/dev/null || true
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore: rebuild pics manifest [skip ci]"
+            git push
+          else
+            echo "No pics manifest change."
+          fi
