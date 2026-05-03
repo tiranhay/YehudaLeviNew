@@ -221,6 +221,11 @@
       "thumb": "imgs/newspaper/TN_Image-07.JPG",
       "full": "imgs/newspaper/Image-07.JPG",
       "caption": "כתבה 7"
+    },
+    {
+      "thumb": "imgs/newspaper/TN_%D7%94%D7%A7%D7%9E%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8%D7%99%D7%94%20%D7%9C%D7%94%D7%A0%D7%A6%D7%97%D7%AA%20%D7%99%D7%94%D7%95%D7%93%D7%94.jpg",
+      "full": "imgs/newspaper/%D7%94%D7%A7%D7%9E%D7%AA%20%D7%94%D7%A1%D7%A4%D7%A8%D7%99%D7%94%20%D7%9C%D7%94%D7%A0%D7%A6%D7%97%D7%AA%20%D7%99%D7%94%D7%95%D7%93%D7%94.jpg",
+      "caption": "הקמת הספריה להנצחת יהודה"
     }
   ]
 }
