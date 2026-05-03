@@ -499,7 +499,8 @@ document.addEventListener('keydown', function(e) {
   function counts(m) {
     if (!m) return '';
     var parts = [];
-    if (m.youtube) parts.push('הקלטה');
+    var ytCount = Array.isArray(m.youtube) ? m.youtube.length : (m.youtube ? 1 : 0);
+    if (ytCount > 0) parts.push(pluralize(ytCount, 'סרטון', 'סרטונים'));
     if (m.photos && m.photos.length) parts.push(pluralize(m.photos.length, 'תמונה', 'תמונות'));
     if (m.speeches && m.speeches.length) parts.push(pluralize(m.speeches.length, 'הספד', 'הספדים'));
     return parts.join(' · ');
