@@ -276,6 +276,11 @@ footer .gold { color:var(--gold); }
 <section id="lifestory">
   <h2 class="section-title">סיפור חיים</h2>
   <div class="section-divider"></div>
+  <details class="collapsible">
+    <summary class="collapsible-summary">
+      <span class="collapsible-summary-text"></span>
+      <span class="collapsible-summary-arrow"></span>
+    </summary>
   <div class="prose">
     <p>יהודה נולד ב-1 לספטמבר 1976, בבית החולים רמב"ם בחיפה. הוא גדל והתחנך בעיר קריית אתא, בשכונת יוסף טל. בשנת 1978 עברה המשפחה לשכונת בן גוריון, עד לשנת 1994.</p>
     <p>בשנת 1994 התגורר יהודה עם משפחתו באופן זמני במרכז קריית אתא, ומאז מאי 1995 עברה המשפחה לביתה בגבעת רם — שאת הבית הזה הספיק יהודה להכיר שנה אחת בלבד.</p>
@@ -317,6 +322,7 @@ footer .gold { color:var(--gold); }
   <div class="quote-block" style="margin-top:3rem">
     <p>יהודה אהב מאוד כדורגל, היה אוהד מושבע של מכבי חיפה. בילדותו אהב מאוד את הים, ובכלל כל מה שקשור במים. בגילאים צעירים היו ליהודה אוספים שונים — מכוניות מירוץ ומחקים.</p>
   </div>
+  </details>
 </section>
 
 <!-- BATTLE -->
@@ -325,7 +331,7 @@ footer .gold { color:var(--gold); }
     <h2 class="section-title">מורשת קרב</h2>
     <div class="section-divider"></div>
 
-    <details class="collapsible" open>
+    <details class="collapsible">
       <summary class="collapsible-summary">
         <span class="collapsible-summary-text"></span>
         <span class="collapsible-summary-arrow"></span>
@@ -384,6 +390,11 @@ footer .gold { color:var(--gold); }
 <section id="hespedim">
   <h2 class="section-title">הספדים</h2>
   <div class="section-divider"></div>
+  <details class="collapsible">
+    <summary class="collapsible-summary">
+      <span class="collapsible-summary-text"></span>
+      <span class="collapsible-summary-arrow"></span>
+    </summary>
   <p class="prose" style="margin-bottom:2rem">דברי פרידה, אהבה וזיכרון שנכתבו בידי יקיריו ולוחמי פלוגתו של יהודה. לחצו על כל כרטיס לקריאת ההספד המלא.</p>
   <div class="hesped-filters">
     <button class="filter-btn active" onclick="filterHespedim('all', this)">הכל</button>
@@ -522,12 +533,18 @@ footer .gold { color:var(--gold); }
       <div class="hesped-role">לוחם</div>
     </div>
   </div>
+  </details>
 </section>
 
 <!-- PHOTOS -->
 <section id="photos">
   <h2 class="section-title">תמונות</h2>
   <div class="section-divider"></div>
+  <details class="collapsible">
+    <summary class="collapsible-summary">
+      <span class="collapsible-summary-text"></span>
+      <span class="collapsible-summary-arrow"></span>
+    </summary>
   <div class="gallery-carousel" id="galleryTrack">
     <div class="gallery-inner" id="galleryInner">
       <div class="gallery-item" data-full="imgs/pics/Yeuda.JPG" onclick="openImg('imgs/pics/Yeuda.JPG', 'יהודה')">
@@ -685,6 +702,7 @@ footer .gold { color:var(--gold); }
     <div class="gallery-dots" id="galleryDots"></div>
     <button class="gallery-btn" onclick="galleryScroll(-1)" aria-label="הקודם">&#8250;</button>
   </div>
+  </details>
 </section>
 
 <!-- NEWSPAPER -->
@@ -692,6 +710,11 @@ footer .gold { color:var(--gold); }
   <div class="wide-inner">
     <h2 class="section-title">כתבות עיתון</h2>
     <div class="section-divider"></div>
+    <details class="collapsible">
+      <summary class="collapsible-summary">
+        <span class="collapsible-summary-text"></span>
+        <span class="collapsible-summary-arrow"></span>
+      </summary>
     <div class="gallery-carousel" id="newspaperTrack">
       <div class="gallery-inner" id="newspaperInner">
       <div class="gallery-item" data-full="imgs/newspaper/Image-01.JPG" onclick="openImg('imgs/newspaper/Image-01.JPG','כתבה 1','newspaper')">
@@ -729,6 +752,7 @@ footer .gold { color:var(--gold); }
       <div class="gallery-dots" id="newspaperDots"></div>
       <button class="gallery-btn" onclick="newspaperScroll(-1)" aria-label="הקודם">&#8250;</button>
     </div>
+    </details>
   </div>
 </div>
 
@@ -737,7 +761,13 @@ footer .gold { color:var(--gold); }
   <div class="wide-inner">
     <h2 class="section-title">אזכרות</h2>
     <div class="section-divider"></div>
+    <details class="collapsible">
+      <summary class="collapsible-summary">
+        <span class="collapsible-summary-text"></span>
+        <span class="collapsible-summary-arrow"></span>
+      </summary>
     <div class="azkarot-grid" id="azkarotGrid"></div>
+    </details>
   </div>
 </div>
 

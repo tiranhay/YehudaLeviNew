@@ -334,9 +334,30 @@ function makeCarousel(innerId, dotsId, scrollFnName) {
   return function(dir) { goTo(current + dir * VISIBLE); };
 }
 
-// Init both carousels
-window.galleryScroll = makeCarousel('galleryInner', 'galleryDots', 'galleryScroll');
-window.newspaperScroll = makeCarousel('newspaperInner', 'newspaperDots', 'newspaperScroll');
+// Init both carousels — lazy if their <details> section is collapsed
+function setupLazyCarousel(detailsEl, innerId, dotsId, scrollName) {
+  var initialized = false;
+  function init() {
+    if (initialized) return;
+    initialized = true;
+    var fn = makeCarousel(innerId, dotsId, scrollName);
+    window[scrollName] = fn;
+  }
+  if (detailsEl) {
+    if (detailsEl.open) {
+      // small defer so layout has settled
+      setTimeout(init, 0);
+    }
+    detailsEl.addEventListener('toggle', function() { if (detailsEl.open) init(); });
+  } else {
+    init();
+  }
+}
+// Provide no-op stubs so inline onclick='galleryScroll(1)' doesn't error before init
+window.galleryScroll = function(){};
+window.newspaperScroll = function(){};
+setupLazyCarousel(document.querySelector('#photos details.collapsible'), 'galleryInner', 'galleryDots', 'galleryScroll');
+setupLazyCarousel(document.querySelector('#newspaper details.collapsible'), 'newspaperInner', 'newspaperDots', 'newspaperScroll');
 
 // Add data-full to gallery items that don't already have it
 // (pics items have their full URL in onclick; newspaper items we set in HTML)
