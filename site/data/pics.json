@@ -248,5 +248,41 @@
       "caption": "הקמת הספריה להנצחת יהודה"
     }
   ],
-  "battle": []
+  "battle": [
+    {
+      "thumb": "imgs/battle/TN_%D7%A7%D7%A8%D7%911.jpeg",
+      "full": "imgs/battle/%D7%A7%D7%A8%D7%911.jpeg",
+      "caption": "קרב1"
+    },
+    {
+      "thumb": "imgs/battle/TN_%D7%A7%D7%A8%D7%912.jpeg",
+      "full": "imgs/battle/%D7%A7%D7%A8%D7%912.jpeg",
+      "caption": "קרב2"
+    },
+    {
+      "thumb": "imgs/battle/TN_%D7%A7%D7%A8%D7%913.jpeg",
+      "full": "imgs/battle/%D7%A7%D7%A8%D7%913.jpeg",
+      "caption": "קרב3"
+    },
+    {
+      "thumb": "imgs/battle/TN_%D7%A7%D7%A8%D7%914.jpeg",
+      "full": "imgs/battle/%D7%A7%D7%A8%D7%914.jpeg",
+      "caption": "קרב4"
+    },
+    {
+      "thumb": "imgs/battle/TN_%D7%A7%D7%A8%D7%915.jpeg",
+      "full": "imgs/battle/%D7%A7%D7%A8%D7%915.jpeg",
+      "caption": "קרב5"
+    },
+    {
+      "thumb": "imgs/battle/TN_%D7%A7%D7%A8%D7%916.jpeg",
+      "full": "imgs/battle/%D7%A7%D7%A8%D7%916.jpeg",
+      "caption": "קרב6"
+    },
+    {
+      "thumb": "imgs/battle/TN_%D7%A7%D7%A8%D7%917.jpeg",
+      "full": "imgs/battle/%D7%A7%D7%A8%D7%917.jpeg",
+      "caption": "קרב7"
+    }
+  ]
 }
