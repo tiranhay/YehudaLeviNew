@@ -6,6 +6,12 @@ on:
     paths:
       - 'site/**'
       - '.github/workflows/pages.yml'
+  # Re-deploy after the manifest workflows finish, since their auto-commits
+  # use [skip ci] which would otherwise block the push trigger above.
+  workflow_run:
+    workflows: ["Build pics manifest", "Build memorials manifest"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -20,6 +26,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Skip when triggered by a failed manifest run.
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
       - name: Ensure CNAME exists in artifact
