@@ -119,6 +119,32 @@
 
 ## יומן שינויים (descending — חדש למעלה)
 
+### 2026-05-04 — פרסום האתר ישירות תחת `https://www.yehudalevi.co.il/`
+**הקשר:** עד עכשיו האתר עלה ב-`https://www.yehudalevi.co.il/YehudaLeviNew/site/` כי הדומיין היה רשום על ריפו ה-user-page `tiranhay.github.io` ו-`YehudaLeviNew` הוגש כ-project page. תיראן רצה את האתר ישירות תחת השורש של הדומיין.
+
+**מה נעשה:**
+1. הוסרה הגדרת ה-Custom domain מהריפו `tiranhay.github.io` (Settings → Pages → Remove). הריפו עצמו עדיין live תחת `tiranhay.github.io` — לא הוסר, רק הדומיין הופרד ממנו.
+2. בריפו `YehudaLeviNew`:
+   - **Settings → Pages → Source** הוחלף מ-"Deploy from a branch" ל-**GitHub Actions**. הסיבה: GitHub מאפשר branch-deploy רק מ-`/(root)` או `/docs`, ולא מ-`/site`.
+   - **Custom domain**: `www.yehudalevi.co.il` (יצר אוטומטית קובץ `CNAME` ב-root עם הערך הזה — נשאר כ-marker אך לא נחוץ למסירה כשעובדים ב-Actions mode).
+   - **Enforce HTTPS**: ✓
+3. נוסף workflow חדש: `.github/workflows/pages.yml`. הוא:
+   - מופעל על push ל-`main` שנוגע ב-`site/**` או ב-workflow עצמו, ומ-workflow_dispatch.
+   - יוצר `site/CNAME` בזמן ריצה (לא commit) עם הערך `www.yehudalevi.co.il` כדי שה-artifact הסופי יכיל אותו (פעולה idempotent).
+   - מעלה את `./site` כ-artifact של Pages ומפרסם אותו.
+   - הרשאות: `contents:read, pages:write, id-token:write`. concurrency עם `cancel-in-progress` כדי שלא יתפספסו פרסומים.
+
+**גוטשות:**
+- `[skip ci]` בקומיטים האוטומטיים של `build-pics-manifest.yml`/`build-memorials-manifest.yml` חוסם גם את `pages.yml`. זה אומר שכשהמניפסט מתעדכן אוטומטית, הפריסה לא תרוץ עד ה-push הבא של תיראן או הפעלה ידנית של `pages.yml` (workflow_dispatch). אם זה הופך למפריע — אפשר להוסיף trigger `workflow_run` ל-pages.yml שמאזין לסיום של שני ה-manifest workflows.
+- ה-CNAME ב-root של הריפו (`/CNAME`) נוצר בזמן ה-branch-deploy ונשאר. הוא לא בשימוש כשמפרסמים דרך Actions, אבל גם לא מזיק. אפשר למחוק בעתיד.
+- כל הקישורים הישנים `/YehudaLeviNew/site/...` מפסיקים לעבוד אחרי המעבר. אם איפשהו בקוד יש absolute URLs כאלה — צריך לעדכן ל-relative או ל-absolute עם הדומיין החדש.
+
+**איך מוודאים שזה עובד:**
+- Actions tab → "Deploy site to Pages" → ✓ ירוק.
+- Settings → Pages → "Your site is live at https://www.yehudalevi.co.il/" עם DNS check ✓.
+- `https://www.yehudalevi.co.il/` בחלון בסתר טוען את האתר.
+
+
 ### 2026-05-03 — תמיכה בגלריית `battle` במורשת קרב
 **הקשר:** תיראן רוצה גלריית דפדוף קטנה של תמונות מיום הקרב, מתחת לסיפור הקרב, בתיקייה חדשה `site/imgs/battle/`. אותה לוגיקה כמו `pics` ו-`newspaper`.
 **מה שונה:**
