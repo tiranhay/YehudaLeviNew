@@ -57,6 +57,16 @@
 - כל מה שקשור לאזכרות משתמש בפורמט `dd_mm_yyyy` (לדוגמה: `01_05_2025`).
 - ה-RegEx ב-build script: `^(\d{2})_(\d{2})_(\d{4})`.
 
+### קבצי קונבנציה בתוך תיקיית אזכרה (`site/imgs/memorials/dd_mm_yyyy/`)
+מוסכמות שמאפשרות העשרת תוכן בלי שינוי קוד — תיראן פשוט מוסיף קובץ והסקריפט קולט.
+
+- **`title.txt`** — טקסט חופשי שיופיע ככותרת/תיאור על כרטיס האזכרה בעמוד הראשי. אם קיים, הוא **דוחף החוצה** את ה-prose מ-`FORMAL` ב-`site.js`. לא לשים שורות ריקות בלבד — אלה לא ייקלטו (נדרש תוכן לאחר `strip()`).
+- **`youtube.txt`** — מזהה סרטון יוטיוב או URL מלא (שורה אחת, אפשר עם הערות `# ...`). הסקריפט שולף את ה-11 תווי ה-ID ושם אותו ב-`m.youtube` של המניפסט. עמוד `memorial.html` מציג iframe מ-`youtube-nocookie.com`. כך מקליטים אזכרת זום למשל.
+- כל קובץ תמונה (`.jpg/.jpeg/.png/.webp`) בתיקייה — נכנס לגלריית האזכרה. שמות קבצים → captions ברירת מחדל (אפשר להחליף `_` ברווחים).
+- `speeches/dd_mm_yyyy/*.pdf` — נאומים. נטען לעמוד האזכרה כקישורי הורדה.
+
+לדוגמה: כדי להוסיף כותרת לאזכרת `11_05_2016`, פשוט יצירת `site/imgs/memorials/11_05_2016/title.txt` עם תוכן כמו `עשרים שנה לנפילתו` ו-push. ה-CI ירענן את `memorials.json` והכותרת תופיע באתר.
+
 ### ⚠️ אזהרה חשובה — צבעי טקסט
 **אל תכהה את `--text`, `--text2`, `--text3`.** הניסיון לעשות זאת כבר נכשל פעמיים. כשתיראן אומר "הטקסט נבלע ברקע" / "אני רואה פחות טוב" — זה אומר שהוא צריך **קונטרסט גבוה יותר**, כלומר **טקסט בהיר יותר** על הרקע השחור, ולא טקסט כהה יותר. הערכים הנוכחיים גבוהים מערכי המקור של המעצב במכוון. אם יש בקשה לשנות צבעי טקסט בעתיד — לוודא היטב באיזה כיוון לפני שמיישמים, ובכל מקרה לא להפחית את הקונטרסט.
 
@@ -79,11 +89,15 @@
 יש גם הרבה `rgba(167,139,250, x)` קשיח (=#a78bfa) ברקעים שקופים. שמות המשתנים נשארו `--gold-*` להיסטוריה — **אל תשנה את שמות המשתנים, רק את הערכים** כדי לא לשבור כלום.
 
 ### CI אוטומטי
-ה-workflow `build-memorials-manifest.yml` רץ אוטומטית על כל push שנוגע ב-`site/imgs/memorials/**` או בסקריפט עצמו. הוא:
-1. מריץ `scripts/build_memorials_manifest.py`
-2. אם `site/data/memorials.json` השתנה — דוחף commit `chore: rebuild memorials manifest [skip ci]`
+שלושה workflows מנהלים את האתר:
 
-**משמעות:** אם אתה מוסיף תמונות אזכרה — אל תיגע ב-`memorials.json` ידנית. תדחוף את התמונות וה-CI יעדכן.
+1. **`build-memorials-manifest.yml`** — רץ על push שנוגע ב-`site/imgs/memorials/**`. מריץ את הסקריפט, ואם `memorials.json` השתנה דוחף commit עם `[skip ci]`.
+2. **`build-pics-manifest.yml`** — רץ על push שנוגע ב-`site/imgs/pics/**`, `newspaper/**`, או `battle/**`. מייצר thumbnails חסרים (`TN_*`) ומעדכן `pics.json`. Commit עם `[skip ci]`.
+3. **`pages.yml`** — מפרסם את `site/` ל-GitHub Pages תחת `https://www.yehudalevi.co.il/`. מופעל ע"י: (א) push ל-`main` שנוגע ב-`site/**`, (ב) `workflow_run` בסיום המוצלח של אחד משני ה-workflows הראשונים, (ג) `workflow_dispatch` ידני.
+
+ה-trigger `workflow_run` קיים כי `[skip ci]` בקומיטים האוטומטיים חוסם את ה-push trigger של pages.yml. בלי `workflow_run`, תמונות חדשות היו מתווספות למניפסט אך לא נפרסות עד ה-push הבא של תיראן.
+
+**משמעות:** אם אתה מוסיף תמונות, תיקיית אזכרה, `title.txt`, או `youtube.txt` — אל תיגע ב-`memorials.json` או `pics.json` ידנית. תדחוף ותחכה ~30־60 שניות ל-pages.yml שירוץ אחרי ה-manifest workflow.
 
 ### עריכת workflow files
 עריכת קבצים תחת `.github/workflows/` דורשת PAT עם הרשאת **`workflow`** (Classic) או **Workflows: Read and write** (Fine-grained). הטוקן הרגיל של תיראן בלי הרשאה זו — לא יוכל לדחוף שינויים בקבצי workflow.
@@ -118,6 +132,12 @@
 ---
 
 ## יומן שינויים (descending — חדש למעלה)
+
+### 2026-05-04 (המשך) — הסרת prose מ-FORMAL[2016] + workflow_run trigger ל-pages.yml
+**שינוי 1: site/js/site.js** — הוסר `2016: 'עשרים שנה. טקס מרגש עם כל מי שהכיר ואהב.'` מ-`FORMAL` (תיראן ביקש להוריד את הכותרת מ-2016). הערך הועבר לבלוק "Past proses kept for reference" כדי לשמר היסטוריה. אם בעתיד תיראן ירצה כותרת ספציפית לאזכרת `11_05_2016` או `18_10_2016` — הדרך המומלצת היא להוסיף `title.txt` בתיקיית האזכרה (ראה "קבצי קונבנציה בתוך תיקיית אזכרה" למעלה), לא לערוך את site.js.
+
+**שינוי 2: .github/workflows/pages.yml** — נוסף trigger `workflow_run` שמאזין לסיום של "Build pics manifest" ו-"Build memorials manifest". הסיבה: `[skip ci]` בקומיטים האוטומטיים שלהם חוסם את ה-push trigger של pages.yml, מה שגרם לכך שתמונות חדשות / אזכרות חדשות לא נפרסות אוטומטית. עם ה-trigger הזה, כל push לתמונה חדשה מפעיל את ה-manifest workflow → בסיומו מופעל pages.yml → האתר מתעדכן תוך כדקה. נוסף גם `if:` ב-job ה-build כדי לדלג כשה-manifest run נכשל.
+
 
 ### 2026-05-04 — פרסום האתר ישירות תחת `https://www.yehudalevi.co.il/`
 **הקשר:** עד עכשיו האתר עלה ב-`https://www.yehudalevi.co.il/YehudaLeviNew/site/` כי הדומיין היה רשום על ריפו ה-user-page `tiranhay.github.io` ו-`YehudaLeviNew` הוגש כ-project page. תיראן רצה את האתר ישירות תחת השורש של הדומיין.
