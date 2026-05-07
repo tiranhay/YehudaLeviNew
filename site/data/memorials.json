@@ -151,6 +151,21 @@
       "displayDate": "01/05/2025"
     },
     {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "יהודה חייל שלי גיבור שנה 21 2017",
+          "file": "imgs/memorials/speeches/03_10_2017/%D7%99%D7%94%D7%95%D7%93%D7%94%20%D7%97%D7%99%D7%99%D7%9C%20%D7%A9%D7%9C%D7%99%20%D7%92%D7%99%D7%91%D7%95%D7%A8%20%D7%A9%D7%A0%D7%94%2021%202017.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "03_10_2017",
+      "day": 3,
+      "month": 10,
+      "year": 2017,
+      "displayDate": "03/10/2017"
+    },
+    {
       "photos": [
         {
           "thumb": "imgs/memorials/04_05_2022/505867321_10163428669049614_648622127316341720_n.jpg",
@@ -354,6 +369,31 @@
       "photos": [],
       "speeches": [
         {
+          "title": "הספד 10 שנים ליהודה",
+          "file": "imgs/memorials/speeches/05_10_2006/%D7%94%D7%A1%D7%A4%D7%93%2010%20%D7%A9%D7%A0%D7%99%D7%9D%20%D7%9C%D7%99%D7%94%D7%95%D7%93%D7%94.pdf",
+          "ext": "pdf"
+        },
+        {
+          "title": "מילות פתיחה לערב הזיכרון",
+          "file": "imgs/memorials/speeches/05_10_2006/%D7%9E%D7%99%D7%9C%D7%95%D7%AA%20%D7%A4%D7%AA%D7%99%D7%97%D7%94%20%D7%9C%D7%A2%D7%A8%D7%91%20%D7%94%D7%96%D7%99%D7%9B%D7%A8%D7%95%D7%9F.pdf",
+          "ext": "pdf"
+        },
+        {
+          "title": "ערב לציון 10 שנים למותו של יהודה לוי ז",
+          "file": "imgs/memorials/speeches/05_10_2006/%D7%A2%D7%A8%D7%91%20%D7%9C%D7%A6%D7%99%D7%95%D7%9F%2010%20%D7%A9%D7%A0%D7%99%D7%9D%20%D7%9C%D7%9E%D7%95%D7%AA%D7%95%20%D7%A9%D7%9C%20%D7%99%D7%94%D7%95%D7%93%D7%94%20%D7%9C%D7%95%D7%99%20%D7%96.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "05_10_2006",
+      "day": 5,
+      "month": 10,
+      "year": 2006,
+      "displayDate": "05/10/2006"
+    },
+    {
+      "photos": [],
+      "speeches": [
+        {
           "title": "הספד שנכתב על ידי בוני והוקרא על ידי גילי",
           "file": "imgs/memorials/speeches/05_10_2025/%D7%94%D7%A1%D7%A4%D7%93%20%D7%A9%D7%A0%D7%9B%D7%AA%D7%91%20%D7%A2%D7%9C%20%D7%99%D7%93%D7%99%20%D7%91%D7%95%D7%A0%D7%99%20%D7%95%D7%94%D7%95%D7%A7%D7%A8%D7%90%20%D7%A2%D7%9C%20%D7%99%D7%93%D7%99%20%D7%92%D7%99%D7%9C%D7%99.pdf",
           "ext": "pdf"
@@ -364,6 +404,21 @@
       "month": 10,
       "year": 2025,
       "displayDate": "05/10/2025"
+    },
+    {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "18 ליהודה",
+          "file": "imgs/memorials/speeches/07_10_2014/18%20%D7%9C%D7%99%D7%94%D7%95%D7%93%D7%94.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "07_10_2014",
+      "day": 7,
+      "month": 10,
+      "year": 2014,
+      "displayDate": "07/10/2014"
     },
     {
       "photos": [
@@ -444,6 +499,21 @@
       "month": 5,
       "year": 2019,
       "displayDate": "08/05/2019"
+    },
+    {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "אזכרה 23 10.10.19",
+          "file": "imgs/memorials/speeches/10_10_2019/%D7%90%D7%96%D7%9B%D7%A8%D7%94%2023%2010.10.19.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "10_10_2019",
+      "day": 10,
+      "month": 10,
+      "year": 2019,
+      "displayDate": "10/10/2019"
     },
     {
       "photos": [
@@ -571,6 +641,36 @@
       "displayDate": "11/05/2016"
     },
     {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "הספד ליהודה שנה 15",
+          "file": "imgs/memorials/speeches/11_10_2011/%D7%94%D7%A1%D7%A4%D7%93%20%D7%9C%D7%99%D7%94%D7%95%D7%93%D7%94%20%D7%A9%D7%A0%D7%94%2015.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "11_10_2011",
+      "day": 11,
+      "month": 10,
+      "year": 2011,
+      "displayDate": "11/10/2011"
+    },
+    {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "12 שנים",
+          "file": "imgs/memorials/speeches/12_10_2008/12%20%D7%A9%D7%A0%D7%99%D7%9D.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "12_10_2008",
+      "day": 12,
+      "month": 10,
+      "year": 2008,
+      "displayDate": "12/10/2008"
+    },
+    {
       "photos": [
         {
           "thumb": "imgs/memorials/13_05_2024.jpg",
@@ -584,6 +684,36 @@
       "month": 5,
       "year": 2024,
       "displayDate": "13/05/2024"
+    },
+    {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "20 שנים ליהודה",
+          "file": "imgs/memorials/speeches/15_10_2016/20%20%D7%A9%D7%A0%D7%99%D7%9D%20%D7%9C%D7%99%D7%94%D7%95%D7%93%D7%94.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "15_10_2016",
+      "day": 15,
+      "month": 10,
+      "year": 2016,
+      "displayDate": "15/10/2016"
+    },
+    {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "יהודה- אזכרה 17 שנים",
+          "file": "imgs/memorials/speeches/17_09_2013/%D7%99%D7%94%D7%95%D7%93%D7%94-%20%D7%90%D7%96%D7%9B%D7%A8%D7%94%2017%20%D7%A9%D7%A0%D7%99%D7%9D.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "17_09_2013",
+      "day": 17,
+      "month": 9,
+      "year": 2013,
+      "displayDate": "17/09/2013"
     },
     {
       "photos": [
@@ -2276,6 +2406,21 @@
       "displayDate": "21/04/2026"
     },
     {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "יהודה אזכרה 14",
+          "file": "imgs/memorials/speeches/21_09_2010/%D7%99%D7%94%D7%95%D7%93%D7%94%20%D7%90%D7%96%D7%9B%D7%A8%D7%94%2014.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "21_09_2010",
+      "day": 21,
+      "month": 9,
+      "year": 2010,
+      "displayDate": "21/09/2010"
+    },
+    {
       "photos": [
         {
           "thumb": "imgs/memorials/22_04_2015/514346618_31080282224896160_4844286664395540756_n.jpg",
@@ -2329,6 +2474,51 @@
       "month": 4,
       "year": 2015,
       "displayDate": "22/04/2015"
+    },
+    {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "יהודה 22 שנה",
+          "file": "imgs/memorials/speeches/22_09_2018/%D7%99%D7%94%D7%95%D7%93%D7%94%2022%20%D7%A9%D7%A0%D7%94.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "22_09_2018",
+      "day": 22,
+      "month": 9,
+      "year": 2018,
+      "displayDate": "22/09/2018"
+    },
+    {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "בטקס פינסקר",
+          "file": "imgs/memorials/speeches/23_04_2007/%D7%91%D7%98%D7%A7%D7%A1%20%D7%A4%D7%99%D7%A0%D7%A1%D7%A7%D7%A8.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "23_04_2007",
+      "day": 23,
+      "month": 4,
+      "year": 2007,
+      "displayDate": "23/04/2007"
+    },
+    {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "נשיאת דברים בטקס חידוש ספריית פינסקר על שם יהודה",
+          "file": "imgs/memorials/speeches/24_04_2011/%D7%A0%D7%A9%D7%99%D7%90%D7%AA%20%D7%93%D7%91%D7%A8%D7%99%D7%9D%20%D7%91%D7%98%D7%A7%D7%A1%20%D7%97%D7%99%D7%93%D7%95%D7%A9%20%D7%A1%D7%A4%D7%A8%D7%99%D7%99%D7%AA%20%D7%A4%D7%99%D7%A0%D7%A1%D7%A7%D7%A8%20%D7%A2%D7%9C%20%D7%A9%D7%9D%20%D7%99%D7%94%D7%95%D7%93%D7%94.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "24_04_2011",
+      "day": 24,
+      "month": 4,
+      "year": 2011,
+      "displayDate": "24/04/2011"
     },
     {
       "photos": [
@@ -2624,6 +2814,36 @@
       "month": 4,
       "year": 2023,
       "displayDate": "25/04/2023"
+    },
+    {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "11 שנים ליהודה",
+          "file": "imgs/memorials/speeches/25_09_2007/11%20%D7%A9%D7%A0%D7%99%D7%9D%20%D7%9C%D7%99%D7%94%D7%95%D7%93%D7%94.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "25_09_2007",
+      "day": 25,
+      "month": 9,
+      "year": 2007,
+      "displayDate": "25/09/2007"
+    },
+    {
+      "photos": [],
+      "speeches": [
+        {
+          "title": "19 ליהודה",
+          "file": "imgs/memorials/speeches/26_09_2015/19%20%D7%9C%D7%99%D7%94%D7%95%D7%93%D7%94.pdf",
+          "ext": "pdf"
+        }
+      ],
+      "date": "26_09_2015",
+      "day": 26,
+      "month": 9,
+      "year": 2015,
+      "displayDate": "26/09/2015"
     },
     {
       "photos": [],
