@@ -3299,7 +3299,23 @@
           "caption": "WhatsApp Image 2026-09-26 at 22.09.29"
         }
       ],
-      "speeches": [],
+      "speeches": [
+        {
+          "title": "הילה-24-09-2026",
+          "file": "imgs/memorials/speeches/24_09_2026/%D7%94%D7%99%D7%9C%D7%94-24-09-2026.pdf",
+          "ext": "pdf"
+        },
+        {
+          "title": "יהודה זל 30 שנה - בוני",
+          "file": "imgs/memorials/speeches/24_09_2026/%D7%99%D7%94%D7%95%D7%93%D7%94%20%D7%96%D7%9C%2030%20%D7%A9%D7%A0%D7%94%20-%20%D7%91%D7%95%D7%A0%D7%99.docx",
+          "ext": "docx"
+        },
+        {
+          "title": "יהודה שלי - מיטל",
+          "file": "imgs/memorials/speeches/24_09_2026/%D7%99%D7%94%D7%95%D7%93%D7%94%20%D7%A9%D7%9C%D7%99%20-%20%D7%9E%D7%99%D7%98%D7%9C.docx",
+          "ext": "docx"
+        }
+      ],
       "date": "24_09_2026",
       "day": 24,
       "month": 9,
