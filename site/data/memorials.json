@@ -2554,6 +2554,11 @@
           "caption": "1"
         },
         {
+          "thumb": "imgs/memorials/24_09_2026/2.jpeg",
+          "full": "imgs/memorials/24_09_2026/2.jpeg",
+          "caption": "2"
+        },
+        {
           "thumb": "imgs/memorials/24_09_2026/24_09_2026%20%2810%29.jpeg",
           "full": "imgs/memorials/24_09_2026/24_09_2026%20%2810%29.jpeg",
           "caption": "24_09_2026 (10)"
@@ -3104,11 +3109,6 @@
           "caption": "24_09_2026 (199)"
         },
         {
-          "thumb": "imgs/memorials/24_09_2026/24_09_2026%20%282%29.jpeg",
-          "full": "imgs/memorials/24_09_2026/24_09_2026%20%282%29.jpeg",
-          "caption": "24_09_2026 (2)"
-        },
-        {
           "thumb": "imgs/memorials/24_09_2026/24_09_2026%20%2820%29.jpeg",
           "full": "imgs/memorials/24_09_2026/24_09_2026%20%2820%29.jpeg",
           "caption": "24_09_2026 (20)"
@@ -3227,11 +3227,6 @@
           "thumb": "imgs/memorials/24_09_2026/24_09_2026%20%2829%29.jpeg",
           "full": "imgs/memorials/24_09_2026/24_09_2026%20%2829%29.jpeg",
           "caption": "24_09_2026 (29)"
-        },
-        {
-          "thumb": "imgs/memorials/24_09_2026/24_09_2026%20%283%29.jpeg",
-          "full": "imgs/memorials/24_09_2026/24_09_2026%20%283%29.jpeg",
-          "caption": "24_09_2026 (3)"
         },
         {
           "thumb": "imgs/memorials/24_09_2026/24_09_2026%20%2830%29.jpeg",
@@ -3612,6 +3607,11 @@
           "thumb": "imgs/memorials/24_09_2026/24_09_2026%20%2899%29.jpeg",
           "full": "imgs/memorials/24_09_2026/24_09_2026%20%2899%29.jpeg",
           "caption": "24_09_2026 (99)"
+        },
+        {
+          "thumb": "imgs/memorials/24_09_2026/3.jpeg",
+          "full": "imgs/memorials/24_09_2026/3.jpeg",
+          "caption": "3"
         }
       ],
       "speeches": [
